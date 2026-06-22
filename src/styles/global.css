@@ -111,6 +111,10 @@ img {
   .rk-featured {
     grid-template-columns: 1fr !important;
   }
+  .rk-contact-grid,
+  .rk-contact-fields {
+    grid-template-columns: 1fr !important;
+  }
   .rk-footer-grid {
     grid-template-columns: 1fr !important;
     gap: 28px !important;

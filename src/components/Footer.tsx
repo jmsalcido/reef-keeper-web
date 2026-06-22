@@ -66,9 +66,9 @@ export function Footer() {
         <div>
           <div style={colLabel}>Company</div>
           <div style={colWrap}>
-            <a href="#" style={colLink}>
+            <Link to="/contact" style={colLink}>
               Support
-            </a>
+            </Link>
             <Link to="/privacy" style={colLink}>
               Privacy
             </Link>

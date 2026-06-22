@@ -8,6 +8,7 @@ import { Landing } from './pages/Landing';
 import { BlogIndex } from './pages/BlogIndex';
 import { Article } from './pages/Article';
 import { Privacy, Terms } from './pages/Legal';
+import { Contact } from './pages/Contact';
 
 const rootRoute = createRootRoute({
   component: () => <Outlet />,
@@ -43,12 +44,19 @@ const termsRoute = createRoute({
   component: Terms,
 });
 
+const contactRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/contact',
+  component: Contact,
+});
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   blogIndexRoute,
   articleRoute,
   privacyRoute,
   termsRoute,
+  contactRoute,
 ]);
 
 export const router = createRouter({
