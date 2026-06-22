@@ -7,6 +7,7 @@ import {
 import { Landing } from './pages/Landing';
 import { BlogIndex } from './pages/BlogIndex';
 import { Article } from './pages/Article';
+import { Privacy, Terms } from './pages/Legal';
 
 const rootRoute = createRootRoute({
   component: () => <Outlet />,
@@ -30,10 +31,24 @@ const articleRoute = createRoute({
   component: Article,
 });
 
+const privacyRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/privacy',
+  component: Privacy,
+});
+
+const termsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/terms',
+  component: Terms,
+});
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   blogIndexRoute,
   articleRoute,
+  privacyRoute,
+  termsRoute,
 ]);
 
 export const router = createRouter({

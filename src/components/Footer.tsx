@@ -69,12 +69,12 @@ export function Footer() {
             <a href="#" style={colLink}>
               Support
             </a>
-            <a href="#" style={colLink}>
+            <Link to="/privacy" style={colLink}>
               Privacy
-            </a>
-            <a href="#" style={colLink}>
+            </Link>
+            <Link to="/terms" style={colLink}>
               Terms
-            </a>
+            </Link>
           </div>
         </div>
       </div>
