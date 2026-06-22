@@ -1,0 +1,105 @@
+/* Reef Keeper — design tokens (from the Aqua Track design system).
+   Palette sampled from the product reference: deep ocean header, soft aqua
+   gradient surface, reef-green primary action, teal accent, coral alerts. */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap');
+
+:root {
+  /* ---- Brand / Ocean ---- */
+  --ocean-900: #0e2c40;
+  --ocean-800: #103a52;
+  --ocean-700: #15486a;
+  --ocean-600: #1d496a;
+  --ocean-500: #26536f;
+
+  /* ---- Aqua / Teal accent ---- */
+  --teal-600: #246a7e;
+  --teal-500: #2d7d94;
+  --teal-400: #34a0b8;
+  --teal-100: #dceff4;
+
+  /* ---- Reef green (primary action + success) ---- */
+  --green-700: #1e8a5b;
+  --green-600: #27a06a;
+  --green-500: #34b47a;
+  --green-100: #d3ecdd;
+
+  /* ---- Coral (danger / overdue / out-of-range) ---- */
+  --coral-700: #b83a3a;
+  --coral-600: #d84a4a;
+  --coral-100: #f8dadc;
+
+  /* ---- Amber (warning) ---- */
+  --amber-600: #e0961f;
+  --amber-500: #e8a33d;
+  --amber-100: #fcebcf;
+
+  /* ---- Cool neutrals (blue-tinted grays) ---- */
+  --ink-900: #0e2c40;
+  --ink-700: #2a4a60;
+  --ink-500: #57778b;
+  --ink-400: #8aa0b0;
+  --ink-300: #c3d2dc;
+  --ink-200: #dce6ec;
+  --ink-100: #edf3f7;
+
+  --white: #ffffff;
+
+  /* ---- App background gradient ---- */
+  --bg-aqua-1: #d4f0fa;
+  --bg-aqua-2: #d1e3fd;
+  --surface-app: #f4f9fc;
+
+  /* ============ Semantic aliases ============ */
+  --color-bg-gradient: linear-gradient(155deg, var(--bg-aqua-1) 0%, var(--bg-aqua-2) 100%);
+  --color-header-gradient: linear-gradient(135deg, var(--ocean-700) 0%, var(--ocean-900) 100%);
+
+  --surface-card: var(--white);
+  --surface-sunken: var(--ink-100);
+
+  --text-strong: var(--ink-900);
+  --text-body: var(--ink-700);
+  --text-muted: var(--ink-500);
+  --text-faint: var(--ink-400);
+  --text-on-dark: var(--white);
+  --text-link: var(--teal-500);
+
+  --border-hairline: var(--ink-300);
+  --border-divider: var(--ink-200);
+
+  --action-primary: var(--green-600);
+  --action-primary-press: var(--green-700);
+  --action-accent: var(--teal-500);
+
+  --status-success: var(--green-600);
+  --status-success-surface: var(--green-100);
+  --status-danger: var(--coral-600);
+  --status-danger-surface: var(--coral-100);
+  --status-warning: var(--amber-500);
+  --status-warning-surface: var(--amber-100);
+
+  /* ---- Type ---- */
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* ---- Radii ---- */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+  --radius-pill: 999px;
+
+  /* ---- Elevation ---- */
+  --shadow-xs: 0 1px 2px rgba(16, 44, 64, 0.06);
+  --shadow-sm: 0 2px 8px rgba(16, 44, 64, 0.08);
+  --shadow-md: 0 8px 24px rgba(16, 44, 64, 0.1);
+  --shadow-lg: 0 18px 40px rgba(16, 44, 64, 0.16);
+  --shadow-header: 0 6px 20px rgba(14, 44, 64, 0.22);
+
+  /* ---- Motion ---- */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 320ms;
+}

@@ -1,0 +1,22 @@
+<svg width="250" height="48" viewBox="0 0 250 48" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Reef Keeper">
+  <defs>
+    <linearGradient id="atwr" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#34A0B8"></stop>
+      <stop offset="1" stop-color="#15486A"></stop>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="40" height="40" rx="11" fill="url(#atwr)"></rect>
+  <g stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M24 40 V25 M24 30 L18.5 21 M24 28 L29.5 20"></path>
+    <path d="M15.5 40 V30 M15.5 32 L11 25"></path>
+    <path d="M32.5 40 V31 M32.5 33 L37 26"></path>
+  </g>
+  <g fill="#fff">
+    <circle cx="24" cy="24" r="2"></circle>
+    <circle cx="18.5" cy="21" r="2"></circle>
+    <circle cx="29.5" cy="20" r="2"></circle>
+    <circle cx="11" cy="25" r="1.7"></circle>
+    <circle cx="37" cy="26" r="1.7"></circle>
+  </g>
+  <text x="58" y="32" font-family="&#39;Plus Jakarta Sans&#39;, sans-serif" font-size="24" font-weight="800" fill="#0E2C40" letter-spacing="-0.5">Reef<tspan fill="#2D7D94"> Keeper</tspan></text>
+</svg>
