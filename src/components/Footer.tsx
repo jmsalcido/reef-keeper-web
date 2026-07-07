@@ -1,6 +1,7 @@
+import { useState, type CSSProperties, type FormEvent } from 'react';
 import { Link } from '@tanstack/react-router';
 
-const colLabel: React.CSSProperties = {
+const colLabel: CSSProperties = {
   fontSize: 12,
   fontWeight: 700,
   letterSpacing: '.1em',
@@ -8,13 +9,128 @@ const colLabel: React.CSSProperties = {
   color: 'rgba(255,255,255,.5)',
   marginBottom: 14,
 };
-const colLink: React.CSSProperties = { color: 'rgba(255,255,255,.78)' };
-const colWrap: React.CSSProperties = {
+const colLink: CSSProperties = { color: 'rgba(255,255,255,.78)' };
+const colWrap: CSSProperties = {
   display: 'flex',
   flexDirection: 'column',
   gap: 10,
   fontSize: 14.5,
 };
+
+type NewsletterState = 'idle' | 'loading' | 'success' | 'error';
+
+function NewsletterSignup() {
+  const [email, setEmail] = useState('');
+  const [submitState, setSubmitState] = useState<NewsletterState>('idle');
+  const [message, setMessage] = useState('');
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const trimmedEmail = email.trim();
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
+      setSubmitState('error');
+      setMessage('Enter a valid email address.');
+      return;
+    }
+
+    setSubmitState('loading');
+    setMessage('');
+
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: trimmedEmail }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Newsletter signup failed with ${response.status}`);
+      }
+
+      setEmail('');
+      setSubmitState('success');
+      setMessage('Thanks. You are on the list.');
+    } catch {
+      setSubmitState('error');
+      setMessage('Could not subscribe right now. Please try again.');
+    }
+  }
+
+  return (
+    <div>
+      <div style={colLabel}>Newsletter</div>
+      <p style={{ fontSize: 14, lineHeight: 1.55, margin: '0 0 14px', color: 'rgba(255,255,255,.7)' }}>
+        Reef keeping notes, product updates, and practical tank care tips.
+      </p>
+      <form noValidate onSubmit={handleSubmit} style={{ display: 'flex', gap: 8, alignItems: 'stretch' }}>
+        <label htmlFor="newsletter-email" style={{ position: 'absolute', width: 1, height: 1, padding: 0, margin: -1, overflow: 'hidden', clip: 'rect(0, 0, 0, 0)', whiteSpace: 'nowrap', border: 0 }}>
+          Email address
+        </label>
+        <input
+          id="newsletter-email"
+          name="email"
+          type="email"
+          autoComplete="email"
+          required
+          placeholder="you@example.com"
+          value={email}
+          onChange={(event) => {
+            setEmail(event.target.value);
+            if (submitState !== 'idle' && submitState !== 'loading') {
+              setSubmitState('idle');
+              setMessage('');
+            }
+          }}
+          style={{
+            minWidth: 0,
+            flex: 1,
+            border: '1px solid rgba(255,255,255,.16)',
+            borderRadius: 'var(--radius-md)',
+            background: 'rgba(255,255,255,.08)',
+            color: '#fff',
+            font: 'inherit',
+            fontSize: 14,
+            padding: '12px 13px',
+            outlineColor: 'var(--teal-400)',
+          }}
+        />
+        <button
+          type="submit"
+          disabled={submitState === 'loading'}
+          style={{
+            border: 'none',
+            borderRadius: 'var(--radius-md)',
+            background: submitState === 'loading' ? 'var(--ink-400)' : 'var(--action-primary)',
+            color: '#fff',
+            fontSize: 14,
+            fontWeight: 800,
+            padding: '0 15px',
+            cursor: submitState === 'loading' ? 'wait' : 'pointer',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {submitState === 'loading' ? 'Joining...' : 'Join'}
+        </button>
+      </form>
+      {message && (
+        <p
+          role="status"
+          style={{
+            margin: '10px 0 0',
+            color: submitState === 'success' ? 'var(--teal-400)' : 'var(--coral-300)',
+            fontSize: 13,
+            lineHeight: 1.45,
+            fontWeight: 700,
+          }}
+        >
+          {message}
+        </p>
+      )}
+    </div>
+  );
+}
 
 /** Full site footer used on the landing page. */
 export function Footer() {
@@ -27,7 +143,7 @@ export function Footer() {
           margin: '0 auto',
           padding: '56px 28px 40px',
           display: 'grid',
-          gridTemplateColumns: '1.4fr 1fr 1fr',
+          gridTemplateColumns: '1.35fr .75fr .75fr 1.35fr',
           gap: 40,
         }}
       >
@@ -77,6 +193,7 @@ export function Footer() {
             </Link>
           </div>
         </div>
+        <NewsletterSignup />
       </div>
       <div style={{ borderTop: '1px solid rgba(255,255,255,.12)' }}>
         <div

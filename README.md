@@ -73,6 +73,9 @@ public/
 ## Configuration
 
 - **App Store link** — single source of truth in `src/config.ts` (`APP_STORE_URL`).
+- **Newsletter signup** — configure `MAILERLITE_API_KEY` as a server-side Netlify
+  environment variable. Do not prefix it with `VITE_`; the key must stay out of
+  the browser bundle.
 - **Brand assets** — in `public/`. Replace with final art as needed.
 
 ## Deploying
