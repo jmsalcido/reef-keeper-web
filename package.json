@@ -6,6 +6,8 @@
   "description": "Reef Keeper — Aquarium Tracker marketing site (React + Vite + TanStack Router)",
   "scripts": {
     "dev": "vite",
+    "generate:sitemap": "node scripts/generate-sitemap.mjs",
+    "prebuild": "npm run generate:sitemap",
     "build": "vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit"
