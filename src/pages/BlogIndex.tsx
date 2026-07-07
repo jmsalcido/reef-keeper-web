@@ -2,10 +2,12 @@ import { Link } from '@tanstack/react-router';
 import { Nav } from '../components/Nav';
 import { MiniFooter } from '../components/Footer';
 import { AppStoreButton } from '../components/AppStoreButton';
-import { posts } from '../data/posts';
+import { isPublishedPost, posts } from '../data/posts';
 
 export function BlogIndex() {
-  const [featured, ...rest] = posts;
+  const publishedPosts = posts.filter(isPublishedPost);
+  const [featured, ...publishedRest] = publishedPosts;
+  const rest = [...publishedRest, ...posts.filter((post) => !isPublishedPost(post))];
 
   return (
     <>

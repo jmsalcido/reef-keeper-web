@@ -6,6 +6,12 @@ import { AppStoreButton } from '../components/AppStoreButton';
 import { HeroPhone, LogPhone, GraphsPhone, TasksPhone } from '../components/Phones';
 import { APP_STORE_URL } from '../config';
 import { posts } from '../data/posts';
+import {
+  JsonLd,
+  applicationProductJsonLd,
+  faqPageJsonLd,
+  organizationJsonLd,
+} from '../seo/structuredData';
 
 const overline: CSSProperties = {
   fontSize: 11.5,
@@ -131,6 +137,7 @@ function Faq() {
 export function Landing() {
   return (
     <>
+      <JsonLd data={[organizationJsonLd(), applicationProductJsonLd(), faqPageJsonLd(FAQS)]} />
       <Nav variant="landing" />
 
       {/* HERO */}
@@ -343,21 +350,35 @@ export function Landing() {
             </Link>
           </div>
           <div className="rk-grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 22 }}>
-            {posts.map((p) => (
-              <Link
-                key={p.slug}
-                to="/blog/$slug"
-                params={{ slug: p.slug }}
-                style={{ display: 'block', background: 'var(--surface-card)', border: '1px solid var(--border-divider)', borderRadius: 'var(--radius-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-xs)' }}
-              >
-                <div style={{ height: 150, background: p.gradient }} />
-                <div style={{ padding: 22 }}>
-                  <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', color: p.categoryColor }}>{p.category}</div>
-                  <h3 style={{ fontSize: 18, lineHeight: 1.3, fontWeight: 700, color: 'var(--text-strong)', margin: '8px 0 0' }}>{p.title}</h3>
-                  <p style={{ fontSize: 14, lineHeight: 1.5, color: 'var(--text-muted)', margin: '8px 0 0' }}>{p.excerpt}</p>
+            {posts.map((p) => {
+              const card = (
+                <>
+                  <div style={{ height: 150, background: p.gradient, position: 'relative' }}>
+                    {p.comingSoon && (
+                      <span style={{ position: 'absolute', top: 12, left: 12, fontSize: 10.5, fontWeight: 800, letterSpacing: '.06em', textTransform: 'uppercase', color: '#fff', background: 'rgba(0,0,0,.25)', padding: '4px 9px', borderRadius: 999 }}>
+                        Soon
+                      </span>
+                    )}
+                  </div>
+                  <div style={{ padding: 22 }}>
+                    <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', color: p.categoryColor }}>{p.category}</div>
+                    <h3 style={{ fontSize: 18, lineHeight: 1.3, fontWeight: 700, color: 'var(--text-strong)', margin: '8px 0 0' }}>{p.title}</h3>
+                    <p style={{ fontSize: 14, lineHeight: 1.5, color: 'var(--text-muted)', margin: '8px 0 0' }}>{p.excerpt}</p>
+                  </div>
+                </>
+              );
+              const cardStyle = { display: 'block', background: 'var(--surface-card)', border: '1px solid var(--border-divider)', borderRadius: 'var(--radius-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-xs)', opacity: p.comingSoon ? 0.92 : 1 };
+
+              return p.comingSoon ? (
+                <div key={p.slug} style={cardStyle}>
+                  {card}
                 </div>
-              </Link>
-            ))}
+              ) : (
+                <Link key={p.slug} to="/blog/$slug" params={{ slug: p.slug }} style={cardStyle}>
+                  {card}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>

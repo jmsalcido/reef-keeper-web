@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { Link } from '@tanstack/react-router';
 
-export type Post = {
+type PostBase = {
   slug: string;
   category: string;
   categoryColor: string;
@@ -9,9 +9,24 @@ export type Post = {
   title: string;
   excerpt: string;
   gradient: string;
-  comingSoon?: boolean;
-  content?: () => ReactNode;
+  image?: string;
 };
+
+export type PublishedPost = PostBase & {
+  comingSoon?: false;
+  datePublished: string;
+  dateModified: string;
+  content: () => ReactNode;
+};
+
+export type ComingSoonPost = PostBase & {
+  comingSoon?: boolean;
+  datePublished?: never;
+  dateModified?: never;
+  content?: never;
+};
+
+export type Post = PublishedPost | ComingSoonPost;
 
 const Bullet = ({ d, stroke = 'var(--teal-500)' }: { d: string; stroke?: string }) => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={stroke} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flex: '0 0 22px', marginTop: 1 }} dangerouslySetInnerHTML={{ __html: d }} />
@@ -27,6 +42,9 @@ export const posts: Post[] = [
     excerpt:
       'A new tank, a mature reef and a planted nano all want different testing rhythms. Here’s a simple schedule — and which parameters actually move the needle.',
     gradient: 'linear-gradient(135deg,var(--teal-400),var(--ocean-900))',
+    image: '/app-icon-ios.png',
+    datePublished: '2026-07-07',
+    dateModified: '2026-07-07',
     content: () => (
       <>
         <p>
@@ -137,6 +155,9 @@ export const posts: Post[] = [
     excerpt:
       'Why ammonia and nitrite spike in a brand-new tank, what a healthy cycle curve looks like, and when it’s safe to add livestock.',
     gradient: 'linear-gradient(135deg,var(--green-500),var(--ocean-800))',
+    image: '/app-icon-ios.png',
+    datePublished: '2026-07-07',
+    dateModified: '2026-07-07',
     content: () => (
       <>
         <p>
@@ -260,3 +281,6 @@ export const posts: Post[] = [
 ];
 
 export const getPost = (slug: string) => posts.find((p) => p.slug === slug);
+
+export const isPublishedPost = (post: Post): post is PublishedPost =>
+  !post.comingSoon && typeof post.content === 'function';

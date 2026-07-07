@@ -2,20 +2,22 @@ import { Link, useParams } from '@tanstack/react-router';
 import { Nav } from '../components/Nav';
 import { MiniFooter } from '../components/Footer';
 import { AppStoreButton } from '../components/AppStoreButton';
-import { getPost, posts } from '../data/posts';
+import { getPost, isPublishedPost, posts } from '../data/posts';
+import { JsonLd, blogPostingJsonLd, organizationJsonLd } from '../seo/structuredData';
 
 export function Article() {
   const { slug } = useParams({ from: '/blog/$slug' });
   const post = getPost(slug);
 
-  if (!post || !post.content) {
+  if (!post || !isPublishedPost(post)) {
     return <NotFound />;
   }
 
-  const related = posts.find((p) => p.slug !== post.slug && !p.comingSoon);
+  const related = posts.find((p) => p.slug !== post.slug && isPublishedPost(p));
 
   return (
     <>
+      <JsonLd data={[organizationJsonLd(), blogPostingJsonLd(post)]} />
       <Nav variant="inner" />
 
       <article>
