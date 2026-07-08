@@ -95,6 +95,28 @@ img {
   color: var(--teal-600);
   font-weight: 600;
 }
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 8px 0 24px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.prose th,
+.prose td {
+  border: 1px solid var(--border-divider);
+  padding: 12px 14px;
+  text-align: left;
+  vertical-align: top;
+}
+.prose th {
+  background: var(--green-100);
+  color: var(--text-strong);
+  font-weight: 700;
+}
+.prose td {
+  color: var(--text-body);
+}
 
 /* ---- Responsive ---- */
 @media (max-width: 900px) {
@@ -121,5 +143,10 @@ img {
   }
   .rk-pricing-featured {
     transform: none !important;
+  }
+  .prose table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
   }
 }

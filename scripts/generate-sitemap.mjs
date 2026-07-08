@@ -46,15 +46,23 @@ const renderUrl = ({ path: routePath, lastmod, changefreq, priority }) => {
 
 const readPublishedPosts = async () => {
   const source = await readFile(postsFile, 'utf8');
-  const postPattern =
-    /{\s*slug:\s*'([^']+)'[\s\S]*?dateModified:\s*'([^']+)'[\s\S]*?content:\s*\(\)\s*=>/g;
+  const postPattern = /^  {\n    slug:\s*'([^']+)'([\s\S]*?)(?=^  },\n  {|^  },\n];)/gm;
 
-  return [...source.matchAll(postPattern)].map((match) => ({
-    path: `/blog/${match[1]}`,
-    lastmod: match[2],
-    changefreq: 'monthly',
-    priority: '0.7',
-  }));
+  return [...source.matchAll(postPattern)]
+    .map((match) => {
+      const dateModified = match[2].match(/^\s+dateModified:\s*'([^']+)'/m)?.[1];
+      const hasContent = /^\s+content:\s*\(\)\s*=>/m.test(match[2]);
+
+      if (!dateModified || !hasContent) return null;
+
+      return {
+        path: `/blog/${match[1]}`,
+        lastmod: dateModified,
+        changefreq: 'monthly',
+        priority: '0.7',
+      };
+    })
+    .filter(Boolean);
 };
 
 const renderSitemap = (routes) => `<?xml version="1.0" encoding="UTF-8"?>

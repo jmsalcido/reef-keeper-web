@@ -2,7 +2,9 @@ import { Link, useParams } from '@tanstack/react-router';
 import { Nav } from '../components/Nav';
 import { MiniFooter } from '../components/Footer';
 import { AppStoreButton } from '../components/AppStoreButton';
+import { canonicalUrl } from '../config';
 import { getPost, isPublishedPost, posts } from '../data/posts';
+import { SeoHead } from '../seo/SeoHead';
 import { JsonLd, blogPostingJsonLd, organizationJsonLd } from '../seo/structuredData';
 
 export function Article() {
@@ -17,6 +19,12 @@ export function Article() {
 
   return (
     <>
+      <SeoHead
+        title={post.seoTitle ?? `${post.title} | Reef Keeper`}
+        description={post.metaDescription ?? post.excerpt}
+        canonicalUrl={canonicalUrl(`/blog/${post.slug}`)}
+        type="article"
+      />
       <JsonLd data={[organizationJsonLd(), blogPostingJsonLd(post)]} />
       <Nav variant="inner" />
 
