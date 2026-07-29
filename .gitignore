@@ -14,5 +14,8 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Local Netlify folder
+# Local deployment state and secrets
 .netlify
+.wrangler
+.dev.vars
+.dev.vars.*

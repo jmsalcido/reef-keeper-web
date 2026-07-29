@@ -9,5 +9,5 @@ sitemap:
 typecheck:
 	npm run typecheck
 
-deploy: build
-	npx --yes netlify-cli deploy --prod --dir=dist
+deploy:
+	npm run deploy

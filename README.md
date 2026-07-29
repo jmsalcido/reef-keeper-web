@@ -6,10 +6,11 @@ TypeScript, styled with the Aqua Track design system tokens.
 
 ## Stack
 
-- **Vite 5** — dev server + build
-- **React 18**
+- **Vite 8** — dev server + build
+- **React 19**
 - **TanStack Router 1** — type-safe client routing (code-based route tree in `src/router.tsx`)
 - **TypeScript**
+- **Cloudflare Workers** — static hosting, SPA routing, and the newsletter API
 - No CSS framework — design tokens live in `src/styles/tokens.css`; everything
   else is inline styles + a small `global.css` (resets, `.prose`, responsive rules).
 
@@ -27,6 +28,8 @@ npm run dev      # http://localhost:5173
 | `npm run dev` | Start the Vite dev server |
 | `npm run build` | Production build to `dist/` |
 | `npm run preview` | Preview the production build locally |
+| `npm run dev:cloudflare` | Build and run the full Cloudflare Worker locally |
+| `npm run deploy` | Build and deploy to Cloudflare Workers |
 | `npm run typecheck` | Run `tsc --noEmit` |
 
 > `npm run build` uses Vite/esbuild and does not block on type errors. Run
@@ -67,26 +70,36 @@ src/
     Article.tsx
 public/
   logo-wordmark.svg, logo-mark.svg, app-icon-ios.png
-  _redirects            # Netlify SPA fallback
+worker/
+  index.mjs             # Cloudflare Worker API routes
+wrangler.jsonc          # Cloudflare deployment and SPA routing config
 ```
 
 ## Configuration
 
 - **App Store link** — single source of truth in `src/config.ts` (`APP_STORE_URL`).
-- **Newsletter signup** — configure `MAILERLITE_API_KEY` as a server-side Netlify
-  environment variable. Do not prefix it with `VITE_`; the key must stay out of
-  the browser bundle.
+- **Newsletter signup** — configure `MAILERLITE_API_KEY` as a Cloudflare Worker
+  secret. Do not prefix it with `VITE_`; the key must stay out of the browser
+  bundle.
 - **Brand assets** — in `public/`. Replace with final art as needed.
 
 ## Deploying
 
-The site is a static SPA. `npm run build` outputs to `dist/`. Both config files
-for SPA history fallback are included:
+The app deploys to **Cloudflare Workers with Static Assets**. Wrangler uploads
+`dist/`, serves matching assets directly, falls back to `index.html` for client
+routes, and invokes `worker/index.mjs` for `/api/*`.
 
-- **Vercel** — `vercel.json` (rewrite all routes to `/index.html`). Just import the repo.
-- **Netlify** — `netlify.toml` + `public/_redirects`. Build `npm run build`, publish `dist`.
-- **Other static hosts** — serve `dist/` and add a catch-all rewrite to `/index.html`
-  so client-side routes (e.g. `/blog/...`) resolve on refresh.
+Authenticate once, deploy the Worker, and then add the production secret:
+
+```bash
+npx wrangler login
+npm run deploy
+npx wrangler secret put MAILERLITE_API_KEY
+```
+
+After initial setup, deploy new versions with `npm run deploy` (or `make deploy`).
+For a Cloudflare Git integration, use `npm run build` as the build command and
+`npx wrangler deploy` as the deploy command.
 
 ## Notes / handoff
 
