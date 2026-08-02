@@ -41,6 +41,7 @@ export function Nav({ variant = 'landing' }: { variant?: 'landing' | 'inner' }) 
       }}
     >
       <nav
+        className="rk-nav"
         style={{
           maxWidth: 1140,
           margin: '0 auto',
@@ -58,7 +59,7 @@ export function Nav({ variant = 'landing' }: { variant?: 'landing' | 'inner' }) 
             style={{ height: 34, width: 'auto' }}
           />
         </Link>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 30 }}>
+        <div className="rk-nav-links" style={{ display: 'flex', alignItems: 'center', gap: 30 }}>
           {sectionLink('features', 'Features')}
           {sectionLink('screens', 'The app')}
           {sectionLink('pricing', 'Pricing')}

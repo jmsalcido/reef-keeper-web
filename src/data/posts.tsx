@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { Link } from '@tanstack/react-router';
+import { APP_STORE_URL } from '../config';
 
 type PostBase = {
   slug: string;
@@ -35,7 +36,159 @@ const Bullet = ({ d, stroke = 'var(--teal-500)' }: { d: string; stroke?: string 
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={stroke} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flex: '0 0 22px', marginTop: 1 }} dangerouslySetInnerHTML={{ __html: d }} />
 );
 
+const ReleaseScreenshot = ({ src, alt, caption }: { src: string; alt: string; caption: string }) => (
+  <figure style={{ margin: '32px 0 36px' }}>
+    <div
+      style={{
+        border: '1px solid var(--border-divider)',
+        borderRadius: 'var(--radius-xl)',
+        background: 'var(--surface-app)',
+        padding: '18px 18px 0',
+        overflow: 'hidden',
+        boxShadow: 'var(--shadow-sm)',
+      }}
+    >
+      <img src={src} alt={alt} style={{ width: '100%', maxWidth: 368, height: 'auto', margin: '0 auto' }} />
+    </div>
+    <figcaption style={{ marginTop: 10, color: 'var(--text-faint)', fontSize: 14, lineHeight: 1.5, textAlign: 'center' }}>
+      {caption}
+    </figcaption>
+  </figure>
+);
+
 export const posts: Post[] = [
+  {
+    slug: 'reefkeeper-1-3-guided-care-plans',
+    category: 'Product updates',
+    categoryColor: 'var(--teal-600)',
+    readTime: '5 min read',
+    title: 'Reef Keeper 1.3: Guided care plans for the moments that matter',
+    seoTitle: 'Reef Keeper 1.3: Guided Care Plans for Aquarium Care',
+    metaDescription:
+      'Reef Keeper 1.3 introduces Guided Care Plans for new tank cycling, high nitrate recovery, and repeatable weekly aquarium maintenance.',
+    excerpt:
+      'Reef Keeper 1.3 turns three stressful aquarium moments into clear next steps: cycle a new tank, recover from high nitrate, and keep weekly care on track.',
+    gradient: 'linear-gradient(135deg,var(--teal-600),var(--ocean-900))',
+    image: '/blog/reefkeeper-1.3.0/new-tank-cycle.jpg',
+    relatedSlugs: ['aquarium-maintenance-schedule', 'high-nitrate-in-aquarium'],
+    datePublished: '2026-08-02',
+    dateModified: '2026-08-02',
+    content: () => (
+      <>
+        <p>
+          Today we’re releasing <strong>Reef Keeper 1.3.0 (build 4)</strong>, a focused update built
+          around a simple idea: aquarium care is easier when the app helps you decide what to do
+          next. The release introduces Guided Care Plans for three situations that often create the
+          most uncertainty—starting a new tank, responding to elevated nitrate, and staying
+          consistent with weekly maintenance.
+        </p>
+        <p>
+          Each plan connects guidance, reminders, and progress in one place. Instead of keeping a
+          separate checklist or trying to remember when to retest, you can start with a plan that
+          matches the moment your aquarium is in.
+        </p>
+
+        <h2>A calmer way to start a new tank</h2>
+        <p>
+          The New Tank Cycle plan gives a new aquarium a measured testing rhythm from the start.
+          Choose a testing cadence, then work through ammonia, nitrite, and nitrate checks with
+          reminders for the next step. The plan keeps the process visible, so “is my tank ready?”
+          becomes a question you can answer with readings rather than a guess based on how many days
+          have passed.
+        </p>
+        <p>
+          Reef Keeper also explains what it is looking for: three complete checks with zero ammonia,
+          zero nitrite, detectable nitrate, and at least four days between the first and last
+          qualifying check. That gives new tank owners a clear definition of progress while leaving
+          the actual decision grounded in the water results.
+        </p>
+        <ReleaseScreenshot
+          src="/blog/reefkeeper-1.3.0/new-tank-cycle.jpg"
+          alt="Reef Keeper's New Tank Cycle plan with a selected every-two-days testing cadence"
+          caption="Start a measured cycle for every new tank."
+        />
+
+        <h2>A practical response to high nitrate</h2>
+        <p>
+          A high nitrate reading is stressful because the number tells you something is wrong, but
+          not always what to do next. High Nitrate Recovery turns that moment into an actionable
+          plan. Enter the current nitrate level and your target range, add replacement-water nitrate
+          when you know it, and compare water-change scenarios before you make the change.
+        </p>
+        <p>
+          The plan supports 10%, 20%, 30%, and 50% water-change scenarios, retest cadences, and
+          optional filtration and equipment checks. It then keeps the recovery visible with progress
+          tracking and reminders. The result is a measured path back toward your configured range,
+          with less guesswork and fewer changes made all at once.
+        </p>
+        <ReleaseScreenshot
+          src="/blog/reefkeeper-1.3.0/high-nitrate-recovery.jpg"
+          alt="Reef Keeper's High Nitrate Recovery plan with water-change scenarios and retest options"
+          caption="A clear recovery plan for elevated nitrate."
+        />
+
+        <h2>Make weekly care easier to repeat</h2>
+        <p>
+          Healthy aquariums are built on small actions repeated over time. The Weekly Care Plan
+          turns those actions into a checklist you can shape around your own routine. Select the care
+          items that matter for a tank, choose the days they should happen, and let local reminders
+          bring them back at the right time.
+        </p>
+        <p>
+          Every task can be completed or skipped, and overdue states make it easy to see what needs
+          attention. A weekly progress view shows how much care is done without turning maintenance
+          into a scorecard. It is a lightweight habit loop for logging parameters, inspecting
+          filtration and equipment, reviewing feeding, and staying ahead of water changes.
+        </p>
+        <ReleaseScreenshot
+          src="/blog/reefkeeper-1.3.0/weekly-care-plan.jpg"
+          alt="Reef Keeper's Weekly Care Plan showing weekly progress, overdue tasks, and completed care"
+          caption="Small weekly actions add up to a healthier, easier-to-understand tank."
+        />
+
+        <h2>Polish that helps the plans hold together</h2>
+        <p>
+          The new workflows are supported by a set of reliability and navigation improvements:
+        </p>
+        <ul>
+          <li>
+            <Bullet d='<path d="M20 6 9 17l-5-5" />' />
+            <span>Deep-link entry points make it easier to open the right plan from the right place.</span>
+          </li>
+          <li>
+            <Bullet d='<path d="M12 2v20" /><path d="m5 9 7-7 7 7" />' />
+            <span>Local notification routing keeps reminders connected to the action they represent.</span>
+          </li>
+          <li>
+            <Bullet d='<path d="M4 4h16v16H4z" /><path d="M8 8h8v8H8z" />' />
+            <span>Offline-first persistence helps keep plan progress available when connectivity is limited.</span>
+          </li>
+          <li>
+            <Bullet d='<circle cx="12" cy="12" r="9" /><path d="M8 12h8" />' />
+            <span>Privacy-safe TelemetryDeck events support product insight while respecting aquarium data.</span>
+          </li>
+          <li>
+            <Bullet d='<path d="M3 6h18" /><path d="M7 12h10" /><path d="M10 18h4" />' />
+            <span>The Weekly Care header display is corrected so each plan is labeled clearly.</span>
+          </li>
+        </ul>
+
+        <h2>Built around the next useful action</h2>
+        <p>
+          Reef Keeper 1.3 is about giving aquarium owners a little more confidence at the exact
+          moment they need it. A new tank gets a testing rhythm. A high nitrate reading gets a
+          recovery path. Ongoing maintenance gets a weekly home.
+        </p>
+        <p>
+          The update is available now on the{' '}
+          <a href={APP_STORE_URL} className="link" target="_blank" rel="noreferrer">
+            App Store
+          </a>
+          . Start a Guided Care Plan the next time your tank needs a clear next step.
+        </p>
+      </>
+    ),
+  },
   {
     slug: 'high-nitrate-in-aquarium',
     category: 'Troubleshooting',

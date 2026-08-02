@@ -208,3 +208,26 @@ img {
     white-space: nowrap;
   }
 }
+
+@media (max-width: 640px) {
+  .rk-nav {
+    padding: 12px 18px !important;
+    gap: 12px !important;
+  }
+  .rk-nav > a:first-child img {
+    height: 30px !important;
+  }
+  .rk-nav-links {
+    gap: 0 !important;
+  }
+  .rk-nav-links > :not(:last-child) {
+    display: none !important;
+  }
+  .rk-nav > a:last-child {
+    gap: 6px !important;
+    padding: 8px 12px 8px 10px !important;
+  }
+  .rk-nav > a:last-child span {
+    font-size: 13px !important;
+  }
+}
