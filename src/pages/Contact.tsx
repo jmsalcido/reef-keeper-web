@@ -90,7 +90,8 @@ export function Contact() {
         }),
       });
 
-      if (!response.ok) {
+      const contentType = response.headers.get('content-type') ?? '';
+      if (!response.ok || !contentType.includes('application/json')) {
         throw new Error(`Support request failed with ${response.status}`);
       }
 

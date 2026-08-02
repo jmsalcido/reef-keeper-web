@@ -10,7 +10,7 @@ TypeScript, styled with the Aqua Track design system tokens.
 - **React 19**
 - **TanStack Router 1** — type-safe client routing (code-based route tree in `src/router.tsx`)
 - **TypeScript**
-- **Cloudflare Workers** — static hosting, SPA routing, and the newsletter API
+- **Cloudflare Workers** — static hosting, SPA routing, newsletter API, and support email API
 - No CSS framework — design tokens live in `src/styles/tokens.css`; everything
   else is inline styles + a small `global.css` (resets, `.prose`, responsive rules).
 
@@ -81,6 +81,13 @@ wrangler.jsonc          # Cloudflare deployment and SPA routing config
 - **Newsletter signup** — configure `MAILERLITE_API_KEY` as a Cloudflare Worker
   secret. Do not prefix it with `VITE_`; the key must stay out of the browser
   bundle.
+- **Support email** — configure `MAILGUN_API_KEY` and `MAILGUN_DOMAIN` as
+  Cloudflare Worker secrets. `MAILGUN_FROM_EMAIL` is optional; when omitted,
+  the Worker uses `Reef Keeper Support <mailgun@MAILGUN_DOMAIN>`. The contact
+  form posts to `/api/contact`, which sends support requests to
+  `reefkeeper-support@otfusion.org` through Mailgun. `MAILGUN_API_BASE_URL` is
+  optional and defaults to `https://api.mailgun.net`; set it to
+  `https://api.eu.mailgun.net` for an EU Mailgun domain.
 - **Brand assets** — in `public/`. Replace with final art as needed.
 
 ## Deploying
@@ -95,7 +102,14 @@ Authenticate once, deploy the Worker, and then add the production secret:
 npx wrangler login
 npm run deploy
 npx wrangler secret put MAILERLITE_API_KEY
+npx wrangler secret put MAILGUN_API_KEY
+npx wrangler secret put MAILGUN_DOMAIN
+# Optional custom sender:
+# npx wrangler secret put MAILGUN_FROM_EMAIL
 ```
+
+For local Cloudflare development, add the Mailgun values from `.env.example` to
+your `.env`, then run `npm run dev:cloudflare`. Do not commit `.env`.
 
 After initial setup, deploy new versions with `npm run deploy` (or `make deploy`).
 For a Cloudflare Git integration, use `npm run build` as the build command and

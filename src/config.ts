@@ -18,5 +18,5 @@ export const canonicalUrl = (path = '/') =>
 
 export const canonicalAssetUrl = (path: string) => canonicalUrl(path);
 
-/** Optional support intake endpoint. Configure with VITE_SUPPORT_POST_URL. */
-export const SUPPORT_POST_URL = import.meta.env.VITE_SUPPORT_POST_URL ?? '';
+/** Same-origin Cloudflare Worker endpoint, with an optional override for other deployments. */
+export const SUPPORT_POST_URL = import.meta.env.VITE_SUPPORT_POST_URL || '/api/contact';
