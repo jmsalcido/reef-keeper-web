@@ -115,34 +115,88 @@ export const posts: Post[] = [
         </p>
 
         <h2>A simple plan to bring nitrate down</h2>
-        <ol>
-          <li>
-            <strong>Log today’s reading and what changed.</strong> Note feeding, water changes,
-            livestock additions, filter service, algae, and anything unusual. This gives your next
-            test a useful comparison point.
-          </li>
-          <li>
-            <strong>Do a partial water change appropriate for your tank.</strong> Match
-            temperature and water conditions as closely as practical, and avoid making a large,
-            sudden correction simply to force one test result down.
-          </li>
-          <li>
-            <strong>Remove trapped debris.</strong> Siphon obvious detritus, clean the glass, and
-            rinse mechanical media in removed tank water if it is restricting flow. Keep biological
-            media intact; replacing or aggressively cleaning it all at once can destabilize the
-            cycle.
-          </li>
-          <li>
-            <strong>Review feeding and stocking.</strong> Feed only what livestock will consume
-            promptly, remove leftovers when practical, and consider whether recent additions need
-            a more frequent maintenance cadence.
-          </li>
-          <li>
-            <strong>Retest on a short, consistent schedule.</strong> The next few readings tell
-            you whether your changes are working. Once the trend levels out, settle into a routine
-            you can keep.
-          </li>
-        </ol>
+        <div
+          style={{
+            display: 'grid',
+            gap: 12,
+            marginBottom: 22,
+            border: '1px solid var(--border-divider)',
+            borderRadius: 'var(--radius-lg)',
+            background: 'var(--surface-card)',
+            padding: 12,
+          }}
+        >
+          <div style={{ display: 'grid', gap: 6 }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
+              <span style={{ width: 24, height: 24, borderRadius: '50%', background: 'var(--green-700)', color: 'white', fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>1</span>
+              <div>
+                <p style={{ margin: 0, marginBottom: 4, fontWeight: 700 }}>
+                  Log today’s reading and what changed.
+                </p>
+                <p style={{ margin: 0 }}>
+                  Note feeding, water changes, livestock additions, filter service, algae, and anything
+                  unusual. This gives your next test a useful comparison point.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div style={{ display: 'grid', gap: 6 }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
+              <span style={{ width: 24, height: 24, borderRadius: '50%', background: 'var(--green-700)', color: 'white', fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>2</span>
+              <div>
+                <p style={{ margin: 0, marginBottom: 4, fontWeight: 700 }}>
+                  Do a partial water change appropriate for your tank.
+                </p>
+                <p style={{ margin: 0 }}>
+                  Match temperature and salinity (or GH/KH as relevant) as closely as practical, and avoid
+                  a sudden, aggressive correction just to force one test down.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div style={{ display: 'grid', gap: 6 }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
+              <span style={{ width: 24, height: 24, borderRadius: '50%', background: 'var(--green-700)', color: 'white', fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>3</span>
+              <div>
+                <p style={{ margin: 0, marginBottom: 4, fontWeight: 700 }}>
+                  Remove trapped debris.
+                </p>
+                <p style={{ margin: 0 }}>
+                  Siphon obvious detritus, clean the glass, and rinse mechanical media in removed tank water
+                  if it is restricting flow.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div style={{ display: 'grid', gap: 6 }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
+              <span style={{ width: 24, height: 24, borderRadius: '50%', background: 'var(--green-700)', color: 'white', fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>4</span>
+              <div>
+                <p style={{ margin: 0, marginBottom: 4, fontWeight: 700 }}>
+                  Review feeding and stocking.
+                </p>
+                <p style={{ margin: 0 }}>
+                  Feed only what livestock consumes promptly, remove leftovers, and check whether recent additions
+                  need a more frequent maintenance cadence.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div style={{ display: 'grid', gap: 6 }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
+              <span style={{ width: 24, height: 24, borderRadius: '50%', background: 'var(--green-700)', color: 'white', fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>5</span>
+              <div>
+                <p style={{ margin: 0, marginBottom: 4, fontWeight: 700 }}>
+                  Retest on a short, consistent schedule.
+                </p>
+                <p style={{ margin: 0 }}>
+                  The next few readings tell you whether your changes work. Once the trend levels out, settle
+                  into a routine you can keep.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <h2>What not to do</h2>
         <p>
