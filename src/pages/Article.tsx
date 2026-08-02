@@ -2,6 +2,7 @@ import { Link, useParams } from '@tanstack/react-router';
 import { Nav } from '../components/Nav';
 import { MiniFooter } from '../components/Footer';
 import { AppStoreButton } from '../components/AppStoreButton';
+import { ArticleFeedback } from '../components/ArticleFeedback';
 import { canonicalUrl } from '../config';
 import { getPost, isPublishedPost, posts } from '../data/posts';
 import { SeoHead } from '../seo/SeoHead';
@@ -62,6 +63,10 @@ export function Article() {
         {/* Body */}
         <div className="prose" style={{ maxWidth: 720, margin: '0 auto', padding: '56px 28px 24px' }}>
           {post.content()}
+        </div>
+
+        <div style={{ maxWidth: 720, margin: '0 auto', padding: '16px 28px 24px' }}>
+          <ArticleFeedback slug={post.slug} title={post.title} category={post.category} />
         </div>
 
         {/* Inline CTA */}
