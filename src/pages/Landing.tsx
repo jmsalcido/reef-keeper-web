@@ -167,6 +167,24 @@ export function Landing() {
                 Plans from <strong style={{ color: 'var(--text-body)' }}>$4.99/mo</strong>
               </div>
             </div>
+            <Link
+              to="/contact"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 7,
+                marginTop: 18,
+                color: 'var(--teal-600)',
+                fontSize: 14.5,
+                fontWeight: 700,
+              }}
+            >
+              Questions? Contact support
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
+            </Link>
             <div style={{ display: 'flex', alignItems: 'center', gap: 9, marginTop: 30, color: 'var(--teal-600)', fontSize: 14, fontWeight: 600 }}>
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z" />

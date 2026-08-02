@@ -85,9 +85,10 @@ wrangler.jsonc          # Cloudflare deployment and SPA routing config
   Cloudflare Worker secrets. `MAILGUN_FROM_EMAIL` is optional; when omitted,
   the Worker uses `Reef Keeper Support <mailgun@MAILGUN_DOMAIN>`. The contact
   form posts to `/api/contact`, which sends support requests to
-  `reefkeeper-support@otfusion.org` through Mailgun. `MAILGUN_API_BASE_URL` is
-  optional and defaults to `https://api.mailgun.net`; set it to
-  `https://api.eu.mailgun.net` for an EU Mailgun domain.
+  `reefkeeper-support@otfusion.org` through Mailgun. Optional screenshots can
+  be attached as JPG or PNG files, up to 5 files at 512 KB each.
+  `MAILGUN_API_BASE_URL` is optional and defaults to `https://api.mailgun.net`;
+  set it to `https://api.eu.mailgun.net` for an EU Mailgun domain.
 - **Brand assets** — in `public/`. Replace with final art as needed.
 
 ## Deploying

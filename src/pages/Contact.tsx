@@ -1,9 +1,30 @@
-import { useState, type CSSProperties, type FormEvent } from 'react';
+import {
+  useEffect,
+  useRef,
+  useState,
+  type ChangeEvent,
+  type CSSProperties,
+  type DragEvent,
+  type FormEvent,
+} from 'react';
 import { Nav } from '../components/Nav';
 import { MiniFooter } from '../components/Footer';
 import { SUPPORT_POST_URL } from '../config';
 
 type SubmitState = 'idle' | 'loading' | 'success' | 'error' | 'unconfigured';
+type SupportAttachment = { file: File; previewUrl: string };
+
+const MAX_ATTACHMENTS = 5;
+const MAX_ATTACHMENT_SIZE = 512 * 1024;
+const ATTACHMENT_ACCEPT = '.jpg,.jpeg,.png,image/jpeg,image/png';
+
+const isSupportedAttachment = (file: File) => {
+  const extension = file.name.toLowerCase().split('.').pop();
+  return (
+    (file.type === 'image/jpeg' || file.type === 'image/png') &&
+    (extension === 'jpg' || extension === 'jpeg' || extension === 'png')
+  );
+};
 
 const labelStyle: CSSProperties = {
   display: 'block',
@@ -50,18 +71,101 @@ const initialForm = {
 
 export function Contact() {
   const [form, setForm] = useState(initialForm);
+  const [attachments, setAttachments] = useState<SupportAttachment[]>([]);
   const [submitState, setSubmitState] = useState<SubmitState>('idle');
   const [statusMessage, setStatusMessage] = useState('');
+  const [isDragging, setIsDragging] = useState(false);
+  const attachmentsRef = useRef<SupportAttachment[]>([]);
+
+  useEffect(() => {
+    return () => {
+      attachmentsRef.current.forEach(({ previewUrl }) => {
+        URL.revokeObjectURL(previewUrl);
+      });
+    };
+  }, []);
+
+  const updateAttachments = (
+    update:
+      | SupportAttachment[]
+      | ((current: SupportAttachment[]) => SupportAttachment[]),
+  ) => {
+    setAttachments((current) => {
+      const next = typeof update === 'function' ? update(current) : update;
+      const nextPreviewUrls = new Set(
+        next.map(({ previewUrl }) => previewUrl),
+      );
+
+      current.forEach(({ previewUrl }) => {
+        if (!nextPreviewUrls.has(previewUrl)) {
+          URL.revokeObjectURL(previewUrl);
+        }
+      });
+
+      attachmentsRef.current = next;
+      return next;
+    });
+  };
+
+  const clearStatus = () => {
+    if (submitState !== 'idle' && submitState !== 'loading') {
+      setSubmitState('idle');
+      setStatusMessage('');
+    }
+  };
 
   const updateField =
     (field: keyof typeof initialForm) =>
-    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       setForm((current) => ({ ...current, [field]: event.target.value }));
-      if (submitState !== 'idle' && submitState !== 'loading') {
-        setSubmitState('idle');
-        setStatusMessage('');
-      }
+      clearStatus();
     };
+
+  function addAttachments(fileList: FileList | null) {
+    const files = Array.from(fileList ?? []);
+
+    if (!files.length) {
+      return;
+    }
+
+    if (attachments.length + files.length > MAX_ATTACHMENTS) {
+      setSubmitState('error');
+      setStatusMessage(`You can attach up to ${MAX_ATTACHMENTS} pictures.`);
+      return;
+    }
+
+    const invalidFile = files.find(
+      (file) => !isSupportedAttachment(file) || file.size > MAX_ATTACHMENT_SIZE,
+    );
+
+    if (invalidFile) {
+      setSubmitState('error');
+      setStatusMessage(
+        `${invalidFile.name} must be a JPG or PNG no larger than 512 KB.`,
+      );
+      return;
+    }
+
+    updateAttachments((current) => [
+      ...current,
+      ...files.map((file) => ({
+        file,
+        previewUrl: URL.createObjectURL(file),
+      })),
+    ]);
+    clearStatus();
+  }
+
+  function handleAttachmentChange(event: ChangeEvent<HTMLInputElement>) {
+    addAttachments(event.currentTarget.files);
+    event.currentTarget.value = '';
+  }
+
+  function handleAttachmentDrop(event: DragEvent<HTMLLabelElement>) {
+    event.preventDefault();
+    setIsDragging(false);
+    addAttachments(event.dataTransfer.files);
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -78,16 +182,20 @@ export function Contact() {
     setStatusMessage('');
 
     try {
+      const body = new FormData();
+      body.append('name', form.name);
+      body.append('email', form.email);
+      body.append('subject', form.subject);
+      body.append('message', form.message);
+      body.append('details', form.details);
+      attachments.forEach(({ file }) => {
+        body.append('attachments', file, file.name);
+      });
+
       const response = await fetch(SUPPORT_POST_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          subject: form.subject,
-          message: form.message,
-          details: form.details,
-        }),
+        headers: { Accept: 'application/json' },
+        body,
       });
 
       const contentType = response.headers.get('content-type') ?? '';
@@ -96,6 +204,7 @@ export function Contact() {
       }
 
       setForm(initialForm);
+      updateAttachments([]);
       setSubmitState('success');
       setStatusMessage("Thanks. We'll review your message and get back to you.");
     } catch {
@@ -236,6 +345,150 @@ export function Contact() {
                 Do not include passwords, payment details, or other sensitive
                 personal information.
               </p>
+            </div>
+
+            <div style={{ marginTop: 24 }}>
+              <span style={labelStyle}>
+                Screenshots <span style={{ color: 'var(--text-muted)', fontWeight: 500 }}>(optional)</span>
+              </span>
+              <label
+                htmlFor="support-attachments"
+                onDragOver={(event) => {
+                  event.preventDefault();
+                  setIsDragging(true);
+                }}
+                onDragLeave={() => setIsDragging(false)}
+                onDrop={handleAttachmentDrop}
+                style={{
+                  position: 'relative',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 16,
+                  border: `1.5px dashed ${isDragging ? 'var(--teal-600)' : 'var(--teal-400)'}`,
+                  borderRadius: 'var(--radius-lg)',
+                  padding: '18px 20px',
+                  background: isDragging
+                    ? 'var(--teal-100)'
+                    : 'linear-gradient(135deg, var(--teal-100), #fff)',
+                  cursor: 'pointer',
+                  transition: 'border-color 150ms ease, background 150ms ease',
+                }}
+              >
+                <input
+                  id="support-attachments"
+                  name="attachments"
+                  type="file"
+                  accept={ATTACHMENT_ACCEPT}
+                  multiple
+                  onChange={handleAttachmentChange}
+                  style={{
+                    position: 'absolute',
+                    width: 1,
+                    height: 1,
+                    opacity: 0,
+                    pointerEvents: 'none',
+                  }}
+                />
+                <span
+                  aria-hidden="true"
+                  style={{
+                    display: 'grid',
+                    placeItems: 'center',
+                    flex: '0 0 44px',
+                    width: 44,
+                    height: 44,
+                    borderRadius: 14,
+                    color: 'var(--teal-700)',
+                    background: '#fff',
+                    boxShadow: '0 4px 14px rgba(18, 111, 116, .12)',
+                  }}
+                >
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 16.5V19a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2.5" />
+                    <path d="m8 8 4-4 4 4M12 4v11" />
+                  </svg>
+                </span>
+                <span style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                  <strong style={{ fontSize: 14.5, color: 'var(--ocean-900)' }}>
+                    Drop screenshots here or browse
+                  </strong>
+                  <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>
+                    JPG or PNG · up to 5 files · 512 KB each
+                  </span>
+                </span>
+              </label>
+
+              {attachments.length > 0 && (
+                <div
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(116px, 1fr))',
+                    gap: 10,
+                    marginTop: 12,
+                  }}
+                >
+                  {attachments.map(({ file, previewUrl }, index) => (
+                    <div
+                      key={`${file.name}-${file.lastModified}-${index}`}
+                      style={{
+                        position: 'relative',
+                        minWidth: 0,
+                        overflow: 'hidden',
+                        border: '1px solid var(--border-divider)',
+                        borderRadius: 'var(--radius-md)',
+                        background: 'var(--surface-app)',
+                      }}
+                    >
+                      <img
+                        src={previewUrl}
+                        alt={`Screenshot ${index + 1}: ${file.name}`}
+                        style={{ width: '100%', aspectRatio: '1.25', objectFit: 'cover' }}
+                      />
+                      <button
+                        type="button"
+                        aria-label={`Remove ${file.name}`}
+                        onClick={() => {
+                          updateAttachments((current) =>
+                            current.filter((_, itemIndex) => itemIndex !== index),
+                          );
+                          clearStatus();
+                        }}
+                        style={{
+                          position: 'absolute',
+                          top: 6,
+                          right: 6,
+                          display: 'grid',
+                          placeItems: 'center',
+                          width: 26,
+                          height: 26,
+                          border: '1px solid rgba(255, 255, 255, .8)',
+                          borderRadius: '50%',
+                          background: 'rgba(8, 37, 51, .78)',
+                          color: '#fff',
+                          cursor: 'pointer',
+                        }}
+                      >
+                        <span aria-hidden="true" style={{ fontSize: 18, lineHeight: 1, transform: 'translateY(-1px)' }}>×</span>
+                      </button>
+                      <span
+                        title={file.name}
+                        style={{
+                          display: 'block',
+                          overflow: 'hidden',
+                          padding: '7px 8px 8px',
+                          color: 'var(--text-body)',
+                          fontSize: 11.5,
+                          lineHeight: 1.3,
+                          textOverflow: 'ellipsis',
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        {file.name}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
             <div style={{ marginTop: 26, display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>

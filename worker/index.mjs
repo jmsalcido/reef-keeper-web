@@ -1,6 +1,8 @@
 const MAILERLITE_SUBSCRIBERS_URL = 'https://connect.mailerlite.com/api/subscribers';
 const MAILGUN_API_BASE_URL = 'https://api.mailgun.net';
 const SUPPORT_EMAIL = 'reefkeeper-support@otfusion.org';
+const MAX_ATTACHMENTS = 5;
+const MAX_ATTACHMENT_SIZE = 512 * 1024;
 
 const json = (status, payload, headers = {}) =>
   Response.json(payload, {
@@ -20,6 +22,18 @@ const getText = (value) => {
   }
 
   return value.trim();
+};
+
+const isSupportedAttachment = (value) => {
+  if (!(typeof File !== 'undefined' && value instanceof File)) {
+    return false;
+  }
+
+  const extension = value.name.toLowerCase().split('.').pop();
+  return (
+    (value.type === 'image/jpeg' || value.type === 'image/png') &&
+    (extension === 'jpg' || extension === 'jpeg' || extension === 'png')
+  );
 };
 
 const subscribeToNewsletter = async (request, env) => {
@@ -74,16 +88,18 @@ const sendSupportRequest = async (request, env) => {
   let payload;
 
   try {
-    payload = await request.json();
+    payload = await request.formData();
   } catch {
     return json(400, { message: 'Invalid request body.' });
   }
 
-  const name = getText(payload?.name);
-  const email = getText(payload?.email);
-  const subject = getText(payload?.subject);
-  const message = getText(payload?.message);
-  const details = getText(payload?.details);
+  const name = getText(payload.get('name'));
+  const email = getText(payload.get('email'));
+  const subject = getText(payload.get('subject'));
+  const message = getText(payload.get('message'));
+  const details = getText(payload.get('details'));
+  const attachmentValues = payload.getAll('attachments');
+  const attachments = attachmentValues.filter(isSupportedAttachment);
 
   if (!name || !isValidEmail(email) || !subject || !message) {
     return json(400, {
@@ -101,6 +117,25 @@ const sendSupportRequest = async (request, env) => {
     return json(400, { message: 'One or more fields are too long.' });
   }
 
+  if (
+    attachmentValues.length !== attachments.length ||
+    attachments.length > MAX_ATTACHMENTS
+  ) {
+    return json(400, {
+      message: 'Attachments must be JPG or PNG files, with up to 5 pictures.',
+    });
+  }
+
+  const oversizedAttachment = attachments.find(
+    (attachment) => attachment.size > MAX_ATTACHMENT_SIZE,
+  );
+
+  if (oversizedAttachment) {
+    return json(400, {
+      message: 'Each attachment must be 512 KB or smaller.',
+    });
+  }
+
   if (!env.MAILGUN_API_KEY || !env.MAILGUN_DOMAIN) {
     return json(500, { message: 'Support intake is not configured.' });
   }
@@ -111,11 +146,13 @@ const sendSupportRequest = async (request, env) => {
     /\/$/,
   );
   const mailgunUrl = `${mailgunBaseUrl}/v3/${encodeURIComponent(env.MAILGUN_DOMAIN)}/messages`;
-  const mail = new URLSearchParams({
-    from,
-    to: SUPPORT_EMAIL,
-    subject: `[Reef Keeper support] ${subject}`,
-    text: [
+  const mail = new FormData();
+  mail.append('from', from);
+  mail.append('to', SUPPORT_EMAIL);
+  mail.append('subject', `[Reef Keeper support] ${subject}`);
+  mail.append(
+    'text',
+    [
       `Name: ${name}`,
       `Email: ${email}`,
       '',
@@ -125,7 +162,10 @@ const sendSupportRequest = async (request, env) => {
       'App or device details:',
       details || 'Not provided',
     ].join('\n'),
-    'h:Reply-To': email,
+  );
+  mail.append('h:Reply-To', email);
+  attachments.forEach((attachment) => {
+    mail.append('attachment', attachment, attachment.name);
   });
 
   try {
@@ -133,7 +173,6 @@ const sendSupportRequest = async (request, env) => {
       method: 'POST',
       headers: {
         Authorization: `Basic ${btoa(`api:${env.MAILGUN_API_KEY}`)}`,
-        'Content-Type': 'application/x-www-form-urlencoded',
         Accept: 'application/json',
       },
       body: mail,
