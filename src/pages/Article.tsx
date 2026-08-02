@@ -59,8 +59,6 @@ export function Article() {
           </div>
         </div>
 
-        <div style={{ width: '100%', height: 8, background: 'var(--color-header-gradient)' }} />
-
         {/* Body */}
         <div className="prose" style={{ maxWidth: 720, margin: '0 auto', padding: '56px 28px 24px' }}>
           {post.content()}
