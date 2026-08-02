@@ -12,6 +12,7 @@ type PostBase = {
   excerpt: string;
   gradient: string;
   image?: string;
+  relatedSlugs?: string[];
 };
 
 export type PublishedPost = PostBase & {
@@ -35,6 +36,278 @@ const Bullet = ({ d, stroke = 'var(--teal-500)' }: { d: string; stroke?: string 
 );
 
 export const posts: Post[] = [
+  {
+    slug: 'high-nitrate-in-aquarium',
+    category: 'Troubleshooting',
+    categoryColor: 'var(--coral-700)',
+    readTime: '9 min read',
+    title: 'High Nitrate in an Aquarium: Causes, Fixes & a Simple Plan',
+    seoTitle: 'High Nitrate in Aquarium: Causes, Fixes & Safe Levels',
+    metaDescription:
+      'High nitrate in your aquarium? Learn the common causes, what to test first, and a practical plan to lower nitrate safely in freshwater and reef tanks.',
+    excerpt:
+      'Nitrate keeps climbing? Find the source, lower it without destabilizing your tank, and use the trend to keep it from returning.',
+    gradient: 'linear-gradient(135deg,var(--coral-600),var(--ocean-900))',
+    image: '/app-icon-ios.png',
+    relatedSlugs: ['aquarium-water-parameters', 'aquarium-maintenance-schedule'],
+    datePublished: '2026-08-01',
+    dateModified: '2026-08-01',
+    content: () => (
+      <>
+        <p>
+          A high nitrate reading is frustrating because it rarely appears out of nowhere. It is
+          usually the visible result of something that has been slowly outpacing the tank: more
+          waste than the system can process or export, a maintenance rhythm that no longer fits,
+          or a change that seemed small at the time. The good news is that nitrate is often a
+          solvable pattern, not a mystery.
+        </p>
+        <p>
+          The goal is not to chase one universal number. Different livestock and systems have
+          different needs. Instead, work out whether nitrate is rising, find the source, and lower
+          it in measured steps while keeping the tank stable.
+        </p>
+
+        <h2>Before you try to lower nitrate</h2>
+        <p>
+          Start by testing <strong>ammonia and nitrite</strong> as well as nitrate. In an
+          established aquarium, ammonia and nitrite should generally be zero. If either is
+          detectable, you may be dealing with a more urgent cycling or filtration problem than
+          nitrate alone. Confirm any surprising reading with a fresh test, check that the kit is
+          in date, and write down the result before making several changes at once.
+        </p>
+        <p>
+          For broad starting ranges, see our guide to{' '}
+          <Link to="/blog/$slug" params={{ slug: 'aquarium-water-parameters' }} className="link">
+            aquarium water parameters
+          </Link>
+          . What matters most is how your own tank compares with its usual baseline. A reading that
+          climbs week after week deserves attention even if it has not crossed a generic chart
+          threshold.
+        </p>
+
+        <h2>Why nitrate gets high</h2>
+        <h3>Too much waste for the current routine</h3>
+        <p>
+          Extra food, a growing fish, a new fish, a missed water change, or debris collecting in
+          low-flow areas all add to the nutrient load. This does not mean feeding is always the
+          problem; it means the amount entering the tank and the amount leaving it are no longer
+          balanced.
+        </p>
+        <h3>Maintenance that worked before, but no longer does</h3>
+        <p>
+          A routine can be perfect for a lightly stocked tank and insufficient six months later.
+          Filters clog gradually, plants change their growth rate, livestock grows, and feeding
+          habits drift. A rising nitrate trend is useful feedback that the old schedule needs a
+          review.
+        </p>
+        <h3>Detritus hidden in the system</h3>
+        <p>
+          Food and waste can settle behind rockwork, in gravel, in a neglected filter compartment,
+          or in a sponge that has lost flow. The water can still look clear while that material
+          breaks down. Look for a practical cleaning target rather than stripping the whole tank at
+          once.
+        </p>
+        <h3>Source water or a mismatch in nutrient export</h3>
+        <p>
+          Test the water you use for changes when the number does not respond as expected. In reef
+          and planted systems, nitrate can also rise when the tank's existing export—water changes,
+          plants, refugium, or other filtration—no longer matches feeding and livestock demand.
+        </p>
+
+        <h2>A simple plan to bring nitrate down</h2>
+        <ol>
+          <li>
+            <strong>Log today’s reading and what changed.</strong> Note feeding, water changes,
+            livestock additions, filter service, algae, and anything unusual. This gives your next
+            test a useful comparison point.
+          </li>
+          <li>
+            <strong>Do a partial water change appropriate for your tank.</strong> Match
+            temperature and water conditions as closely as practical, and avoid making a large,
+            sudden correction simply to force one test result down.
+          </li>
+          <li>
+            <strong>Remove trapped debris.</strong> Siphon obvious detritus, clean the glass, and
+            rinse mechanical media in removed tank water if it is restricting flow. Keep biological
+            media intact; replacing or aggressively cleaning it all at once can destabilize the
+            cycle.
+          </li>
+          <li>
+            <strong>Review feeding and stocking.</strong> Feed only what livestock will consume
+            promptly, remove leftovers when practical, and consider whether recent additions need
+            a more frequent maintenance cadence.
+          </li>
+          <li>
+            <strong>Retest on a short, consistent schedule.</strong> The next few readings tell
+            you whether your changes are working. Once the trend levels out, settle into a routine
+            you can keep.
+          </li>
+        </ol>
+
+        <h2>What not to do</h2>
+        <p>
+          Avoid treating nitrate as a reason to change everything in one afternoon. Do not replace
+          all filter media, make abrupt chemistry adjustments, or keep performing drastic changes
+          without re-testing. Stability is especially important for fish and corals, and a clear
+          timeline helps you distinguish an improvement from a short-lived dip.
+        </p>
+        <p>
+          Reef tanks also do not always benefit from driving nitrate to zero. Treat a number in the
+          context of livestock, coral response, feeding, and phosphate rather than as a score to
+          minimize.
+        </p>
+
+        <h2>Use the trend to prevent the next spike</h2>
+        <p>
+          The most valuable question is not “How do I fix this one reading?” but “What was nitrate
+          doing before I noticed it?” Log every test on the same day, alongside water changes and
+          tank notes. Reef Keeper makes that lightweight: record the value in seconds, see the line
+          over time, and set a reminder for the next check or maintenance task.
+        </p>
+        <p>
+          If you need a repeatable baseline, start with this{' '}
+          <Link to="/blog/$slug" params={{ slug: 'aquarium-maintenance-schedule' }} className="link">
+            aquarium maintenance schedule
+          </Link>{' '}
+          and adjust it using your tank’s actual results.
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: 'why-is-my-aquarium-water-cloudy',
+    category: 'Troubleshooting',
+    categoryColor: 'var(--coral-700)',
+    readTime: '8 min read',
+    title: 'Why Is My Aquarium Water Cloudy? 6 Causes and Safe Fixes',
+    seoTitle: 'Why Is My Aquarium Water Cloudy? Causes and Safe Fixes',
+    metaDescription:
+      'Cloudy aquarium water can be caused by a bacterial bloom, algae, debris, tannins, or filtration issues. Identify the type of cloudiness and fix it safely.',
+    excerpt:
+      'White, green, brown, or particle-filled water points to different problems. Identify the cloudiness first, then make the smallest useful fix.',
+    gradient: 'linear-gradient(135deg,var(--teal-500),var(--ocean-900))',
+    image: '/app-icon-ios.png',
+    relatedSlugs: ['new-tank-syndrome-nitrogen-cycle', 'high-nitrate-in-aquarium'],
+    datePublished: '2026-08-01',
+    dateModified: '2026-08-01',
+    content: () => (
+      <>
+        <p>
+          Cloudy aquarium water is one of the fastest ways for a tank to feel wrong. The important
+          first step is to identify <strong>what kind of cloudy water you have</strong>. Milky
+          white water, green water, brown tint, and floating particles have different causes, so
+          the right fix is rarely “add a product and hope.”
+        </p>
+        <p>
+          Start with the smallest useful intervention. Test the water, observe the fish, identify
+          the appearance, and correct the likely cause without dismantling the biological balance
+          your tank depends on.
+        </p>
+
+        <h2>First: check whether it is an emergency</h2>
+        <p>
+          If fish are gasping, lying over, swimming erratically, or dying, test ammonia, nitrite,
+          temperature, and—when relevant—salinity right away. Cloudiness itself is not always
+          dangerous, but it can appear alongside a water-quality problem. If ammonia or nitrite is
+          detectable, focus on stabilizing the tank and seek experienced local or veterinary advice
+          for severe symptoms.
+        </p>
+        <p>
+          Otherwise, take a photo and log what changed before the water turned cloudy: a new tank,
+          new fish, extra food, substrate work, a filter clean, a missed water change, or longer
+          lighting. That timeline often points to the answer.
+        </p>
+
+        <h2>1. Milky or white water: a bacterial bloom</h2>
+        <p>
+          A white haze is commonly a bacterial bloom. It often occurs in a new tank while the
+          biological filter is establishing, but it can also follow overfeeding, a sudden addition
+          of livestock, or a major disruption to filter media. The bacteria are responding to an
+          available food source, and the water looks cloudy because they are suspended in it.
+        </p>
+        <p>
+          Do not replace all of the filter media in response. Test ammonia and nitrite, feed
+          sparingly, make only the water changes your results and livestock need, and give the
+          biological filter time to stabilize. In a new aquarium, follow the{' '}
+          <Link to="/blog/$slug" params={{ slug: 'new-tank-syndrome-nitrogen-cycle' }} className="link">
+            nitrogen cycle
+          </Link>{' '}
+          instead of assuming the tank is ready because the water clears for a day.
+        </p>
+
+        <h2>2. Green water: free-floating algae</h2>
+        <p>
+          Green water is usually an algae bloom. Excess light, direct sunlight, extra nutrients,
+          and an unbalanced new tank can all create favorable conditions. Unlike algae on the glass,
+          this type floats through the water column and can make the whole aquarium look like pea
+          soup.
+        </p>
+        <p>
+          Reduce the obvious light excess, make sure the tank is not receiving direct sun, and
+          review feeding and nutrient trends. Check nitrate and, when relevant, phosphate rather
+          than treating the color alone. The goal is a better light-and-nutrient balance, not a
+          dramatic one-day reset.
+        </p>
+
+        <h2>3. Dust, debris, or floating particles</h2>
+        <p>
+          Cloudiness that looks like tiny specks is often stirred substrate, trapped detritus, or
+          mechanical filtration that is not catching fine particles. It is common after adding new
+          sand or gravel, moving décor, cleaning the tank, or disturbing an area where waste had
+          collected.
+        </p>
+        <p>
+          Let the filter run, check that the flow path is working as intended, and rinse clogged
+          mechanical media in removed tank water. During your next normal water change, siphon
+          visible debris without deep-cleaning every surface. The aim is to restore flow while
+          preserving the useful bacteria in the filter and substrate.
+        </p>
+
+        <h2>4. Brown or tea-colored water: tannins or dissolved organics</h2>
+        <p>
+          A clear brown tint is often released by natural wood, leaves, or other botanical material.
+          It is different from suspended cloudiness. If the tint matches intentional hardscape and
+          your livestock is behaving normally, it may simply be part of the look. If it is new and
+          accompanied by odor, debris, or poor test results, investigate decaying material and
+          maintenance instead.
+        </p>
+        <p>
+          Water changes can gradually lighten tannins. Some keepers use suitable chemical media,
+          but it should complement good source control and routine maintenance—not replace it.
+        </p>
+
+        <h2>5. Overfeeding and hidden waste</h2>
+        <p>
+          Uneaten food and waste feed both bacterial blooms and algae. Check behind décor, around
+          filter intakes, and in substrate for accumulated debris. Feed deliberately for a week,
+          remove obvious leftovers, and compare nitrate readings before and after your normal
+          maintenance. If the number continues to rise, use this guide to{' '}
+          <Link to="/blog/$slug" params={{ slug: 'high-nitrate-in-aquarium' }} className="link">
+            high nitrate in an aquarium
+          </Link>{' '}
+          to trace the source.
+        </p>
+
+        <h2>6. A filter or flow problem</h2>
+        <p>
+          Weak flow can leave debris in the tank instead of moving it to mechanical filtration.
+          Check that pumps and filters are running, intake paths are clear, hoses are not kinked,
+          and media is not so clogged that water bypasses it. Keep the maintenance focused: a
+          gentle service of the mechanical stage is very different from replacing the entire filter
+          at once.
+        </p>
+
+        <h2>Prevent cloudy water from becoming a recurring problem</h2>
+        <p>
+          Cloudy water is easier to solve when you can see the sequence before it: a new fish, a
+          missed task, a longer light period, then a nitrate climb and haze. Log test results,
+          water changes, feeding changes, and equipment service in one place. Reef Keeper turns
+          those notes into a usable tank history and can remind you when testing or maintenance is
+          due.
+        </p>
+      </>
+    ),
+  },
   {
     slug: 'how-often-to-test-aquarium-water',
     category: 'Water testing',

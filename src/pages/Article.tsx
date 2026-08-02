@@ -15,7 +15,23 @@ export function Article() {
     return <NotFound />;
   }
 
-  const related = posts.find((p) => p.slug !== post.slug && isPublishedPost(p));
+  const preferredRelatedSlug = post.relatedSlugs?.find((relatedSlug) =>
+    posts.some(
+      (candidate) => candidate.slug === relatedSlug && isPublishedPost(candidate),
+    ),
+  );
+  const related =
+    posts.find(
+      (candidate) =>
+        candidate.slug === preferredRelatedSlug && isPublishedPost(candidate),
+    ) ??
+    posts.find(
+      (candidate) =>
+        candidate.slug !== post.slug &&
+        candidate.category === post.category &&
+        isPublishedPost(candidate),
+    ) ??
+    posts.find((candidate) => candidate.slug !== post.slug && isPublishedPost(candidate));
 
   return (
     <>

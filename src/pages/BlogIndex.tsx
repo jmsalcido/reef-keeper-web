@@ -22,8 +22,8 @@ export function BlogIndex() {
             Keep healthier tanks
           </h1>
           <p style={{ fontSize: 18, lineHeight: 1.55, color: 'var(--text-body)', maxWidth: 560, margin: '18px 0 0' }}>
-            Practical guides on water testing, the nitrogen cycle and reading your parameter trends —
-            written for hobbyists, by the team behind Reef Keeper.
+            Practical guides on water testing, fish health, maintenance, and reading your parameter
+            trends — written for hobbyists, by the team behind Reef Keeper.
           </p>
         </div>
       </section>
