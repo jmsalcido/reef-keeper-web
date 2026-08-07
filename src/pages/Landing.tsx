@@ -248,39 +248,6 @@ export function Landing() {
         </div>
       </section>
 
-      {/* FEATURED SPOT */}
-      <section style={{ margin: '0 auto', maxWidth: 1140, padding: '0 28px 44px' }}>
-        <div
-          style={{
-            position: 'relative',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: 14,
-            padding: '26px 28px',
-            background: 'linear-gradient(140deg, rgba(11, 125, 151, 0.15), rgba(17, 78, 73, 0.28))',
-            border: '1px solid var(--border-divider)',
-            borderRadius: 'var(--radius-xl)',
-            boxShadow: 'var(--shadow-lg)',
-            backdropFilter: 'blur(4px)',
-            overflow: 'hidden',
-          }}
-        >
-          <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'radial-gradient(circle at 100% 0%, rgba(255,255,255,.12), transparent 56%)' }} />
-          <div style={{ position: 'relative', textAlign: 'center' }}>
-            <div style={{ ...overline, color: 'var(--teal-600)' }}>Community spotlight</div>
-            <h2 style={{ ...sectionH2, fontSize: 34, margin: '8px 0 0' }}>Support Reef Keeper in a cool way</h2>
-          </div>
-            <iframe
-              src="https://ad-swap.web.app/frame.html?site=6q5Ei3O50uIcWqFw5UPj"
-              title="Ad"
-              loading="lazy"
-              sandbox="allow-scripts allow-same-origin allow-popups"
-              style={{ border: 0, width: 300, height: 130, maxWidth: '100%' }}
-            />
-        </div>
-      </section>
-
       {/* APP SHOWCASE */}
       <section id="screens" style={{ position: 'relative', background: 'var(--color-header-gradient)', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: -100, right: -80, width: 380, height: 380, borderRadius: 999, background: 'radial-gradient(circle,rgba(52,160,184,.22),transparent 70%)' }} />
