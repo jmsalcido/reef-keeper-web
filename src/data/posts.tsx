@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { Link } from '@tanstack/react-router';
+import { ArticleConversionCta } from '../components/ArticleConversionCta';
 import { APP_STORE_URL } from '../config';
 
 type PostBase = {
@@ -57,6 +58,232 @@ const ReleaseScreenshot = ({ src, alt, caption }: { src: string; alt: string; ca
 );
 
 export const posts: Post[] = [
+  {
+    slug: 'why-do-my-new-fish-keep-dying',
+    category: 'Troubleshooting',
+    categoryColor: 'var(--coral-700)',
+    readTime: '8 min read',
+    title: 'Why Do My New Fish Keep Dying? A First-Week Checklist',
+    seoTitle: 'Why Do My New Fish Keep Dying? First-Week Checklist',
+    metaDescription:
+      'New fish dying soon after you bring them home? Check tank cycling, water quality, acclimation, stocking, and early signs of illness in the first week.',
+    excerpt:
+      'When a new fish dies, the timing is a clue. Use this calm first-week checklist to check the tank, the transition, and the changes worth tracking.',
+    gradient: 'linear-gradient(135deg,var(--coral-600),var(--ocean-900))',
+    image: '/app-icon-ios.png',
+    relatedSlugs: ['why-do-my-fish-keep-dying'],
+    datePublished: '2026-08-09',
+    dateModified: '2026-08-09',
+    content: () => (
+      <>
+        <p>
+          Bringing home a new fish should be exciting. When it dies in the first few days, it is
+          easy to assume you did something wrong or that the loss was random. Usually, the timing
+          is a useful clue. A fish may be dealing with transport stress, a sudden change in water
+          conditions, an unready tank, too much new bioload, illness, or conflict with tankmates.
+        </p>
+        <p>
+          This is a freshwater-first checklist for home aquariums. It cannot diagnose an individual
+          fish, and saltwater or reef tanks need extra checks such as salinity and, when relevant,
+          alkalinity. If fish are in obvious distress or several fish are affected, contact an
+          experienced aquatic veterinarian, knowledgeable retailer, or local fishkeeping expert.
+        </p>
+
+        <h2>Start here if more than one fish is affected</h2>
+        <p>
+          Do not add more livestock, replace all of the filter media, or use several untested
+          treatments at once. Look for an equipment failure, remove any dead fish or obvious
+          decaying food, and test the water before making a large change. Clear water can still hold
+          ammonia or nitrite.
+        </p>
+        <div
+          style={{
+            background: 'var(--coral-100)',
+            border: '1px solid rgba(215, 97, 73, .24)',
+            borderRadius: 'var(--radius-lg)',
+            padding: '22px 24px',
+            margin: '8px 0 28px',
+          }}
+        >
+          <div
+            style={{
+              fontSize: 11.5,
+              fontWeight: 700,
+              letterSpacing: '.08em',
+              textTransform: 'uppercase',
+              color: 'var(--coral-700)',
+              marginBottom: 10,
+            }}
+          >
+            Check now
+          </div>
+          <ul
+            style={{
+              margin: 0,
+              padding: 0,
+              listStyle: 'none',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 12,
+            }}
+          >
+            <li style={{ display: 'flex', gap: 12, color: 'var(--ink-700)' }}>
+              <Bullet stroke="var(--coral-700)" d='<path d="M20 6 9 17l-5-5" />' />
+              <span>
+                <strong>Watch the fish and the equipment.</strong> Gasping, unusual hiding,
+                erratic swimming, a stopped filter, or a heater problem makes the situation more
+                urgent.
+              </span>
+            </li>
+            <li style={{ display: 'flex', gap: 12, color: 'var(--ink-700)' }}>
+              <Bullet stroke="var(--coral-700)" d='<path d="M20 6 9 17l-5-5" />' />
+              <span>
+                <strong>Test the core water parameters.</strong> Check ammonia, nitrite, nitrate,
+                pH, and temperature. For saltwater, also check salinity.
+              </span>
+            </li>
+            <li style={{ display: 'flex', gap: 12, color: 'var(--ink-700)' }}>
+              <Bullet stroke="var(--coral-700)" d='<path d="M20 6 9 17l-5-5" />' />
+              <span>
+                <strong>Keep the response measured.</strong> If ammonia or nitrite is detectable,
+                follow a careful recovery plan instead of trying every fix at once.
+              </span>
+            </li>
+          </ul>
+        </div>
+        <p>
+          Use our{' '}
+          <Link to="/blog/$slug" params={{ slug: 'how-to-lower-ammonia-in-fish-tank' }} className="link">
+            guide to lowering ammonia safely
+          </Link>{' '}
+          for a focused response to an ammonia reading. For a broader reference, see the{' '}
+          <Link to="/blog/$slug" params={{ slug: 'aquarium-water-parameters' }} className="link">
+            aquarium water parameters guide
+          </Link>
+          .
+        </p>
+
+        <h2>Use the timing to narrow the possibilities</h2>
+        <p>
+          The day a fish dies does not prove one cause, but it helps you decide what to check first.
+          Write down when each fish arrived and when behavior changed before relying on memory.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>When the problem starts</th>
+              <th>What to check first</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Arrival day or the next day</td>
+              <td>Transport and acclimation stress, temperature or water mismatch, visible illness, and whether the tank suits the species.</td>
+            </tr>
+            <tr>
+              <td>Days 2–7</td>
+              <td>Ammonia or nitrite, a tank that is still cycling, a sudden increase in waste load, feeding, filter flow, and tankmate aggression.</td>
+            </tr>
+            <tr>
+              <td>After the first week</td>
+              <td>Water trends, compatibility, chronic stress, disease signs, maintenance changes, and equipment that is drifting or failing.</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          If losses are continuing beyond the arrival period, step back to the broader{' '}
+          <Link to="/blog/$slug" params={{ slug: 'why-do-my-fish-keep-dying' }} className="link">
+            why fish keep dying guide
+          </Link>{' '}
+          to work through the whole aquarium rather than only the newest fish.
+        </p>
+
+        <h2>Check whether the tank was ready for more fish</h2>
+        <p>
+          A tank can look finished before its biological filter is ready. In an established aquarium,
+          ammonia and nitrite should read zero. In a newer setup, bacteria need time to grow enough
+          to process the waste that fish produce. Adding several fish at once can outpace that
+          filter, even when the tank seemed fine before.
+        </p>
+        <p>
+          Check the tank age, recent additions, feeding changes, filter flow, and whether anyone
+          cleaned or replaced biological media. Also confirm that the temperature, pH, hardness,
+          tank size, and available territory suit the species you added. A fish can survive a short
+          mismatch, but that does not make the setup appropriate.
+        </p>
+        <p>
+          If the aquarium is new, read our{' '}
+          <Link to="/blog/$slug" params={{ slug: 'new-tank-syndrome-nitrogen-cycle' }} className="link">
+            new tank syndrome and nitrogen cycle guide
+          </Link>{' '}
+          before adding more livestock. It explains why a calendar date alone does not show that a
+          tank is cycled.
+        </p>
+
+        <h2>Make the transition as calm as possible</h2>
+        <p>
+          Transport water and aquarium water can differ in temperature and chemistry. Keep the trip
+          home short, dim the aquarium lights, and follow the retailer’s and species-specific
+          acclimation instructions. The goal is to avoid a sudden change, not to rush a fish out of
+          its bag because the tank is ready.
+        </p>
+        <p>
+          Before release, make sure the aquarium is at a suitable temperature and has stable flow.
+          Gradually acclimate the fish to the aquarium water when the species or supplier calls for
+          it, then move the fish into the tank while keeping as much transport water as possible out
+          of the aquarium. Handle the fish as little as practical and give it places to hide.
+        </p>
+
+        <h2>Watch the first week instead of guessing</h2>
+        <p>
+          A quiet fish may simply be settling in, but repeated gasping, clamped fins, unusual spots,
+          refusal to eat, swelling, or abnormal swimming deserves closer attention. Check the fish
+          and equipment daily during the first week, and test water more often if the tank is new,
+          the stocking level changed, or anything looks off.
+        </p>
+        <p>
+          A properly prepared quarantine tank can help protect an established community from a new
+          fish that may be carrying disease. If a fish appears sick, separate it only when you can
+          provide stable, appropriate water and seek species-specific advice. Do not assume every
+          symptom is a disease or medicate the whole aquarium without first checking water quality.
+        </p>
+
+        <h2>What to log during the first week</h2>
+        <p>
+          A short record gives you something much better than a vague memory of what changed. Log
+          the arrival date, species and count, water-test results, temperature, maintenance, feeding
+          changes, equipment changes, unusual behavior, and any losses. A clear sequence can reveal
+          whether a problem started before or after the new fish arrived.
+        </p>
+
+        <ArticleConversionCta
+          heading="Make the first week easier to read"
+          body="Log water tests, new livestock, maintenance, and behavior in Reef Keeper so the next change in your tank is easier to spot."
+          articleSlug="why-do-my-new-fish-keep-dying"
+          articleTitle="Why Do My New Fish Keep Dying? A First-Week Checklist"
+        />
+
+        <h2>Sources and further reading</h2>
+        <ul>
+          <li>
+            <a href="https://www.cdc.gov/healthy-pets/about/fish.html" target="_blank" rel="noopener noreferrer">
+              CDC: Fish — Healthy Pets, Healthy People
+            </a>
+          </li>
+          <li>
+            <a href="https://ornamentalfish.org/what-we-do/advice-information/care-sheets/caresheets-tropical-freshwater-fish/how-to-set-up-and-look-after-a-freshwater-tank-aquarium/" target="_blank" rel="noopener noreferrer">
+              OATA: How to set up and look after a freshwater tank / aquarium
+            </a>
+          </li>
+          <li>
+            <a href="https://www.merckvetmanual.com/exotic-and-laboratory-animals/aquarium-fish/management-of-aquarium-fish" target="_blank" rel="noopener noreferrer">
+              Merck Veterinary Manual: Management of Aquarium Fish
+            </a>
+          </li>
+        </ul>
+      </>
+    ),
+  },
   {
     slug: 'how-to-lower-ammonia-in-fish-tank',
     category: 'Troubleshooting',
@@ -1716,8 +1943,9 @@ export const posts: Post[] = [
       'If your fish keep dying, the cause is often hidden in water quality, missed maintenance, feeding, temperature, or changes that were never tracked.',
     gradient: 'linear-gradient(135deg,var(--coral-600),var(--ocean-900))',
     image: '/app-icon-ios.png',
+    relatedSlugs: ['why-do-my-new-fish-keep-dying'],
     datePublished: '2026-07-07',
-    dateModified: '2026-07-07',
+    dateModified: '2026-08-09',
     content: () => (
       <>
         <p>
@@ -1731,6 +1959,13 @@ export const posts: Post[] = [
           disease, injury, poor sourcing, aggression, toxins, or species-specific needs. But for
           beginners, the most common patterns often come back to water quality, missed maintenance,
           overfeeding, temperature swings, and not having a clear history of what changed.
+        </p>
+        <p>
+          If the losses began shortly after a new fish arrived, start with our{' '}
+          <Link to="/blog/$slug" params={{ slug: 'why-do-my-new-fish-keep-dying' }} className="link">
+            first-week checklist for new fish
+          </Link>
+          . It focuses on the transition into the tank before you work through longer-term causes.
         </p>
 
         <h2>Start by testing the water</h2>
@@ -1843,6 +2078,27 @@ export const posts: Post[] = [
           ammonia spikes, missed tasks, overfeeding patterns, and temperature swings before they
           become repeat losses.
         </p>
+
+        <aside className="article-conversion-cta" aria-labelledby="fish-losses-cta-title">
+          <h2 id="fish-losses-cta-title">Give your tank a clearer history</h2>
+          <p>
+            Log water tests and maintenance in Reef Keeper so the next change in your tank is easier
+            to spot. Need help with the app? Our support team is here for you.
+          </p>
+          <div className="article-conversion-cta__actions">
+            <a
+              className="article-conversion-cta__download"
+              href={APP_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Download Reef Keeper
+            </a>
+            <Link className="article-conversion-cta__contact" to="/contact">
+              Contact us
+            </Link>
+          </div>
+        </aside>
       </>
     ),
   },

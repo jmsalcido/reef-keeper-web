@@ -26,6 +26,12 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://reefkeeper.otfusion.org/blog/why-do-my-new-fish-keep-dying</loc>
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://reefkeeper.otfusion.org/blog/how-to-lower-ammonia-in-fish-tank</loc>
     <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
@@ -87,7 +93,7 @@
   </url>
   <url>
     <loc>https://reefkeeper.otfusion.org/blog/why-do-my-fish-keep-dying</loc>
-    <lastmod>2026-07-07</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
