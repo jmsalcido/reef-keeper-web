@@ -58,6 +58,327 @@ const ReleaseScreenshot = ({ src, alt, caption }: { src: string; alt: string; ca
 
 export const posts: Post[] = [
   {
+    slug: 'how-to-lower-ammonia-in-fish-tank',
+    category: 'Troubleshooting',
+    categoryColor: 'var(--coral-700)',
+    readTime: '10 min read',
+    title: 'How to Lower Ammonia in a Fish Tank: Safe Steps to Take Now',
+    seoTitle: 'How to Lower Ammonia in a Fish Tank (Safely)',
+    metaDescription:
+      'High ammonia in your fish tank? Learn what to test, the safest immediate steps, common causes, and how to prevent another ammonia spike.',
+    excerpt:
+      'An ammonia reading needs prompt, measured action. Start with these safe steps, then find the cause and track the recovery until your tank is stable again.',
+    gradient: 'linear-gradient(135deg,var(--coral-600),var(--ocean-900))',
+    image: '/app-icon-ios.png',
+    relatedSlugs: ['high-nitrate-in-aquarium', 'new-tank-syndrome-nitrogen-cycle'],
+    datePublished: '2026-08-09',
+    dateModified: '2026-08-09',
+    content: () => (
+      <>
+        <p>
+          Seeing ammonia on a test can be frightening, especially when fish are already acting
+          differently. The important thing is to act promptly <strong>without changing everything at
+          once</strong>. In a stable, established aquarium, ammonia should read zero. A detectable
+          result means the tank’s waste load is outpacing its biological filter, the result needs
+          checking, or both.
+        </p>
+        <p>
+          This guide is written primarily for freshwater home aquariums. It gives you a calm first
+          response, helps you find the reason for the spike, and shows what to track while the tank
+          recovers. It is educational guidance, not a substitute for an aquatic veterinarian or a
+          qualified aquarium professional when fish are in distress.
+        </p>
+
+        <h2>The short answer: what to do when ammonia is high</h2>
+        <p>
+          Confirm the reading, reduce the waste going into the tank, remove any obvious source of
+          decay, and make a careful partial water change with conditioned, temperature-matched
+          water. Then test again and protect the biofilter while you work out why it fell behind.
+          Do not add new fish, replace all of the filter media, or throw several untested treatments
+          at the problem.
+        </p>
+        <div
+          style={{
+            background: 'var(--coral-100)',
+            border: '1px solid rgba(215, 97, 73, .24)',
+            borderRadius: 'var(--radius-lg)',
+            padding: '22px 24px',
+            margin: '8px 0 28px',
+          }}
+        >
+          <div
+            style={{
+              fontSize: 11.5,
+              fontWeight: 700,
+              letterSpacing: '.08em',
+              textTransform: 'uppercase',
+              color: 'var(--coral-700)',
+              marginBottom: 10,
+            }}
+          >
+            Do these first
+          </div>
+          <ul
+            style={{
+              margin: 0,
+              padding: 0,
+              listStyle: 'none',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 12,
+            }}
+          >
+            <li style={{ display: 'flex', gap: 12, color: 'var(--ink-700)' }}>
+              <Bullet stroke="var(--coral-700)" d='<path d="M20 6 9 17l-5-5" />' />
+              <span>
+                <strong>Look at the fish and the equipment.</strong> Gasping, unusual hiding,
+                erratic swimming, a stopped filter, or a heater problem all make this more urgent.
+              </span>
+            </li>
+            <li style={{ display: 'flex', gap: 12, color: 'var(--ink-700)' }}>
+              <Bullet stroke="var(--coral-700)" d='<path d="M20 6 9 17l-5-5" />' />
+              <span>
+                <strong>Pause or sharply reduce feeding.</strong> Uneaten food and fish waste add
+                more ammonia while the filter is trying to catch up.
+              </span>
+            </li>
+            <li style={{ display: 'flex', gap: 12, color: 'var(--ink-700)' }}>
+              <Bullet stroke="var(--coral-700)" d='<path d="M20 6 9 17l-5-5" />' />
+              <span>
+                <strong>Remove obvious waste.</strong> Take out uneaten food, a dead fish or snail,
+                and decaying plant matter; lightly siphon debris you can reach without tearing the
+                tank apart.
+              </span>
+            </li>
+            <li style={{ display: 'flex', gap: 12, color: 'var(--ink-700)' }}>
+              <Bullet stroke="var(--coral-700)" d='<path d="M20 6 9 17l-5-5" />' />
+              <span>
+                <strong>Change water carefully.</strong> Use water conditioner and match the
+                replacement water’s temperature as closely as practical. Test the new water when
+                you can, especially if the source has changed.
+              </span>
+            </li>
+            <li style={{ display: 'flex', gap: 12, color: 'var(--ink-700)' }}>
+              <Bullet stroke="var(--coral-700)" d='<path d="M20 6 9 17l-5-5" />' />
+              <span>
+                <strong>Increase oxygen and keep the filter running.</strong> Good surface movement
+                supports both fish and the oxygen-dependent bacteria in the filter.
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        <h2>Why ammonia needs attention</h2>
+        <p>
+          Fish release ammonia as waste, and uneaten food and decaying organic material add more.
+          In a mature aquarium, beneficial bacteria in the biofilter convert ammonia to nitrite and
+          then nitrate. Both ammonia and nitrite are toxic, which is why a working tank should keep
+          them at zero. The{' '}
+          <a
+            href="https://ornamentalfish.org/what-we-do/advice-information/care-sheets/caresheets-tropical-freshwater-fish/how-to-test-water-quality-in-your-freshwater-tank-aquarium/"
+            className="link"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Ornamental Aquatic Trade Association’s water-quality guidance
+          </a>{' '}
+          recommends testing promptly when fish behave unusually and treating any elevated ammonia
+          or nitrite as a problem to resolve.
+        </p>
+        <p>
+          Most hobby test kits measure total ammonia nitrogen, which includes ammonia and ammonium.
+          The proportion in the more toxic ammonia form rises as pH and temperature rise. That is
+          why a single number cannot tell the whole story: record the ammonia result alongside pH
+          and temperature, and avoid sudden chemistry changes while fish are stressed. The{' '}
+          <a
+            href="https://www.merckvetmanual.com/exotic-and-laboratory-animals/aquatic-systems/environmental-diseases-of-aquatic-animals-in-aquatic-systems"
+            className="link"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Merck Veterinary Manual explains this pH- and temperature-dependent risk
+          </a>{' '}
+          in more detail.
+        </p>
+
+        <h2>Confirm the reading before you chase it</h2>
+        <p>
+          A surprising test result deserves a second look, but do not use retesting as a reason to
+          delay basic safety steps when fish are clearly struggling. Check the test kit’s expiry
+          date, follow its timing and shaking instructions exactly, and compare the colour in good
+          light. If possible, repeat the test with a fresh kit or have a trusted aquarium shop test
+          a water sample.
+        </p>
+        <p>
+          Test <strong>ammonia, nitrite, pH, and temperature</strong> at the same time. Nitrite can
+          climb as ammonia begins to fall, so an improving ammonia number is not the end of the
+          recovery. If you plan a water change, test the source water too when practical. Ammonia
+          or chloramines in replacement water can change the result you expect.
+        </p>
+        <p>
+          For a quick refresher on what each result means, see our{' '}
+          <Link to="/blog/$slug" params={{ slug: 'aquarium-water-parameters' }} className="link">
+            aquarium water parameters guide
+          </Link>{' '}
+          and our schedule for{' '}
+          <Link to="/blog/$slug" params={{ slug: 'how-often-to-test-aquarium-water' }} className="link">
+            how often to test aquarium water
+          </Link>
+          .
+        </p>
+
+        <h2>Make water changes measured, not panicked</h2>
+        <p>
+          A partial water change dilutes ammonia, but the replacement water still needs to be safe
+          for the fish. Condition tap water according to the product label, match temperature, and
+          avoid a sudden pH swing. Keep notes on how much water you changed, the source-water test
+          when available, and the results before and after the change. That turns the next decision
+          into evidence rather than guesswork.
+        </p>
+        <p>
+          Be especially cautious with a long-neglected tank that has unusually low pH. In that
+          situation, a rapid pH increase can make the ammonia already in the water more toxic. If
+          the tank is old, poorly maintained, fish are in severe distress, or you cannot establish
+          the pH and source-water conditions, contact an aquatic veterinarian or experienced local
+          aquarium professional before making a large chemistry correction.
+        </p>
+
+        <h2>Common reasons ammonia rises</h2>
+        <h3>A new or recently changed tank</h3>
+        <p>
+          New tanks do not yet have enough nitrifying bacteria to process the waste produced by
+          fish. The same can happen after adding several fish at once, moving a tank, or making a
+          major change to the filter. Read{' '}
+          <Link to="/blog/$slug" params={{ slug: 'new-tank-syndrome-nitrogen-cycle' }} className="link">
+            new tank syndrome and the nitrogen cycle
+          </Link>{' '}
+          for the expected ammonia-to-nitrite-to-nitrate sequence and why progress must be proven
+          with tests.
+        </p>
+        <h3>More waste than the filter can process</h3>
+        <p>
+          Overfeeding, a growing fish, a new fish, or a heavily stocked aquarium can overwhelm a
+          biofilter that previously kept up. The fix is not to starve the fish indefinitely. It is
+          to reduce the immediate load, restore stable filtration, and adjust the long-term feeding,
+          stocking, and maintenance routine to match the tank.
+        </p>
+        <h3>Decaying material hidden in the tank</h3>
+        <p>
+          A missed dead fish, a snail behind hardscape, old food trapped in a corner, rotting leaves,
+          or debris in the filter can all add ammonia. Inspect the tank slowly. Focus on removing
+          the source and restoring flow rather than stripping the aquarium bare in one cleaning
+          session.
+        </p>
+        <h3>A disrupted biofilter</h3>
+        <p>
+          The bacteria that process ammonia need oxygenated water moving through their surface area.
+          A power interruption, blocked intake, stalled filter, untreated tap-water rinse, or
+          replacing all media at once can reduce that capacity. Check flow, media condition, and
+          whether the filter has been running continuously. Keep as much established biological
+          media in place as you safely can while resolving the problem.
+        </p>
+
+        <h2>Track the recovery until both ammonia and nitrite stabilize</h2>
+        <p>
+          During an ammonia problem, test more often than your normal routine and log every result
+          with the time, water change, feeding change, equipment issue, and fish observations. Look
+          for the sequence: ammonia returning to zero, nitrite also returning to zero, and fish
+          behavior becoming normal again. Do not treat one better reading as proof the problem is
+          over.
+        </p>
+        <p>
+          If nitrate also rose during the event, use our{' '}
+          <Link to="/blog/$slug" params={{ slug: 'high-nitrate-in-aquarium' }} className="link">
+            high nitrate recovery guide
+          </Link>{' '}
+          after ammonia and nitrite are under control. It will help you plan a steady return to the
+          tank’s usual range without conflating a nitrate issue with an acute ammonia emergency.
+        </p>
+
+        <h2>A note for saltwater and reef tanks</h2>
+        <p>
+          This article is freshwater-first, but the core rule also applies in saltwater and reef
+          systems: detectable ammonia calls for prompt investigation. Do not assume a freshwater
+          water-change routine, conditioner, or livestock tolerance applies to a marine system.
+          Check salinity and replacement-water preparation carefully, protect sensitive invertebrates
+          and corals, and seek reef-specific guidance when you are unsure.
+        </p>
+
+        <h2>Prevent the next ammonia spike</h2>
+        <ul>
+          <li>
+            <Bullet d='<path d="M20 6 9 17l-5-5" />' />
+            <span>
+              <strong>Feed deliberately:</strong> offer what the fish can eat and remove leftovers
+              rather than making more work for the filter.
+            </span>
+          </li>
+          <li>
+            <Bullet d='<path d="M20 6 9 17l-5-5" />' />
+            <span>
+              <strong>Maintain filtration gently:</strong> keep water flowing and avoid replacing all
+              biological media at once.
+            </span>
+          </li>
+          <li>
+            <Bullet d='<path d="M20 6 9 17l-5-5" />' />
+            <span>
+              <strong>Add livestock slowly:</strong> give the biofilter time to grow with the tank’s
+              waste load.
+            </span>
+          </li>
+          <li>
+            <Bullet d='<path d="M20 6 9 17l-5-5" />' />
+            <span>
+              <strong>Keep a routine:</strong> regular testing, water changes, and equipment checks
+              catch drift before fish show signs of trouble.
+            </span>
+          </li>
+        </ul>
+        <p>
+          Our{' '}
+          <Link to="/blog/$slug" params={{ slug: 'aquarium-maintenance-schedule' }} className="link">
+            aquarium maintenance schedule
+          </Link>{' '}
+          is a practical starting point for turning those checks into a habit.
+        </p>
+
+        <h2>Make the next decision easier</h2>
+        <p>
+          In an ammonia event, the most useful information is often the sequence: when a fish was
+          added, when the filter slowed, what you fed, how much water you changed, and what each
+          test showed afterward. Reef Keeper gives those readings and care actions one place to
+          live. Log the results as you test, use the trend to see whether the tank is truly
+          recovering, and set a reminder for the next follow-up check.
+        </p>
+
+        <h2>Sources and further reading</h2>
+        <ul>
+          <li>
+            <a
+              href="https://www.merckvetmanual.com/exotic-and-laboratory-animals/aquatic-systems/environmental-diseases-of-aquatic-animals-in-aquatic-systems"
+              className="link"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Merck Veterinary Manual: Environmental Diseases of Aquatic Animals in Aquatic Systems
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://ornamentalfish.org/what-we-do/advice-information/care-sheets/caresheets-tropical-freshwater-fish/how-to-test-water-quality-in-your-freshwater-tank-aquarium/"
+              className="link"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Ornamental Aquatic Trade Association: How to Test Water Quality in Your Freshwater Tank
+            </a>
+          </li>
+        </ul>
+      </>
+    ),
+  },
+  {
     slug: 'reefkeeper-1-3-guided-care-plans',
     category: 'Product updates',
     categoryColor: 'var(--teal-600)',
