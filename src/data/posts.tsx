@@ -59,6 +59,301 @@ const ReleaseScreenshot = ({ src, alt, caption }: { src: string; alt: string; ca
 
 export const posts: Post[] = [
   {
+    slug: 'how-to-lower-nitrite-in-fish-tank',
+    category: 'Troubleshooting',
+    categoryColor: 'var(--coral-700)',
+    readTime: '9 min read',
+    title: 'How to Lower Nitrite in a Fish Tank: Safe Steps to Take Now',
+    seoTitle: 'How to Lower Nitrite in a Fish Tank (Safely)',
+    metaDescription:
+      'High nitrite in your fish tank? Learn the safest immediate steps, common causes, what to test, and how to track a recovery until nitrite returns to zero.',
+    excerpt:
+      'A nitrite reading calls for prompt, measured care. Start with safe first steps, then find the cause and track the recovery until your tank is stable again.',
+    gradient: 'linear-gradient(135deg,var(--coral-600),var(--ocean-900))',
+    image: '/blog/high-nitrite-recovery.jpg',
+    relatedSlugs: ['how-to-lower-ammonia-in-fish-tank', 'new-tank-syndrome-nitrogen-cycle'],
+    datePublished: '2026-08-20',
+    dateModified: '2026-08-20',
+    content: () => (
+      <>
+        <p>
+          A high nitrite reading can feel alarming, especially if fish are breathing quickly or
+          acting differently. The important thing is to respond promptly <strong>without changing
+          everything at once</strong>. In a stable, established aquarium, ammonia and nitrite should
+          both read zero. A detectable nitrite result means the biological filter is not keeping up,
+          the tank has changed, or the test result needs checking.
+        </p>
+        <p>
+          This freshwater-first guide gives you a calm first response, helps you narrow down the
+          cause, and explains what to track while the tank recovers. It cannot diagnose an
+          individual fish. If fish are in obvious distress, several fish are affected, or you cannot
+          keep conditions stable, contact an aquatic veterinarian or an experienced local aquarium
+          professional.
+        </p>
+
+        <figure style={{ margin: '32px 0 36px' }}>
+          <img
+            src="/blog/high-nitrite-recovery.jpg"
+            alt="Freshwater aquarium water-testing kit beside a planted tank during a nitrite recovery check."
+            style={{ width: '100%', height: 'auto', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-sm)' }}
+          />
+        </figure>
+
+        <h2>The short answer: what to do when nitrite is high</h2>
+        <p>
+          Confirm the reading, reduce the waste entering the tank, remove any obvious source of
+          decay, and make a careful partial water change with conditioned, temperature-matched
+          water. Keep the filter running, improve surface movement, and test again. Do not add fish,
+          replace all of the filter media, or combine several untested treatments while fish are
+          already stressed.
+        </p>
+        <div
+          style={{
+            background: 'var(--coral-100)',
+            border: '1px solid rgba(215, 97, 73, .24)',
+            borderRadius: 'var(--radius-lg)',
+            padding: '22px 24px',
+            margin: '8px 0 28px',
+          }}
+        >
+          <div
+            style={{
+              fontSize: 11.5,
+              fontWeight: 700,
+              letterSpacing: '.08em',
+              textTransform: 'uppercase',
+              color: 'var(--coral-700)',
+              marginBottom: 10,
+            }}
+          >
+            Do these first
+          </div>
+          <ul
+            style={{
+              margin: 0,
+              padding: 0,
+              listStyle: 'none',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 12,
+            }}
+          >
+            <li style={{ display: 'flex', gap: 12, color: 'var(--ink-700)' }}>
+              <Bullet stroke="var(--coral-700)" d='<path d="M20 6 9 17l-5-5" />' />
+              <span>
+                <strong>Check the fish and equipment.</strong> Gasping, unusual hiding, erratic
+                swimming, a stopped filter, or poor surface movement makes the situation more urgent.
+              </span>
+            </li>
+            <li style={{ display: 'flex', gap: 12, color: 'var(--ink-700)' }}>
+              <Bullet stroke="var(--coral-700)" d='<path d="M20 6 9 17l-5-5" />' />
+              <span>
+                <strong>Pause or sharply reduce feeding.</strong> Uneaten food and fish waste add
+                more work while the biofilter is trying to catch up.
+              </span>
+            </li>
+            <li style={{ display: 'flex', gap: 12, color: 'var(--ink-700)' }}>
+              <Bullet stroke="var(--coral-700)" d='<path d="M20 6 9 17l-5-5" />' />
+              <span>
+                <strong>Remove obvious waste.</strong> Take out uneaten food, a dead fish or snail,
+                and decaying plant material; lightly siphon debris you can reach.
+              </span>
+            </li>
+            <li style={{ display: 'flex', gap: 12, color: 'var(--ink-700)' }}>
+              <Bullet stroke="var(--coral-700)" d='<path d="M20 6 9 17l-5-5" />' />
+              <span>
+                <strong>Change water carefully.</strong> Condition replacement water, match its
+                temperature as closely as practical, and avoid a sudden chemistry swing.
+              </span>
+            </li>
+            <li style={{ display: 'flex', gap: 12, color: 'var(--ink-700)' }}>
+              <Bullet stroke="var(--coral-700)" d='<path d="M20 6 9 17l-5-5" />' />
+              <span>
+                <strong>Keep oxygen and filtration steady.</strong> Good flow and surface movement
+                support fish and the oxygen-dependent bacteria in the filter.
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        <h2>Why a nitrite spike needs attention</h2>
+        <p>
+          Beneficial bacteria in a healthy biofilter turn fish waste from ammonia into nitrite, then
+          into nitrate. Nitrite is the middle step, not a sign that the aquarium has finished
+          cycling. When it is detectable, fish can struggle even when the water looks clear. The{' '}
+          <a
+            href="https://ornamentalfish.org/what-we-do/advice-information/care-sheets/caresheets-tropical-freshwater-fish/how-to-test-water-quality-in-your-freshwater-tank-aquarium/"
+            className="link"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Ornamental Aquatic Trade Association’s water-testing guidance
+          </a>{' '}
+          recommends treating elevated ammonia or nitrite as a problem to resolve promptly.
+        </p>
+        <p>
+          Start by testing <strong>nitrite, ammonia, nitrate, pH, and temperature</strong> together.
+          The sequence matters: ammonia can fall while nitrite rises, so one improving number is not
+          proof that the aquarium has recovered. Our{' '}
+          <Link to="/blog/$slug" params={{ slug: 'aquarium-water-parameters' }} className="link">
+            aquarium water parameters guide
+          </Link>{' '}
+          explains what each result represents, and our guide to{' '}
+          <Link to="/blog/$slug" params={{ slug: 'how-often-to-test-aquarium-water' }} className="link">
+            how often to test aquarium water
+          </Link>{' '}
+          can help you set a follow-up routine.
+        </p>
+
+        <h2>Confirm the reading before you chase it</h2>
+        <p>
+          A surprising test result deserves a second look, but do not use retesting as a reason to
+          delay basic safety steps when fish are clearly struggling. Check the kit’s expiry date,
+          follow its timing and shaking instructions exactly, and compare colours in good light. If
+          you can, repeat the test with a fresh kit or have a trusted aquarium shop test a sample.
+        </p>
+        <p>
+          Record the result with the date and time, fish behavior, temperature, pH, recent feeding,
+          new livestock, maintenance, and equipment changes. If you make a water change, test the
+          source water when practical too. That record makes the next decision evidence-based rather
+          than a guess.
+        </p>
+
+        <h2>Make water changes measured, not panicked</h2>
+        <p>
+          A partial water change dilutes nitrite, but the replacement water must still be safe for
+          the fish. Use water conditioner according to its label, match temperature, and add water
+          carefully. Avoid a sudden pH shift or a complete tank teardown while the fish and biofilter
+          are already under pressure.
+        </p>
+        <p>
+          Keep the filter running and preserve as much established biological media as you safely
+          can. If it needs cleaning, use water removed from the aquarium rather than untreated tap
+          water, and do not replace every piece of media at once. A filter interruption, blocked
+          intake, or overly aggressive cleaning can be the reason nitrite rose in the first place.
+        </p>
+
+        <h2>Common reasons nitrite rises</h2>
+        <h3>A new or recently changed tank</h3>
+        <p>
+          In a new aquarium, bacteria that turn nitrite into nitrate have not yet grown to match the
+          waste load. The same pattern can follow a tank move, a new filter, or a major filter-media
+          change. Read{' '}
+          <Link to="/blog/$slug" params={{ slug: 'new-tank-syndrome-nitrogen-cycle' }} className="link">
+            new tank syndrome and the nitrogen cycle
+          </Link>{' '}
+          for the expected sequence and why test results—not a calendar date—show whether a tank is
+          cycled.
+        </p>
+        <h3>More waste than the filter can process</h3>
+        <p>
+          Adding several fish, feeding more than usual, a growing fish, or a heavily stocked tank can
+          outpace a biofilter that had been keeping up. Reduce the immediate load and then reassess
+          the long-term feeding, stocking, and maintenance routine. Do not add more livestock until
+          ammonia and nitrite are back at zero and the tank is stable.
+        </p>
+        <h3>Decaying material in the tank</h3>
+        <p>
+          A missed dead fish or snail, trapped food, rotting leaves, or debris collecting in a quiet
+          corner can add waste faster than the filter can process it. Inspect slowly and remove the
+          source. The goal is to reduce decay without stripping the aquarium bare in one session.
+        </p>
+        <h3>Interrupted flow or disrupted filter media</h3>
+        <p>
+          Nitrifying bacteria need oxygenated water moving through their surface area. Check that the
+          filter is running, the intake is not blocked, and water is moving at the surface. A power
+          interruption or a filter left dry can also reduce its capacity, so include any equipment
+          event in your recovery notes.
+        </p>
+
+        <h2>Track the recovery until nitrite is zero</h2>
+        <p>
+          During a nitrite problem, test more often than usual and log every result with the time,
+          water change, feeding change, and fish observation. Look for the whole recovery pattern:
+          ammonia returning to zero, nitrite returning to zero, nitrate becoming understandable for
+          the tank, and fish behavior returning to normal. One better result is encouraging, but it
+          does not show the problem is over.
+        </p>
+        <p>
+          Reef Keeper gives readings, maintenance actions, and observations one place to live. Log
+          the results as you test, use the trend to see whether the aquarium is truly recovering, and
+          set a reminder for the next check. Once ammonia and nitrite are stable, our{' '}
+          <Link to="/blog/$slug" params={{ slug: 'high-nitrate-in-aquarium' }} className="link">
+            high nitrate recovery guide
+          </Link>{' '}
+          can help if nitrate also needs attention.
+        </p>
+
+        <ArticleConversionCta
+          heading="Make the recovery easier to read"
+          body="Log water tests, water changes, equipment events, feeding changes, and fish behavior in Reef Keeper so the next decision is based on your tank’s actual trend."
+          articleSlug="how-to-lower-nitrite-in-fish-tank"
+          articleTitle="How to Lower Nitrite in a Fish Tank: Safe Steps to Take Now"
+        />
+
+        <h2>Prevent the next nitrite spike</h2>
+        <ul>
+          <li>
+            <Bullet d='<path d="M20 6 9 17l-5-5" />' />
+            <span><strong>Add livestock slowly:</strong> let the biofilter grow with the tank’s waste load.</span>
+          </li>
+          <li>
+            <Bullet d='<path d="M20 6 9 17l-5-5" />' />
+            <span><strong>Feed deliberately:</strong> remove leftovers instead of creating more work for the filter.</span>
+          </li>
+          <li>
+            <Bullet d='<path d="M20 6 9 17l-5-5" />' />
+            <span><strong>Maintain filtration gently:</strong> keep water flowing and avoid replacing all biological media at once.</span>
+          </li>
+          <li>
+            <Bullet d='<path d="M20 6 9 17l-5-5" />' />
+            <span><strong>Keep a testing routine:</strong> regular checks catch drift before fish show signs of stress.</span>
+          </li>
+        </ul>
+        <p>
+          Our{' '}
+          <Link to="/blog/$slug" params={{ slug: 'aquarium-maintenance-schedule' }} className="link">
+            aquarium maintenance schedule
+          </Link>{' '}
+          is a practical place to start building those habits.
+        </p>
+
+        <h2>A note for saltwater and reef tanks</h2>
+        <p>
+          This article is written for freshwater home aquariums. Detectable nitrite still deserves
+          investigation in a marine system, but do not assume that freshwater water-change routines,
+          treatments, or livestock tolerance apply to a reef. Check salinity and replacement-water
+          preparation carefully, protect sensitive invertebrates and corals, and seek reef-specific
+          guidance when you are unsure.
+        </p>
+
+        <h2>Sources and further reading</h2>
+        <ul>
+          <li>
+            <a
+              href="https://www.merckvetmanual.com/exotic-and-laboratory-animals/aquatic-systems/environmental-diseases-of-aquatic-animals-in-aquatic-systems"
+              className="link"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Merck Veterinary Manual: Environmental Diseases of Aquatic Animals in Aquatic Systems
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://ornamentalfish.org/what-we-do/advice-information/care-sheets/caresheets-tropical-freshwater-fish/how-to-test-water-quality-in-your-freshwater-tank-aquarium/"
+              className="link"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Ornamental Aquatic Trade Association: How to Test Water Quality in Your Freshwater Tank
+            </a>
+          </li>
+        </ul>
+      </>
+    ),
+  },
+  {
     slug: 'why-do-my-new-fish-keep-dying',
     category: 'Troubleshooting',
     categoryColor: 'var(--coral-700)',
