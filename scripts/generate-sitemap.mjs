@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -6,6 +6,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
 const publicDir = path.join(rootDir, 'public');
 const postsFile = path.join(rootDir, 'src', 'data', 'posts.tsx');
+const postsDirectory = path.join(rootDir, 'src', 'data', 'posts');
 
 const siteUrl = (process.env.VITE_SITE_URL ?? 'https://reefkeeper.otfusion.org').replace(/\/$/, '');
 
@@ -45,10 +46,14 @@ const renderUrl = ({ path: routePath, lastmod, changefreq, priority }) => {
 };
 
 const readPublishedPosts = async () => {
-  const source = await readFile(postsFile, 'utf8');
-  const postPattern = /^  {\n    slug:\s*'([^']+)'([\s\S]*?)(?=^  },\n  {|^  },\n];)/gm;
+  const directoryEntries = await readdir(postsDirectory, { withFileTypes: true });
+  const postFiles = directoryEntries
+    .filter((entry) => entry.isFile() && /\.(ts|tsx)$/.test(entry.name) && entry.name !== 'types.ts')
+    .map((entry) => path.join(postsDirectory, entry.name));
+  const sources = await Promise.all([postsFile, ...postFiles].map((file) => readFile(file, 'utf8')));
+  const postPattern = /^\s+slug:\s*'([^']+)'([\s\S]*?)(?=^  },\n  {|^  },\n];|^};)/gm;
 
-  return [...source.matchAll(postPattern)]
+  return sources.flatMap((source) => [...source.matchAll(postPattern)])
     .map((match) => {
       const dateModified = match[2].match(/^\s+dateModified:\s*'([^']+)'/m)?.[1];
       const hasContent = /^\s+content:\s*\(\)\s*=>/m.test(match[2]);

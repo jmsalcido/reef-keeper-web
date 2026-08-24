@@ -1,37 +1,10 @@
-import type { ReactNode } from 'react';
 import { Link } from '@tanstack/react-router';
 import { ArticleConversionCta } from '../components/ArticleConversionCta';
 import { APP_STORE_URL } from '../config';
+import { fishArrivalJourneyPost } from './posts/fishArrivalJourney';
+import type { Post, PublishedPost } from './posts/types';
 
-type PostBase = {
-  slug: string;
-  category: string;
-  categoryColor: string;
-  readTime: string;
-  title: string;
-  seoTitle?: string;
-  metaDescription?: string;
-  excerpt: string;
-  gradient: string;
-  image?: string;
-  relatedSlugs?: string[];
-};
-
-export type PublishedPost = PostBase & {
-  comingSoon?: false;
-  datePublished: string;
-  dateModified: string;
-  content: () => ReactNode;
-};
-
-export type ComingSoonPost = PostBase & {
-  comingSoon?: boolean;
-  datePublished?: never;
-  dateModified?: never;
-  content?: never;
-};
-
-export type Post = PublishedPost | ComingSoonPost;
+export type { ComingSoonPost, Post, PublishedPost } from './posts/types';
 
 const Bullet = ({ d, stroke = 'var(--teal-500)' }: { d: string; stroke?: string }) => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={stroke} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flex: '0 0 22px', marginTop: 1 }} dangerouslySetInnerHTML={{ __html: d }} />
@@ -58,6 +31,7 @@ const ReleaseScreenshot = ({ src, alt, caption }: { src: string; alt: string; ca
 );
 
 export const posts: Post[] = [
+  fishArrivalJourneyPost,
   {
     slug: 'how-to-lower-nitrite-in-fish-tank',
     category: 'Troubleshooting',

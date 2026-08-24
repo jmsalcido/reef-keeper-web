@@ -43,9 +43,10 @@ npm run dev      # http://localhost:5173
 | `/blog` | Blog index | `src/pages/BlogIndex.tsx` |
 | `/blog/$slug` | Article | `src/pages/Article.tsx` |
 
-Articles are data-driven — add an entry to `src/data/posts.tsx` (with a
-`content` render function) and it appears in the blog index, the landing-page
-teaser, and gets its own route automatically.
+Articles are data-driven. Create each new article in `src/data/posts/`, export
+a typed `PublishedPost`, and add it to the `posts` registry in
+`src/data/posts.tsx`. It will then appear in the blog index, the landing-page
+teaser, its own route, and the generated sitemap automatically.
 
 ## Project structure
 
@@ -63,7 +64,10 @@ src/
     AppStoreButton.tsx  # App Store CTA + Apple glyph
     Phones.tsx          # iPhone mockups (My Tanks / Log / Analytics / Tasks)
   data/
-    posts.tsx           # blog posts (metadata + JSX content)
+    posts.tsx           # small post registry + legacy posts during migration
+    posts/
+      types.ts          # shared post types
+      fishArrivalJourney.tsx # one self-contained article
   pages/
     Landing.tsx
     BlogIndex.tsx
