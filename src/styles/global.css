@@ -80,6 +80,14 @@ img {
   flex-direction: column;
   gap: 12px;
 }
+.prose ol {
+  margin: 0 0 20px;
+  padding-left: 24px;
+}
+.prose ol li {
+  display: list-item;
+  padding-left: 6px;
+}
 .prose li {
   font-size: 17px;
   line-height: 1.6;
@@ -101,6 +109,15 @@ img {
   margin: 8px 0 24px;
   font-size: 15px;
   line-height: 1.5;
+}
+.prose .article-table-scroll {
+  width: 100%;
+  margin: 8px 0 24px;
+  overflow-x: auto;
+}
+.prose .article-table-scroll table {
+  min-width: 620px;
+  margin: 0;
 }
 .prose th,
 .prose td {
@@ -264,11 +281,6 @@ img {
   }
   .rk-pricing-featured {
     transform: none !important;
-  }
-  .prose table {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
   }
   .article-conversion-cta__actions {
     flex-direction: column;

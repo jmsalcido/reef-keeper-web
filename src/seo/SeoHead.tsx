@@ -5,9 +5,18 @@ type SeoHeadProps = {
   description: string;
   canonicalUrl: string;
   type?: 'website' | 'article';
+  image?: string;
+  imageAlt?: string;
 };
 
-export function SeoHead({ title, description, canonicalUrl, type = 'website' }: SeoHeadProps) {
+export function SeoHead({
+  title,
+  description,
+  canonicalUrl,
+  type = 'website',
+  image,
+  imageAlt,
+}: SeoHeadProps) {
   useEffect(() => {
     document.title = title;
     setMeta('name', 'description', description);
@@ -16,7 +25,20 @@ export function SeoHead({ title, description, canonicalUrl, type = 'website' }: 
     setMeta('property', 'og:description', description);
     setMeta('property', 'og:url', canonicalUrl);
     setMeta('property', 'og:type', type);
-  }, [canonicalUrl, description, title, type]);
+    setMeta('name', 'twitter:card', image ? 'summary_large_image' : 'summary');
+    setMeta('name', 'twitter:title', title);
+    setMeta('name', 'twitter:description', description);
+
+    if (image) {
+      setMeta('property', 'og:image', image);
+      setMeta('name', 'twitter:image', image);
+    }
+
+    if (imageAlt) {
+      setMeta('property', 'og:image:alt', imageAlt);
+      setMeta('name', 'twitter:image:alt', imageAlt);
+    }
+  }, [canonicalUrl, description, image, imageAlt, title, type]);
 
   return null;
 }

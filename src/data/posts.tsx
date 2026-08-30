@@ -2,6 +2,7 @@ import { Link } from '@tanstack/react-router';
 import { ArticleConversionCta } from '../components/ArticleConversionCta';
 import { APP_STORE_URL } from '../config';
 import { fishArrivalJourneyPost } from './posts/fishArrivalJourney';
+import { waterChangeSchedulePost } from './posts/waterChangeSchedule';
 import type { Post, PublishedPost } from './posts/types';
 
 export type { ComingSoonPost, Post, PublishedPost } from './posts/types';
@@ -31,6 +32,7 @@ const ReleaseScreenshot = ({ src, alt, caption }: { src: string; alt: string; ca
 );
 
 export const posts: Post[] = [
+  waterChangeSchedulePost,
   fishArrivalJourneyPost,
   {
     slug: 'how-to-lower-nitrite-in-fish-tank',
@@ -199,6 +201,17 @@ export const posts: Post[] = [
           the fish. Use water conditioner according to its label, match temperature, and add water
           carefully. Avoid a sudden pH shift or a complete tank teardown while the fish and biofilter
           are already under pressure.
+        </p>
+        <p>
+          Once the aquarium is stable again, use a{' '}
+          <Link
+            to="/blog/$slug"
+            params={{ slug: 'how-often-to-change-aquarium-water' }}
+            className="link"
+          >
+            test-driven water-change schedule
+          </Link>{' '}
+          to choose a repeatable routine instead of carrying an emergency response into normal care.
         </p>
         <p>
           Keep the filter running and preserve as much established biological media as you safely
@@ -732,6 +745,18 @@ export const posts: Post[] = [
           into evidence rather than guesswork.
         </p>
         <p>
+          After the immediate problem is resolved, build the normal routine from your tank’s trend
+          with this{' '}
+          <Link
+            to="/blog/$slug"
+            params={{ slug: 'how-often-to-change-aquarium-water' }}
+            className="link"
+          >
+            aquarium water-change schedule
+          </Link>
+          .
+        </p>
+        <p>
           Be especially cautious with a long-neglected tank that has unusually low pH. In that
           situation, a rapid pH increase can make the ammonia already in the water more toxic. If
           the tank is old, poorly maintained, fish are in severe distress, or you cannot establish
@@ -1119,7 +1144,16 @@ export const posts: Post[] = [
                 </p>
                 <p style={{ margin: 0 }}>
                   Match temperature and salinity (or GH/KH as relevant) as closely as practical, and avoid
-                  a sudden, aggressive correction just to force one test down.
+                  a sudden, aggressive correction just to force one test down. For the ongoing routine,
+                  use a{' '}
+                  <Link
+                    to="/blog/$slug"
+                    params={{ slug: 'how-often-to-change-aquarium-water' }}
+                    className="link"
+                  >
+                    test-driven water-change schedule
+                  </Link>
+                  .
                 </p>
               </div>
             </div>
@@ -1664,6 +1698,17 @@ export const posts: Post[] = [
           but the right amount depends on nitrate buildup, stocking, feeding, and plant growth. Reef
           tanks may use smaller or more tailored changes depending on dosing, nutrients, and coral
           demand. Test results should guide the routine instead of habit alone.
+        </p>
+        <p>
+          Use our{' '}
+          <Link
+            to="/blog/$slug"
+            params={{ slug: 'how-often-to-change-aquarium-water' }}
+            className="link"
+          >
+            test-driven aquarium water-change guide
+          </Link>{' '}
+          to choose a starting cadence and adjust it from your tank’s actual results.
         </p>
         <p>
           During the water change, siphon obvious debris, clean the glass, wipe salt creep on

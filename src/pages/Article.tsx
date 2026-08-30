@@ -3,7 +3,7 @@ import { Nav } from '../components/Nav';
 import { MiniFooter } from '../components/Footer';
 import { AppStoreButton } from '../components/AppStoreButton';
 import { ArticleFeedback } from '../components/ArticleFeedback';
-import { canonicalUrl } from '../config';
+import { canonicalAssetUrl, canonicalUrl } from '../config';
 import { getPost, isPublishedPost, posts } from '../data/posts';
 import { SeoHead } from '../seo/SeoHead';
 import { JsonLd, blogPostingJsonLd, organizationJsonLd } from '../seo/structuredData';
@@ -41,6 +41,8 @@ export function Article() {
         description={post.metaDescription ?? post.excerpt}
         canonicalUrl={canonicalUrl(`/blog/${post.slug}`)}
         type="article"
+        image={canonicalAssetUrl(post.image ?? '/app-icon-ios.png')}
+        imageAlt={post.title}
       />
       <JsonLd data={[organizationJsonLd(), blogPostingJsonLd(post)]} />
       <Nav variant="inner" />
