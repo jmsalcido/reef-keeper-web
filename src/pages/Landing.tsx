@@ -5,13 +5,16 @@ import { Footer } from '../components/Footer';
 import { AppStoreButton } from '../components/AppStoreButton';
 import { HeroPhone, LogPhone, GraphsPhone, TasksPhone } from '../components/Phones';
 import { APP_STORE_URL } from '../config';
-import { posts } from '../data/posts';
+import { publishedPosts } from '../data/posts';
+
 import {
   JsonLd,
   applicationProductJsonLd,
   faqPageJsonLd,
   organizationJsonLd,
 } from '../seo/structuredData';
+
+const latestPosts = publishedPosts.slice(0, 3);
 
 const overline: CSSProperties = {
   fontSize: 11.5,
@@ -352,12 +355,12 @@ export function Landing() {
       </section>
 
       {/* BLOG TEASER */}
-      <section style={{ background: 'var(--surface-app)', borderTop: '1px solid var(--border-divider)' }}>
+      <section aria-labelledby="latest-guides-heading" className="rk-latest-guides" style={{ background: 'var(--surface-app)', borderTop: '1px solid var(--border-divider)' }}>
         <div style={{ maxWidth: 1140, margin: '0 auto', padding: '84px 28px' }}>
-          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap', marginBottom: 40 }}>
+          <div className="rk-latest-guides-header" style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap', marginBottom: 40 }}>
             <div>
               <div style={overline}>The journal</div>
-              <h2 style={{ ...sectionH2, fontSize: 32, margin: '12px 0 0' }}>Guides for healthier tanks</h2>
+              <h2 id="latest-guides-heading" style={{ ...sectionH2, fontSize: 32, margin: '12px 0 0' }}>Guides for healthier tanks</h2>
             </div>
             <Link to="/blog" style={{ display: 'inline-flex', alignItems: 'center', gap: 7, fontSize: 15, fontWeight: 700, color: 'var(--teal-600)' }}>
               All articles
@@ -367,36 +370,21 @@ export function Landing() {
               </svg>
             </Link>
           </div>
-          <div className="rk-grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 22 }}>
-            {posts.map((p) => {
-              const card = (
-                <>
-                  <div style={{ height: 150, background: p.gradient, position: 'relative' }}>
-                    {p.comingSoon && (
-                      <span style={{ position: 'absolute', top: 12, left: 12, fontSize: 10.5, fontWeight: 800, letterSpacing: '.06em', textTransform: 'uppercase', color: '#fff', background: 'rgba(0,0,0,.25)', padding: '4px 9px', borderRadius: 999 }}>
-                        Soon
-                      </span>
-                    )}
+          <div className="rk-latest-guides-grid">
+            {latestPosts.map((p) => (
+              <Link key={p.slug} to="/blog/$slug" params={{ slug: p.slug }} className="rk-guide-card">
+                <div className="rk-guide-card-art" style={{ background: p.gradient }} aria-hidden="true" />
+                <div className="rk-guide-card-body">
+                  <div className="rk-guide-card-meta">
+                    <span style={{ color: p.categoryColor }}>{p.category}</span>
+                    <span className="rk-guide-read-time">{p.readTime}</span>
                   </div>
-                  <div style={{ padding: 22 }}>
-                    <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', color: p.categoryColor }}>{p.category}</div>
-                    <h3 style={{ fontSize: 18, lineHeight: 1.3, fontWeight: 700, color: 'var(--text-strong)', margin: '8px 0 0' }}>{p.title}</h3>
-                    <p style={{ fontSize: 14, lineHeight: 1.5, color: 'var(--text-muted)', margin: '8px 0 0' }}>{p.excerpt}</p>
-                  </div>
-                </>
-              );
-              const cardStyle = { display: 'block', background: 'var(--surface-card)', border: '1px solid var(--border-divider)', borderRadius: 'var(--radius-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-xs)', opacity: p.comingSoon ? 0.92 : 1 };
-
-              return p.comingSoon ? (
-                <div key={p.slug} style={cardStyle}>
-                  {card}
+                  <h3>{p.title}</h3>
+                  <p>{p.excerpt}</p>
+                  <span className="rk-guide-read-link">Read article <span aria-hidden="true">→</span></span>
                 </div>
-              ) : (
-                <Link key={p.slug} to="/blog/$slug" params={{ slug: p.slug }} style={cardStyle}>
-                  {card}
-                </Link>
-              );
-            })}
+              </Link>
+            ))}
           </div>
         </div>
       </section>

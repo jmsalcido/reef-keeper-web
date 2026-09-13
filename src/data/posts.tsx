@@ -2459,3 +2459,8 @@ export const getPost = (slug: string) => posts.find((p) => p.slug === slug);
 
 export const isPublishedPost = (post: Post): post is PublishedPost =>
   !post.comingSoon && typeof post.content === 'function';
+
+/** Published articles, newest first; preserve editorial order for matching dates. */
+export const publishedPosts = posts
+  .filter(isPublishedPost)
+  .sort((a, b) => b.datePublished.localeCompare(a.datePublished));
