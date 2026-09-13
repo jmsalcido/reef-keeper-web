@@ -15,6 +15,7 @@ type PostBase = {
 };
 
 export type PublishedPost = PostBase & {
+  conversionGoal?: 'pro';
   comingSoon?: false;
   datePublished: string;
   dateModified: string;

@@ -75,13 +75,13 @@
   </url>
   <url>
     <loc>https://reefkeeper.otfusion.org/blog/aquarium-maintenance-schedule</loc>
-    <lastmod>2026-07-07</lastmod>
+    <lastmod>2026-09-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://reefkeeper.otfusion.org/blog/aquarium-water-parameter-tracker</loc>
-    <lastmod>2026-07-07</lastmod>
+    <lastmod>2026-09-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -93,7 +93,7 @@
   </url>
   <url>
     <loc>https://reefkeeper.otfusion.org/blog/aquarium-log-book-vs-app</loc>
-    <lastmod>2026-07-07</lastmod>
+    <lastmod>2026-09-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -106,6 +106,12 @@
   <url>
     <loc>https://reefkeeper.otfusion.org/blog/how-to-track-new-fish-first-week-aquarium</loc>
     <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://reefkeeper.otfusion.org/blog/is-reef-keeper-pro-worth-it</loc>
+    <lastmod>2026-09-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

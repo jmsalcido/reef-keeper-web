@@ -3,6 +3,7 @@ import { ArticleConversionCta } from '../components/ArticleConversionCta';
 import { APP_STORE_URL } from '../config';
 import { fishArrivalJourneyPost } from './posts/fishArrivalJourney';
 import { waterChangeSchedulePost } from './posts/waterChangeSchedule';
+import { reefKeeperProPost } from './posts/reefKeeperPro';
 import type { Post, PublishedPost } from './posts/types';
 
 export type { ComingSoonPost, Post, PublishedPost } from './posts/types';
@@ -32,6 +33,7 @@ const ReleaseScreenshot = ({ src, alt, caption }: { src: string; alt: string; ca
 );
 
 export const posts: Post[] = [
+  reefKeeperProPost,
   waterChangeSchedulePost,
   fishArrivalJourneyPost,
   {
@@ -1614,7 +1616,7 @@ export const posts: Post[] = [
     gradient: 'linear-gradient(135deg,var(--green-500),var(--teal-700))',
     image: '/app-icon-ios.png',
     datePublished: '2026-07-07',
-    dateModified: '2026-07-07',
+    dateModified: '2026-09-13',
     content: () => (
       <>
         <p>
@@ -1812,6 +1814,14 @@ export const posts: Post[] = [
           whether a missed task lines up with a parameter swing. That history is what turns a
           checklist into better tank care.
         </p>
+        <p>
+          Considering a paid tracking app? Our guide to{' '}
+          <Link to="/blog/$slug" params={{ slug: 'is-reef-keeper-pro-worth-it' }} className="link">
+            when Reef Keeper Pro is worth it
+          </Link>{' '}
+          explains how unlimited aquariums, advanced graphs, custom ranges, and export fit into
+          an ongoing care routine, with a comparison of the available plans.
+        </p>
       </>
     ),
   },
@@ -1829,7 +1839,7 @@ export const posts: Post[] = [
     gradient: 'linear-gradient(135deg,var(--teal-400),var(--ocean-800))',
     image: '/app-icon-ios.png',
     datePublished: '2026-07-07',
-    dateModified: '2026-07-07',
+    dateModified: '2026-09-13',
     content: () => (
       <>
         <p>
@@ -1942,6 +1952,14 @@ export const posts: Post[] = [
           If spreadsheets make you avoid logging, use something easier. A notebook is better than no
           record, and an app like Reef Keeper can make the habit even lighter by pairing quick logs
           with graphs, history, and recurring reminders.
+        </p>
+        <p>
+          Considering a paid tracking app? Our guide to{' '}
+          <Link to="/blog/$slug" params={{ slug: 'is-reef-keeper-pro-worth-it' }} className="link">
+            when Reef Keeper Pro is worth it
+          </Link>{' '}
+          explains how unlimited aquariums, advanced graphs, custom ranges, and export fit into
+          an ongoing care routine, with a comparison of the available plans.
         </p>
       </>
     ),
@@ -2138,7 +2156,7 @@ export const posts: Post[] = [
     gradient: 'linear-gradient(135deg,var(--coral-600),var(--teal-700))',
     image: '/app-icon-ios.png',
     datePublished: '2026-07-07',
-    dateModified: '2026-07-07',
+    dateModified: '2026-09-13',
     content: () => (
       <>
         <p>
@@ -2240,6 +2258,14 @@ export const posts: Post[] = [
         <p>
           Reef Keeper fits that role for hobbyists who want structure without spreadsheet upkeep:
           quick logs, readable trends, recurring reminders, and separate histories for every tank.
+        </p>
+        <p>
+          Considering a paid tracking app? Our guide to{' '}
+          <Link to="/blog/$slug" params={{ slug: 'is-reef-keeper-pro-worth-it' }} className="link">
+            when Reef Keeper Pro is worth it
+          </Link>{' '}
+          explains how unlimited aquariums, advanced graphs, custom ranges, and export fit into
+          an ongoing care routine, with a comparison of the available plans.
         </p>
       </>
     ),

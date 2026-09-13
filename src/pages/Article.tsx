@@ -3,6 +3,7 @@ import { Nav } from '../components/Nav';
 import { MiniFooter } from '../components/Footer';
 import { AppStoreButton } from '../components/AppStoreButton';
 import { ArticleFeedback } from '../components/ArticleFeedback';
+import { ArticleProCta } from '../components/ArticleProCta';
 import { canonicalAssetUrl, canonicalUrl } from '../config';
 import { getPost, isPublishedPost, posts } from '../data/posts';
 import { SeoHead } from '../seo/SeoHead';
@@ -72,6 +73,11 @@ export function Article() {
         </div>
 
         {/* Inline CTA */}
+        {post.conversionGoal === 'pro' ? (
+          <div className="prose" style={{ maxWidth: 720, margin: '0 auto', padding: '24px 28px 64px' }}>
+            <ArticleProCta articleSlug={post.slug} articleTitle={post.title} placement="footer" />
+          </div>
+        ) : (
         <div style={{ maxWidth: 720, margin: '0 auto', padding: '24px 28px 64px' }}>
           <div style={{ background: 'var(--color-header-gradient)', borderRadius: 'var(--radius-xl)', padding: 36, textAlign: 'center', boxShadow: 'var(--shadow-md)' }}>
             <h3 style={{ fontSize: 24, fontWeight: 800, color: '#fff', margin: 0, letterSpacing: '-0.01em' }}>Log every reading in seconds</h3>
@@ -84,6 +90,7 @@ export function Article() {
             </div>
           </div>
         </div>
+        )}
       </article>
 
       {/* Related */}
