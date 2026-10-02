@@ -1,3 +1,4 @@
+import { PRIVACY_POLICY_URL } from '../config';
 import { useState, type CSSProperties, type FormEvent } from 'react';
 import { Link } from '@tanstack/react-router';
 
@@ -185,9 +186,9 @@ export function Footer() {
             <Link to="/contact" style={colLink}>
               Support
             </Link>
-            <Link to="/privacy" style={colLink}>
+            <a href={PRIVACY_POLICY_URL} style={colLink}>
               Privacy
-            </Link>
+            </a>
             <Link to="/terms" style={colLink}>
               Terms
             </Link>

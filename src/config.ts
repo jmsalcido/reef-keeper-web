@@ -20,3 +20,6 @@ export const canonicalAssetUrl = (path: string) => canonicalUrl(path);
 
 /** Same-origin Cloudflare Worker endpoint, with an optional override for other deployments. */
 export const SUPPORT_POST_URL = import.meta.env.VITE_SUPPORT_POST_URL || '/api/contact';
+
+/** Existing Bear Trail policy, including Reef Keeper; no duplicated legal copy. */
+export const PRIVACY_POLICY_URL = 'https://beartrailworks.com/privacy/';

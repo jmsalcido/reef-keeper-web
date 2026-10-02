@@ -1,3 +1,4 @@
+import { PRIVACY_POLICY_URL } from '../config';
 import type { ReactNode } from 'react';
 import { Nav } from '../components/Nav';
 import { MiniFooter } from '../components/Footer';
@@ -75,13 +76,12 @@ function LegalPage({
 }
 
 export function Privacy() {
-  return (
-    <LegalPage
-      title="Privacy Policy"
-      intro="This policy explains what information Reef Keeper may collect, how it is used, and the choices you have when using the website or app."
-      sections={privacySections}
-    />
-  );
+  return <><Nav variant="inner" /><main className="prose" style={{ maxWidth: 760, margin: '0 auto', padding: '72px 28px' }}>
+    <h1>Privacy Policy</h1>
+    <p>Reef Keeper is covered by the Bear Trail privacy policy.</p>
+    <p><a href={PRIVACY_POLICY_URL}>Read the current Bear Trail privacy policy →</a></p>
+    <p>The policy includes information about the website and apps, service providers, and your choices.</p>
+  </main><MiniFooter /></>;
 }
 
 export function Terms() {
@@ -93,82 +93,6 @@ export function Terms() {
     />
   );
 }
-
-const privacySections: Section[] = [
-  {
-    title: 'Information you provide',
-    content: (
-      <>
-        <p>
-          Reef Keeper is designed to help you track aquariums, water parameters, tasks,
-          livestock, and notes. If you enter aquarium information in the app, that content is
-          used to provide the tracking, reminders, and history features you choose to use.
-        </p>
-        <p>
-          If you contact us for support, we may receive your name, email address, message
-          content, and any details you decide to include so we can respond to your request.
-        </p>
-      </>
-    ),
-  },
-  {
-    title: 'Website and app information',
-    content: (
-      <>
-        <p>
-          When you visit the Reef Keeper website or use the app, basic technical information
-          such as device type, browser, app version, pages viewed, and general usage activity
-          may be collected to keep the service working and improve the experience.
-        </p>
-        <p>
-          Downloads and purchases are handled through the Apple App Store. Apple may process
-          account, payment, device, and download information under Apple&apos;s own privacy
-          practices.
-        </p>
-      </>
-    ),
-  },
-  {
-    title: 'How information is used',
-    content: (
-      <p>
-        We use information to provide Reef Keeper features, maintain and improve the app,
-        respond to support requests, troubleshoot issues, protect the service, and understand
-        whether the website and app are useful to aquarists.
-      </p>
-    ),
-  },
-  {
-    title: 'Sharing information',
-    content: (
-      <p>
-        We do not sell your personal information. We may share limited information with service
-        providers that help operate the website, app, support, hosting, analytics, or app
-        distribution, and only as needed for those services. We may also disclose information if
-        required by law or to protect Reef Keeper, users, or others.
-      </p>
-    ),
-  },
-  {
-    title: 'Your choices',
-    content: (
-      <p>
-        You can choose what aquarium details you enter, update, or remove in the app. You can
-        also control app permissions and notifications through your device settings. For support
-        or privacy questions, contact us using the support channel provided by Reef Keeper.
-      </p>
-    ),
-  },
-  {
-    title: 'Changes to this policy',
-    content: (
-      <p>
-        We may update this Privacy Policy as Reef Keeper changes. If we make material changes,
-        we will update the date on this page and, when appropriate, provide additional notice.
-      </p>
-    ),
-  },
-];
 
 const termsSections: Section[] = [
   {
