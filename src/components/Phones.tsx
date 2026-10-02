@@ -432,7 +432,7 @@ export function LogPhone() {
             boxShadow: 'var(--shadow-sm)',
           }}
         >
-          SAVE
+          View on the App Store
         </a>
       </div>
     </PhoneShell>
@@ -516,7 +516,7 @@ export function GraphsPhone() {
             <div>
               <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--text-muted)' }}>Nitrate</div>
               <div style={{ ...mono, fontSize: 30, fontWeight: 600, color: 'var(--text-strong)', lineHeight: 1.1, marginTop: 2 }}>
-                8
+                18
                 <span style={{ fontSize: 15, color: 'var(--text-faint)', fontWeight: 500, marginLeft: 3 }}>ppm</span>
               </div>
             </div>
@@ -533,10 +533,10 @@ export function GraphsPhone() {
                 fontWeight: 700,
               }}
             >
-              ▲ +40%
+              Example reading
             </span>
           </div>
-          <svg viewBox="0 0 240 120" style={{ width: '100%', height: 120, marginTop: 12, display: 'block' }}>
+          <svg viewBox="0 0 240 120" role="img" aria-label="Fictional nitrate readings, latest 18 ppm. Example range 10 to 20 ppm." style={{ width: '100%', height: 120, marginTop: 12, display: 'block' }}>
             <rect x="0" y="44" width="240" height="40" fill="var(--green-100)" opacity="0.6" />
             <text x="2" y="40" fontFamily="var(--font-mono)" fontSize="8" fill="var(--ink-400)">
               20
@@ -562,7 +562,7 @@ export function GraphsPhone() {
           </svg>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 8, fontSize: 11.5, color: 'var(--text-muted)' }}>
             <span style={{ width: 14, height: 8, borderRadius: 3, background: 'var(--green-100)', display: 'inline-block' }} />
-            Safe 10–20 ppm
+            Example range 10–20 ppm
           </div>
         </div>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>

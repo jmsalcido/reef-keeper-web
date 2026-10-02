@@ -389,3 +389,6 @@ img {
     margin-bottom: 24px !important;
   }
 }
+
+:focus-visible { outline: 3px solid #0c637b; outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }

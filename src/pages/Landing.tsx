@@ -97,6 +97,9 @@ function Faq() {
             }}
           >
             <button
+              id={`faq-question-${i}`}
+              aria-expanded={isOpen}
+              aria-controls={`faq-answer-${i}`}
               onClick={() => setOpen(isOpen ? -1 : i)}
               style={{
                 width: '100%',
@@ -125,8 +128,7 @@ function Faq() {
                 </svg>
               </span>
             </button>
-            {isOpen && (
-              <div style={{ padding: '0 22px 22px', fontSize: 15.5, lineHeight: 1.6, color: 'var(--text-body)' }}>
+            {(<div id={`faq-answer-${i}`} role="region" aria-labelledby={`faq-question-${i}`} hidden={!isOpen} style={{ padding: '0 22px 22px', fontSize: 15.5, lineHeight: 1.6, color: 'var(--text-body)' }}>
                 {f.a}
               </div>
             )}
@@ -143,6 +145,7 @@ export function Landing() {
       <JsonLd data={[organizationJsonLd(), applicationProductJsonLd(), faqPageJsonLd(FAQS)]} />
       <Nav variant="landing" />
 
+      <main id="main-content">
       {/* HERO */}
       <section id="top" style={{ position: 'relative', background: 'var(--color-bg-gradient)', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: -140, right: -120, width: 460, height: 460, borderRadius: 999, background: 'radial-gradient(circle,rgba(52,160,184,.28),transparent 70%)' }} />
@@ -195,7 +198,7 @@ export function Landing() {
               Keep your next reading close at hand.
             </div>
           </div>
-          <HeroPhone />
+          <div><HeroPhone /><p style={{ textAlign: 'center', color: 'var(--text-body)', fontSize: 13 }}>Illustration · fictional aquarium data</p></div>
         </div>
       </section>
 
@@ -260,7 +263,7 @@ export function Landing() {
             <h2 style={{ ...sectionH2, color: '#fff' }}>Built for the daily loop</h2>
             <p style={{ fontSize: 18, lineHeight: 1.55, color: 'rgba(255,255,255,.78)', margin: '16px 0 0' }}>
               Log a reading, see the trend, get reminded of the next task. The whole cycle, designed
-              to be fast.
+              to be fast. These illustrations use fictional data; they are not app screenshots.
             </p>
           </div>
           <div style={{ display: 'flex', gap: 36, justifyContent: 'center', alignItems: 'flex-start', marginTop: 64, flexWrap: 'wrap' }}>
@@ -270,7 +273,7 @@ export function Landing() {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18, marginTop: -18 }}>
               <GraphsPhone />
-              <Caption title="Trends & safe ranges" body="A green band shows safe; coral dots flag spikes." />
+              <Caption title="Trends & safe ranges" body="Example range chosen for this fictional tank; not care advice." />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18 }}>
               <TasksPhone />
@@ -303,10 +306,10 @@ export function Landing() {
             />
             {/* Yearly highlighted */}
             <div style={{ position: 'relative', background: 'var(--color-header-gradient)', borderRadius: 'var(--radius-xl)', padding: '32px 30px', boxShadow: 'var(--shadow-lg)', display: 'flex', flexDirection: 'column', transform: 'translateY(-12px)' }} className="rk-pricing-featured">
-              <div style={{ position: 'absolute', top: -13, left: '50%', transform: 'translateX(-50%)', background: 'var(--green-600)', color: '#fff', fontSize: 11, fontWeight: 800, letterSpacing: '.1em', textTransform: 'uppercase', padding: '6px 14px', borderRadius: 999, boxShadow: 'var(--shadow-sm)', whiteSpace: 'nowrap' }}>
+              <div style={{ position: 'absolute', top: -13, left: '50%', transform: 'translateX(-50%)', background: '#14704b', color: '#fff', fontSize: 11, fontWeight: 800, letterSpacing: '.1em', textTransform: 'uppercase', padding: '6px 14px', borderRadius: 999, boxShadow: 'var(--shadow-sm)', whiteSpace: 'nowrap' }}>
                 Yearly · Save about 25%
               </div>
-              <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--teal-400)' }}>Yearly</div>
+              <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', color: '#b3e2ec' }}>Yearly</div>
               <div style={{ marginTop: 16, display: 'flex', alignItems: 'baseline', gap: 4 }}>
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: 46, fontWeight: 600, color: '#fff', letterSpacing: '-0.02em' }}>$44.99</span>
                 <span style={{ fontSize: 16, color: 'rgba(255,255,255,.7)', fontWeight: 500 }}>/yr</span>
@@ -321,7 +324,7 @@ export function Landing() {
                   </li>
                 ))}
               </ul>
-              <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" style={{ marginTop: 26, display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 50, borderRadius: 'var(--radius-pill)', background: 'var(--action-primary)', color: '#fff', fontSize: 15, fontWeight: 700, boxShadow: 'var(--shadow-sm)' }}>
+              <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" style={{ marginTop: 26, display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 50, borderRadius: 'var(--radius-pill)', background: '#14704b', color: '#fff', fontSize: 15, fontWeight: 700, boxShadow: 'var(--shadow-sm)' }}>
                 View Yearly in the app
               </a>
             </div>
@@ -330,14 +333,14 @@ export function Landing() {
               label="Lifetime"
               price="$99.99"
               unit="once"
-              subColor="var(--amber-600)"
+              subColor="#805100"
               subWeight={600}
               sub="One-time purchase. No subscription."
               features={['Same Pro features as Monthly', 'One-time payment', 'No recurring subscription']}
               cta="View Lifetime in the app"
             />
           </div>
-          <p style={{ textAlign: 'center', fontSize: 13, color: 'var(--text-faint)', margin: '28px 0 0' }}>
+          <p style={{ textAlign: 'center', fontSize: 13, color: '#456478', margin: '28px 0 0' }}>
             US reference prices; local prices and available offers appear in the app. Subscriptions are billed through your Apple ID and renew automatically
             until cancelled in Settings.
           </p>
@@ -404,6 +407,7 @@ export function Landing() {
         </div>
       </section>
 
+      </main>
       <Footer />
     </>
   );
