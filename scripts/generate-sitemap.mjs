@@ -11,6 +11,7 @@ const postsDirectory = path.join(rootDir, 'src', 'data', 'posts');
 const siteUrl = (process.env.VITE_SITE_URL ?? 'https://reefkeeper.beartrailworks.com').replace(/\/$/, '');
 
 const staticRoutes = [
+  { path: '/demo', changefreq: 'monthly', priority: '0.5' },
   { path: '/first-aquarium', changefreq: 'monthly', priority: '0.7' },
   { path: '/', changefreq: 'weekly', priority: '1.0' },
   { path: '/blog', changefreq: 'weekly', priority: '0.8' },

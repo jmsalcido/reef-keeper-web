@@ -412,3 +412,13 @@ img {
 .iphone-handoff summary { cursor: pointer; font-weight: 700; }
 .iphone-handoff img { display: block; margin: 16px auto; max-width: 100%; }
 .iphone-handoff a { font-weight: 700; text-decoration: underline; }
+
+.demo-step { border: 1px solid #b2cbd5; border-radius: 20px; padding: 24px; margin: 0 !important; background: #f4f9fb; }
+.demo-step h2 { font-size: 25px; }
+.tank-demo button, .tank-demo select { font: inherit; border-radius: 10px; padding: 12px; max-width: 100%; }
+.tank-demo button { background: #14704b; color: white; border: 0; cursor: pointer; margin: 16px 0; }
+.tank-demo button:disabled { background: #dbe6e9; color: #4c616a; cursor: default; }
+.tank-demo select { display: block; width: 100%; margin-top: 12px; border: 1px solid #8aaaba; background: white; color: #173e50; }
+.tank-demo table { width: 100%; border-collapse: collapse; text-align: left; }
+.tank-demo th, .tank-demo td { padding: 7px 0; border-bottom: 1px solid #cbdce3; }
+.tank-demo caption { text-align: left; font-size: 14px; }

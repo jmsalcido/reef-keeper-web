@@ -13,6 +13,7 @@ import { BlogIndex } from './pages/BlogIndex';
 import { Article } from './pages/Article';
 import { Privacy, Terms } from './pages/Legal';
 import { FirstAquarium } from './pages/FirstAquarium';
+import { TankDemo } from './pages/TankDemo';
 import { Contact } from './pages/Contact';
 
 const rootRoute = createRootRoute({
@@ -61,6 +62,8 @@ const contactRoute = createRoute({
 
 const firstAquariumRoute = createRoute({ getParentRoute: () => rootRoute, path: '/first-aquarium', component: FirstAquarium });
 
+const demoRoute = createRoute({ getParentRoute: () => rootRoute, path: '/demo', component: TankDemo });
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   blogIndexRoute,
@@ -69,6 +72,7 @@ const routeTree = rootRoute.addChildren([
   termsRoute,
   contactRoute,
   firstAquariumRoute,
+  demoRoute,
 ]);
 
 export const makeRouter = (path?: string) => createRouter({

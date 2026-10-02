@@ -4,6 +4,7 @@ import { publishedPosts } from '../data/posts';
 const pages: Record<string, [string, string]> = {
   '/': [APP_NAME + ' — Your aquarium logbook', APP_DESCRIPTION],
   '/first-aquarium': ['Start your first aquarium logbook | Reef Keeper', 'Create your first aquarium, record a measured water test, and plan your next check with Reef Keeper for iPhone.'],
+  '/demo': ['Try a fictional aquarium logbook | Reef Keeper', 'Explore a fictional reading, trend and maintenance task in a simplified interactive illustration of Reef Keeper.'],
   '/blog': ['Aquarium care guides | Reef Keeper', 'Explore aquarium care guides, water testing routines, and practical ways to organize your aquarium records.'],
   '/contact': ['Contact support | Reef Keeper', 'Contact Reef Keeper support with questions about the aquarium tracker.'],
   '/privacy': ['Privacy policy | Reef Keeper', 'Read the Reef Keeper privacy policy.'],

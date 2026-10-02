@@ -263,6 +263,7 @@ export function Landing() {
           <div style={{ textAlign: 'center', maxWidth: 620, margin: '0 auto' }}>
             <div style={{ ...overline, color: 'var(--teal-400)' }}>A closer look</div>
             <h2 style={{ ...sectionH2, color: '#fff' }}>Built for the daily loop</h2>
+            <Link to="/demo" style={{ display: 'inline-block', marginTop: 20, color: '#fff', textDecoration: 'underline', fontWeight: 700 }}>Try a fictional tank demo →</Link>
             <p style={{ fontSize: 18, lineHeight: 1.55, color: 'rgba(255,255,255,.78)', margin: '16px 0 0' }}>
               Log a reading, see the trend, get reminded of the next task. The whole cycle, designed
               to be fast. These illustrations use fictional data; they are not app screenshots.
