@@ -19,3 +19,6 @@ pnpm-debug.log*
 .wrangler
 .dev.vars
 .dev.vars.*
+
+test-results/
+playwright-report/

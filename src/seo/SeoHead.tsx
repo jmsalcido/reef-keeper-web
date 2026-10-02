@@ -7,6 +7,7 @@ type SeoHeadProps = {
   type?: 'website' | 'article';
   image?: string;
   imageAlt?: string;
+  robots?: string;
 };
 
 export function SeoHead({
@@ -16,9 +17,11 @@ export function SeoHead({
   type = 'website',
   image,
   imageAlt,
+  robots = 'index,follow',
 }: SeoHeadProps) {
   useEffect(() => {
     document.title = title;
+    setMeta('name', 'robots', robots);
     setMeta('name', 'description', description);
     setLink('canonical', canonicalUrl);
     setMeta('property', 'og:title', title);
@@ -38,7 +41,7 @@ export function SeoHead({
       setMeta('property', 'og:image:alt', imageAlt);
       setMeta('name', 'twitter:image:alt', imageAlt);
     }
-  }, [canonicalUrl, description, image, imageAlt, title, type]);
+  }, [canonicalUrl, description, image, imageAlt, title, type, robots]);
 
   return null;
 }

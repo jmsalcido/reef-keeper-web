@@ -1,3 +1,4 @@
+import { servePage } from './pages.mjs';
 const MAILERLITE_SUBSCRIBERS_URL = 'https://connect.mailerlite.com/api/subscribers';
 const MAILGUN_API_BASE_URL = 'https://api.mailgun.net';
 const SUPPORT_EMAIL = 'reefkeeper-support@otfusion.org';
@@ -202,6 +203,7 @@ export default {
       return sendSupportRequest(request, env);
     }
 
-    return json(404, { message: 'Not found.' });
+    if (pathname.startsWith('/api/')) return json(404, { message: 'Not found.' });
+    return servePage(request, env.ASSETS);
   },
 };

@@ -1,0 +1,21 @@
+import { test, expect } from '@playwright/test';
+test('article → blog → home, refresh and history reset metadata', async ({ page }) => {
+  const errors: string[] = []; page.on('pageerror', error => errors.push(error.message));
+  await page.route('https://www.googletagmanager.com/**', route => route.abort());
+  await page.goto('/blog/is-reef-keeper-pro-worth-it');
+  await expect(page.locator('meta[property="og:type"]')).toHaveAttribute('content', 'article');
+  await page.getByRole('link', { name: 'Blog', exact: true }).first().click();
+  await expect(page).toHaveTitle('Aquarium care guides | Reef Keeper');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://reefkeeper.beartrailworks.com/blog');
+  await expect(page.locator('meta[property="og:type"]')).toHaveAttribute('content', 'website');
+  await page.locator('a[href="/"]').first().click();
+  await expect(page).toHaveTitle(/Your aquarium logbook/);
+  await page.reload(); await expect(page).toHaveTitle(/Your aquarium logbook/);
+  await page.goBack(); await expect(page).toHaveTitle('Aquarium care guides | Reef Keeper');
+  await page.goForward(); await expect(page).toHaveTitle(/Your aquarium logbook/);
+  await expect(page.locator('h1')).toBeVisible();
+  await expect(page.locator('vite-error-overlay')).toHaveCount(0);
+  expect(errors).toEqual([]);
+  await page.goto('/blog/not-a-real-article');
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex,follow');
+});

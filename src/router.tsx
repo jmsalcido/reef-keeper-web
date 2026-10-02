@@ -3,7 +3,11 @@ import {
   createRoute,
   createRouter,
   Outlet,
+  useLocation,
+  createMemoryHistory,
 } from '@tanstack/react-router';
+import { SeoHead } from './seo/SeoHead';
+import { routeMetadata } from './seo/routeMetadata';
 import { Landing } from './pages/Landing';
 import { BlogIndex } from './pages/BlogIndex';
 import { Article } from './pages/Article';
@@ -11,7 +15,11 @@ import { Privacy, Terms } from './pages/Legal';
 import { Contact } from './pages/Contact';
 
 const rootRoute = createRootRoute({
-  component: () => <Outlet />,
+  component: function Root() {
+    const pathname = useLocation({ select: location => location.pathname });
+    return <><SeoHead {...routeMetadata(pathname)} /><Outlet /></>;
+  },
+  notFoundComponent: () => <main style={{ padding: 48 }}><h1>Page not found</h1><a href="/">Return to Reef Keeper</a></main>,
 });
 
 const indexRoute = createRoute({
@@ -59,11 +67,14 @@ const routeTree = rootRoute.addChildren([
   contactRoute,
 ]);
 
-export const router = createRouter({
+export const makeRouter = (path?: string) => createRouter({
+  history: path ? createMemoryHistory({ initialEntries: [path] }) : undefined,
   routeTree,
   scrollRestoration: true,
   defaultPreload: 'intent',
 });
+
+export const router = makeRouter();
 
 declare module '@tanstack/react-router' {
   interface Register {
