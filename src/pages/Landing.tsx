@@ -55,11 +55,11 @@ const CheckLight = () => (
 const FAQS = [
   {
     q: 'Is Reef Keeper free?',
-    a: 'The app is free to download and set up your tanks. A subscription unlocks unlimited logging history, trend analytics and maintenance reminders — every paid plan includes the same full feature set.',
+    a: 'Start free with one primary aquarium, readings and maintenance tasks. Pro adds more aquariums, advanced trend ranges and data export. Monthly, Yearly and Lifetime unlock the same Pro access.',
   },
   {
     q: "What's the difference between the plans?",
-    a: 'Only the billing. Monthly ($4.99) is the most flexible, Yearly ($44.99) works out to $3.75/mo — about 25% cheaper — and Lifetime ($99 once) is a one-time payment with no recurring charge. The app itself is identical on all three.',
+    a: 'Only the billing. Monthly ($4.99) is the most flexible, Yearly ($44.99) works out to $3.75/mo — about 25% cheaper — and Lifetime ($99.99 once) is a one-time payment with no recurring charge. The app itself is identical on all three.',
   },
   {
     q: 'How do I cancel or change my plan?',
@@ -67,15 +67,15 @@ const FAQS = [
   },
   {
     q: 'Does it work for freshwater and saltwater?',
-    a: 'Yes. Each tank you create picks its type — reef, freshwater or planted — and Reef Keeper adapts the parameter set and safe ranges accordingly. Track as many of each as you like.',
+    a: 'Yes. Track freshwater, saltwater and reef aquariums with their own parameter ranges. Start with one primary aquarium free; Pro supports additional aquariums.',
   },
   {
     q: 'Which parameters can I track?',
-    a: 'pH, temperature, salinity, ammonia, nitrite, nitrate, alkalinity, calcium, magnesium and more — plus your own custom parameters with their own safe ranges.',
+    a: 'Log pH, temperature, salinity, ammonia, nitrite, nitrate, phosphate, alkalinity, calcium, magnesium, KH and GH. Readings are entered by you from your tests.',
   },
   {
-    q: 'Is my data backed up?',
-    a: 'Your logs sync securely across your devices via iCloud, so your history is safe even if you switch to a new iPhone.',
+    q: 'Does my aquarium history sync between devices?',
+    a: 'Aquarium records are stored locally on your device. Cross-device iCloud sync is not currently available. Pro includes data export so you can keep a separate copy of your records.',
   },
 ];
 
@@ -156,11 +156,11 @@ export function Landing() {
               Aquarium tracker for iOS
             </div>
             <h1 style={{ fontSize: 60, lineHeight: 1.04, fontWeight: 800, letterSpacing: '-0.025em', color: 'var(--ocean-900)', margin: '22px 0 0', textWrap: 'balance' } as CSSProperties}>
-              Keep every tank<br />in safe range.
+              Know your tanks.<br />Keep a clear history.
             </h1>
             <p style={{ fontSize: 19, lineHeight: 1.55, color: 'var(--text-body)', maxWidth: 480, margin: '22px 0 0' }}>
-              Log water parameters in seconds, watch the trends, and never miss a water change. Reef
-              Keeper keeps every aquarium you own healthy — reef, freshwater or planted.
+              Record your water tests, review changes over time, and organize maintenance. Reef
+              Keeper brings the readings you enter into one aquarium logbook.
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: 18, marginTop: 34, flexWrap: 'wrap' }}>
               <AppStoreButton variant="dark" />
@@ -192,7 +192,7 @@ export function Landing() {
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z" />
               </svg>
-              Log a reading in under five seconds.
+              Keep your next reading close at hand.
             </div>
           </div>
           <HeroPhone />
@@ -215,7 +215,7 @@ export function Landing() {
               bg: 'var(--green-100)',
               stroke: 'var(--green-700)',
               d: '<path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/>',
-              title: 'Log in under five seconds',
+              title: 'Keep your tests in one place',
               body: "Pick a tank, tap a parameter, type the value on a big numeric keypad, save. pH, salinity, nitrate and more — recorded before you've put the test kit down.",
             },
             {
@@ -223,13 +223,13 @@ export function Landing() {
               stroke: 'var(--teal-600)',
               d: '<path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 16l3.5-4 3 2.5L20 8"/>',
               title: 'See every trend',
-              body: 'Clean line charts with a shaded safe range for each parameter. Out-of-range readings flag in coral so you spot a problem before it becomes one.',
+              body: 'Review charts of the readings you enter against your aquarium ranges. A trend helps you decide what to check next; it does not diagnose aquarium health.',
             },
             {
               bg: 'var(--amber-100)',
               stroke: 'var(--amber-600)',
               d: '<path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>',
-              title: 'Never miss maintenance',
+              title: 'Plan your next maintenance task',
               body: 'Recurring reminders for water changes, filter swaps and dosing. Mark a task done and it reschedules itself — daily, weekly or monthly.',
             },
             {
@@ -237,7 +237,7 @@ export function Landing() {
               stroke: 'var(--ocean-700)',
               d: '<rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 11c3 1.5 5-1.5 9 0s6 1 9 0"/>',
               title: 'All your tanks together',
-              body: 'Reef, freshwater, planted — track unlimited tanks, each with its own parameter set, photo and history. Switch between them in a tap.',
+              body: 'Keep each aquarium with its own parameters, photo and history. Start with one primary aquarium free, and add more with Pro.',
             },
           ].map((f) => (
             <div key={f.title} style={featureCard}>
@@ -287,8 +287,8 @@ export function Landing() {
             <div style={overline}>Pricing</div>
             <h2 style={sectionH2}>One app. Pick how you pay.</h2>
             <p style={{ fontSize: 18, lineHeight: 1.55, color: 'var(--text-body)', margin: '14px 0 0' }}>
-              Every plan unlocks the full app — unlimited tanks, analytics and reminders. The only
-              difference is the billing.
+              Every Pro plan includes more aquariums, advanced trend ranges and data export.
+              Choose your billing preference; free users can begin with one primary aquarium.
             </p>
           </div>
           <div className="rk-grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 22, marginTop: 56, alignItems: 'stretch' }}>
@@ -298,13 +298,13 @@ export function Landing() {
               price="$4.99"
               unit="/mo"
               sub="Billed monthly. Cancel anytime."
-              features={['Unlimited tanks & logging', 'Trends & safe-range analytics', 'Maintenance reminders']}
-              cta="Start Monthly"
+              features={['Additional aquariums', 'Advanced trend ranges', 'Complete data export']}
+              cta="View Monthly in the app"
             />
             {/* Yearly highlighted */}
             <div style={{ position: 'relative', background: 'var(--color-header-gradient)', borderRadius: 'var(--radius-xl)', padding: '32px 30px', boxShadow: 'var(--shadow-lg)', display: 'flex', flexDirection: 'column', transform: 'translateY(-12px)' }} className="rk-pricing-featured">
               <div style={{ position: 'absolute', top: -13, left: '50%', transform: 'translateX(-50%)', background: 'var(--green-600)', color: '#fff', fontSize: 11, fontWeight: 800, letterSpacing: '.1em', textTransform: 'uppercase', padding: '6px 14px', borderRadius: 999, boxShadow: 'var(--shadow-sm)', whiteSpace: 'nowrap' }}>
-                Best value · Save 25%
+                Yearly · Save about 25%
               </div>
               <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--teal-400)' }}>Yearly</div>
               <div style={{ marginTop: 16, display: 'flex', alignItems: 'baseline', gap: 4 }}>
@@ -314,7 +314,7 @@ export function Landing() {
               <div style={{ fontSize: 14, color: 'rgba(255,255,255,.75)', marginTop: 6 }}>Just $3.75/mo, billed once a year.</div>
               <div style={{ height: 1, background: 'rgba(255,255,255,.16)', margin: '22px 0' }} />
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 12, flex: 1 }}>
-                {['Everything in Monthly', 'Two months free vs. monthly', 'iCloud sync across devices'].map((t) => (
+                {['Same Pro features as Monthly', 'Save $14.89 vs. 12 monthly payments', 'About 25% lower yearly cost'].map((t) => (
                   <li key={t} style={{ display: 'flex', gap: 10, fontSize: 14.5, color: 'rgba(255,255,255,.92)' }}>
                     <CheckLight />
                     {t}
@@ -322,24 +322,23 @@ export function Landing() {
                 ))}
               </ul>
               <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" style={{ marginTop: 26, display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 50, borderRadius: 'var(--radius-pill)', background: 'var(--action-primary)', color: '#fff', fontSize: 15, fontWeight: 700, boxShadow: 'var(--shadow-sm)' }}>
-                Start Yearly
+                View Yearly in the app
               </a>
             </div>
             {/* Lifetime */}
             <PlanCard
               label="Lifetime"
-              tag="Launch offer"
-              price="$99"
+              price="$99.99"
               unit="once"
               subColor="var(--amber-600)"
               subWeight={600}
-              sub="Launch price — this month only."
-              features={['Pay once, yours forever', 'All future updates included', 'No recurring billing, ever']}
-              cta="Get Lifetime"
+              sub="One-time purchase. No subscription."
+              features={['Same Pro features as Monthly', 'One-time payment', 'No recurring subscription']}
+              cta="View Lifetime in the app"
             />
           </div>
           <p style={{ textAlign: 'center', fontSize: 13, color: 'var(--text-faint)', margin: '28px 0 0' }}>
-            Prices in USD. Subscriptions are billed through your Apple ID and renew automatically
+            US reference prices; local prices and available offers appear in the app. Subscriptions are billed through your Apple ID and renew automatically
             until cancelled in Settings.
           </p>
         </div>

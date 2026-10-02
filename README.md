@@ -126,4 +126,4 @@ For a Cloudflare Git integration, use `npm run build` as the build command and
   screens (no screenshots). Swap in real screenshots when available.
 - The font (Plus Jakarta Sans) and Lucide-style icons are design-system
   substitutions — see the Aqua Track design system if you have official assets.
-- Pricing copy ($4.99 / $44.99 / $99 lifetime) lives in `Landing.tsx`.
+- Pricing copy ($4.99 / $44.99 / $99.99 lifetime) lives in `Landing.tsx`.

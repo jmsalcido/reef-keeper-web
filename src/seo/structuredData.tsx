@@ -96,7 +96,7 @@ export function applicationProductJsonLd(): JsonLdObject {
       {
         '@type': 'Offer',
         name: 'Lifetime',
-        price: '99',
+        price: '99.99',
         priceCurrency: 'USD',
         availability: 'https://schema.org/InStock',
         url: APP_STORE_URL,
