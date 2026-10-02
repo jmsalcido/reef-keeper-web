@@ -2,6 +2,7 @@ import { useState, type CSSProperties } from 'react';
 import { Link } from '@tanstack/react-router';
 import { Nav } from '../components/Nav';
 import { Footer } from '../components/Footer';
+import { IPhoneHandoff } from '../components/IPhoneHandoff';
 import { AppStoreButton } from '../components/AppStoreButton';
 import { HeroPhone, LogPhone, GraphsPhone, TasksPhone } from '../components/Phones';
 import { APP_STORE_URL } from '../config';
@@ -173,6 +174,7 @@ export function Landing() {
                 Plans from <strong style={{ color: 'var(--text-body)' }}>$4.99/mo</strong>
               </div>
             </div>
+            <IPhoneHandoff />
             <Link
               to="/contact"
               style={{

@@ -1,6 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import { Nav } from '../components/Nav';
 import { MiniFooter } from '../components/Footer';
+import { IPhoneHandoff } from '../components/IPhoneHandoff';
 import { AppStoreButton } from '../components/AppStoreButton';
 export function FirstAquarium() {
   return <><Nav variant="inner" /><main className="first-aquarium">
@@ -8,7 +9,7 @@ export function FirstAquarium() {
       <p className="first-aquarium-eyebrow">Your first aquarium · iPhone</p>
       <h1>Start with one tank.<br />Build a useful history.</h1>
       <p className="first-aquarium-lead">Your first water test is a starting point. Keep the next one beside it, so you can review what changed.</p>
-      <AppStoreButton />
+      <AppStoreButton /><IPhoneHandoff />
       <p>Free to download. One primary aquarium, readings and maintenance tasks to get started.</p>
     </section>
     <section aria-labelledby="start-steps"><h2 id="start-steps">A simple first session</h2>

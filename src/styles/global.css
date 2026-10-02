@@ -407,3 +407,8 @@ img {
 .first-aquarium-note { border-left: 4px solid #17627a; padding: 1px 24px; }
 .first-aquarium a:not([class]) { font-weight: 700; }
 @media (max-width: 700px) { .first-aquarium-steps { grid-template-columns: 1fr; } }
+
+.iphone-handoff { max-width: 470px; margin-top: 22px; padding: 16px 18px; border: 1px solid #a9c5d2; border-radius: 16px; background: #fff; color: #234c60; font-size: 14px; line-height: 1.6; }
+.iphone-handoff summary { cursor: pointer; font-weight: 700; }
+.iphone-handoff img { display: block; margin: 16px auto; max-width: 100%; }
+.iphone-handoff a { font-weight: 700; text-decoration: underline; }
