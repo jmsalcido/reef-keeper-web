@@ -62,6 +62,7 @@ export function Article() {
           <ArticleFeedback slug={post.slug} title={post.title} category={post.category} />
         </div>
 
+        {['new-tank-syndrome-nitrogen-cycle', 'aquarium-water-parameters', 'how-often-to-test-aquarium-water'].includes(post.slug) && <aside className="article-conversion-cta" style={{ maxWidth: 664, margin: '24px auto' }}><h2>Turn your first test into a record</h2><p>Create one aquarium, log a measured reading, and plan the next check.</p><Link to="/first-aquarium">Start your first aquarium logbook →</Link></aside>}
         {/* Inline CTA */}
         {post.conversionGoal === 'pro' ? (
           <div className="prose" style={{ maxWidth: 720, margin: '0 auto', padding: '24px 28px 64px' }}>
