@@ -180,6 +180,9 @@ export function Footer() {
             <Link to="/tools/aquarium-cycle-checker" style={colLink}>
               Cycle checker
             </Link>
+            <Link to="/tools/aquarium-maintenance-schedule" style={colLink}>
+              Maintenance planner
+            </Link>
             <Link to="/" hash="faq" style={colLink}>
               FAQ
             </Link>

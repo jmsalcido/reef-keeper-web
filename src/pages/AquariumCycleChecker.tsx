@@ -2,7 +2,15 @@ import { useId, useRef, useState, type ReactNode } from 'react';
 import { Link } from '@tanstack/react-router';
 import { Nav } from '../components/Nav';
 import { MiniFooter } from '../components/Footer';
-import { SourceLink, ToolCta, ToolHero, ToolSources, type ToolSource } from '../components/ToolPage';
+import {
+  NumberField,
+  Segmented,
+  SourceLink,
+  ToolCta,
+  ToolHero,
+  ToolSources,
+  type ToolSource,
+} from '../components/ToolPage';
 import { canonicalAssetUrl, canonicalUrl } from '../config';
 import {
   REQUIRED_QUALIFYING_TESTS,
@@ -259,84 +267,6 @@ function changeSinceLast(key: keyof Reading, current: Reading, last: PastReading
   const when = `${last.daysAgo} day${last.daysAgo === 1 ? '' : 's'} ago`;
   if (now === before) return `Same as ${when}`;
   return `${now > before ? '↑' : '↓'} from ${formatPpm(before)} ${when}`;
-}
-
-function Segmented<T extends string>({
-  label,
-  value,
-  options,
-  onChange,
-}: {
-  label: string;
-  value: T;
-  options: { value: T; label: string }[];
-  onChange: (value: T) => void;
-}) {
-  const labelId = useId();
-
-  return (
-    <div className="tool-field">
-      <span className="tool-label" id={labelId}>
-        {label}
-      </span>
-      <div className="tool-segmented is-block" role="radiogroup" aria-labelledby={labelId}>
-        {options.map((option) => (
-          <button
-            key={option.value}
-            type="button"
-            role="radio"
-            aria-checked={value === option.value}
-            className={value === option.value ? 'is-active' : undefined}
-            onClick={() => onChange(option.value)}
-          >
-            {option.label}
-          </button>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function NumberField({
-  id,
-  label,
-  value,
-  suffix,
-  error,
-  help,
-  onChange,
-}: {
-  id: string;
-  label: string;
-  value: string;
-  suffix: string;
-  error?: string;
-  help?: string;
-  onChange: (value: string) => void;
-}) {
-  return (
-    <div className="tool-field">
-      <label htmlFor={id}>{label}</label>
-      <div className={`tool-input${error ? ' has-error' : ''}`}>
-        <input
-          id={id}
-          type="text"
-          inputMode="decimal"
-          autoComplete="off"
-          value={value}
-          aria-invalid={Boolean(error)}
-          aria-describedby={error || help ? `${id}-help` : undefined}
-          onChange={(event) => onChange(event.target.value)}
-        />
-        <span aria-hidden="true">{suffix}</span>
-      </div>
-      {(error || help) && (
-        <small id={`${id}-help`} className={error ? 'is-error' : undefined}>
-          {error ?? help}
-        </small>
-      )}
-    </div>
-  );
 }
 
 export function AquariumCycleChecker() {
@@ -655,6 +585,11 @@ export function AquariumCycleChecker() {
             <li>
               <Link to="/tools/water-change-calculator" className="link">
                 Aquarium water change calculator
+              </Link>
+            </li>
+            <li>
+              <Link to="/tools/aquarium-maintenance-schedule" className="link">
+                Aquarium maintenance schedule generator
               </Link>
             </li>
           </ul>

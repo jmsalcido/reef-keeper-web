@@ -24,7 +24,7 @@ export function ToolHero({
   children: ReactNode;
 }) {
   return (
-    <div style={{ background: 'var(--color-bg-gradient)', borderBottom: '1px solid var(--border-divider)' }}>
+    <div className="tool-hero-band">
       <div className="tool-hero">
         <nav aria-label="Breadcrumb" className="tool-breadcrumb">
           <Link to="/">Home</Link>
@@ -102,5 +102,83 @@ export function ToolSources({
         ))}
       </ol>
     </>
+  );
+}
+
+export function Segmented<T extends string>({
+  label,
+  value,
+  options,
+  onChange,
+}: {
+  label: string;
+  value: T;
+  options: { value: T; label: string }[];
+  onChange: (value: T) => void;
+}) {
+  const labelId = useId();
+
+  return (
+    <div className="tool-field">
+      <span className="tool-label" id={labelId}>
+        {label}
+      </span>
+      <div className="tool-segmented is-block" role="radiogroup" aria-labelledby={labelId}>
+        {options.map((option) => (
+          <button
+            key={option.value}
+            type="button"
+            role="radio"
+            aria-checked={value === option.value}
+            className={value === option.value ? 'is-active' : undefined}
+            onClick={() => onChange(option.value)}
+          >
+            {option.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export function NumberField({
+  id,
+  label,
+  value,
+  suffix,
+  error,
+  help,
+  onChange,
+}: {
+  id: string;
+  label: string;
+  value: string;
+  suffix: string;
+  error?: string;
+  help?: string;
+  onChange: (value: string) => void;
+}) {
+  return (
+    <div className="tool-field">
+      <label htmlFor={id}>{label}</label>
+      <div className={`tool-input${error ? ' has-error' : ''}`}>
+        <input
+          id={id}
+          type="text"
+          inputMode="decimal"
+          autoComplete="off"
+          value={value}
+          aria-invalid={Boolean(error)}
+          aria-describedby={error || help ? `${id}-help` : undefined}
+          onChange={(event) => onChange(event.target.value)}
+        />
+        <span aria-hidden="true">{suffix}</span>
+      </div>
+      {(error || help) && (
+        <small id={`${id}-help`} className={error ? 'is-error' : undefined}>
+          {error ?? help}
+        </small>
+      )}
+    </div>
   );
 }

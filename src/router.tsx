@@ -11,6 +11,7 @@ import { Privacy, Terms } from './pages/Legal';
 import { Contact } from './pages/Contact';
 import { WaterChangeCalculator } from './pages/WaterChangeCalculator';
 import { AquariumCycleChecker } from './pages/AquariumCycleChecker';
+import { MaintenanceScheduleGenerator } from './pages/MaintenanceScheduleGenerator';
 
 const rootRoute = createRootRoute({
   component: () => <Outlet />,
@@ -64,6 +65,12 @@ const aquariumCycleCheckerRoute = createRoute({
   component: AquariumCycleChecker,
 });
 
+const maintenanceScheduleRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/tools/aquarium-maintenance-schedule',
+  component: MaintenanceScheduleGenerator,
+});
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   blogIndexRoute,
@@ -73,6 +80,7 @@ const routeTree = rootRoute.addChildren([
   contactRoute,
   waterChangeCalculatorRoute,
   aquariumCycleCheckerRoute,
+  maintenanceScheduleRoute,
 ]);
 
 export const router = createRouter({

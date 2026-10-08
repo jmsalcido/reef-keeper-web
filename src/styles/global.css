@@ -391,6 +391,10 @@ img {
 }
 
 /* ---- Tools (calculator, cycle checker) ---- */
+.tool-hero-band {
+  background: var(--color-bg-gradient);
+  border-bottom: 1px solid var(--border-divider);
+}
 .tool-hero {
   max-width: 880px;
   margin: 0 auto;
@@ -998,7 +1002,280 @@ img {
   border: 0;
 }
 
+/* Maintenance schedule generator */
+.tool-field-wide {
+  grid-column: 1 / -1;
+}
+.tool-inline-units {
+  display: flex;
+  width: fit-content;
+  margin-top: 8px;
+}
+.tool-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+.tool-chips button {
+  min-height: 40px;
+  padding: 8px 14px;
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-pill);
+  background: var(--surface-card);
+  color: var(--text-body);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.tool-chips button.is-active {
+  border-color: var(--teal-600);
+  background: var(--teal-100);
+  color: var(--teal-600);
+}
+.tool-chips button.is-active::before {
+  content: '✓ ';
+}
+.tool-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 8px 16px;
+  border: 1px solid var(--teal-600);
+  border-radius: var(--radius-pill);
+  background: var(--surface-card);
+  color: var(--teal-600);
+  font-size: 14.5px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.tool-button.is-primary {
+  border-color: var(--ocean-900);
+  background: var(--ocean-900);
+  color: #fff;
+}
+.tool-button.is-quiet {
+  border-color: transparent;
+  color: var(--text-muted);
+}
+.tool-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.tool-button:focus-visible,
+.tool-chips button:focus-visible,
+.tool-text-button:focus-visible,
+.tool-plan li button:focus-visible {
+  outline: 3px solid var(--teal-600);
+  outline-offset: 2px;
+}
+.tool-text-button {
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--teal-600);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.tool-plan-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+.tool-plan-head h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--ocean-900);
+}
+.tool-plan-head p {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+.tool-plan-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.tool-plan {
+  display: grid;
+  gap: 18px;
+  margin-top: 18px;
+}
+.tool-plan-group h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px;
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--teal-600);
+}
+.tool-plan-group h4 span {
+  padding: 1px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--teal-100);
+  font-size: 11.5px;
+  letter-spacing: 0;
+}
+.tool-plan ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.tool-plan li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--border-divider);
+  border-radius: var(--radius-md);
+  background: var(--surface-card);
+}
+.tool-plan li strong {
+  display: block;
+  font-size: 15px;
+  line-height: 1.4;
+  font-weight: 650;
+  color: var(--text-strong);
+}
+.tool-plan li p {
+  margin: 4px 0 0;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+.tool-plan li p a.link {
+  color: var(--teal-600);
+  font-weight: 600;
+}
+.tool-plan-check {
+  flex: 0 0 18px;
+  height: 18px;
+  margin-top: 2px;
+  border: 2px solid var(--border-hairline);
+  border-radius: 5px;
+}
+.tool-plan li.is-editing {
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 8px;
+}
+.tool-plan li.is-editing input,
+.tool-add-task input {
+  flex: 1 1 220px;
+  min-width: 0;
+  min-height: 42px;
+  padding: 8px 12px;
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
+  font: inherit;
+  font-size: 16px;
+  color: var(--text-strong);
+}
+.tool-plan li.is-editing select,
+.tool-add-task select,
+.tool-export-options select {
+  min-height: 42px;
+  padding: 8px 10px;
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
+  background: var(--surface-card);
+  font: inherit;
+  font-size: 15px;
+  color: var(--text-strong);
+}
+.tool-plan li.is-editing button {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--status-danger-surface);
+  color: var(--coral-700);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+.tool-add-task {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 12px;
+  border: 1px dashed var(--teal-500);
+  border-radius: var(--radius-md);
+}
+.tool-export {
+  margin-top: 24px;
+  padding-top: 4px;
+  border-top: 1px solid var(--border-divider);
+}
+.tool-export-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--text-body);
+}
+.tool-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+}
+.tool-checkbox input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--teal-600);
+}
+.tool-export-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+.tool-export-help {
+  margin: 10px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+/* Printing the maintenance planner outputs only the plan. */
+@media print {
+  body:has(.tool-plan-print) :is(header, footer, .tool-hero-band, .tool-cta, .tool-content, .no-print) {
+    display: none !important;
+  }
+  body:has(.tool-plan-print) :is(.tool-wrap, .tool-card, .tool-plan-print) {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+  }
+  .tool-plan li {
+    break-inside: avoid;
+  }
+}
+
 @media (max-width: 640px) {
+  .tool-plan-head {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .tool-export-buttons .tool-button {
+    flex: 1 1 100%;
+  }
   .tool-previous-fields {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

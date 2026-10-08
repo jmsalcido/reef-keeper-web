@@ -1820,7 +1820,11 @@ export const posts: Post[] = [
           The hardest part of aquarium maintenance is not knowing what to do. It is remembering
           what is due, doing it on time, and seeing whether it worked. Reef Keeper helps by letting
           you create recurring reminders for water changes, filter service, testing, dosing, and
-          other tank-specific tasks.
+          other tank-specific tasks. To turn this checklist into a plan for your own tank, try the{' '}
+          <Link to="/tools/aquarium-maintenance-schedule" className="link">
+            aquarium maintenance schedule generator
+          </Link>
+          .
         </p>
         <p>
           When you also log water readings, maintenance stops being guesswork. You can see whether

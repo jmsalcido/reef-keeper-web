@@ -491,6 +491,11 @@ export function WaterChangeCalculator() {
                 Aquarium cycle checker: is my tank cycled?
               </Link>
             </li>
+            <li>
+              <Link to="/tools/aquarium-maintenance-schedule" className="link">
+                Aquarium maintenance schedule generator
+              </Link>
+            </li>
           </ul>
 
           <ToolSources
