@@ -10,14 +10,36 @@ const postsDirectory = path.join(rootDir, 'src', 'data', 'posts');
 
 const siteUrl = (process.env.VITE_SITE_URL ?? 'https://reefkeeper.beartrailworks.com').replace(/\/$/, '');
 
-const staticRoutes = [
-  { path: '/', changefreq: 'weekly', priority: '1.0' },
-  { path: '/blog', changefreq: 'weekly', priority: '0.8' },
-  { path: '/tools/water-change-calculator', changefreq: 'monthly', priority: '0.9' },
-  { path: '/contact', changefreq: 'monthly', priority: '0.5' },
-  { path: '/privacy', changefreq: 'yearly', priority: '0.3' },
-  { path: '/terms', changefreq: 'yearly', priority: '0.3' },
-];
+const routerFile = path.join(rootDir, 'src', 'router.tsx');
+
+// Crawl hints per route. Any non-dynamic route in src/router.tsx is included
+// automatically; routes not listed here fall back to `defaultRouteHints`.
+const routeHints = {
+  '/': { changefreq: 'weekly', priority: '1.0' },
+  '/blog': { changefreq: 'weekly', priority: '0.8' },
+  '/contact': { changefreq: 'monthly', priority: '0.5' },
+  '/privacy': { changefreq: 'yearly', priority: '0.3' },
+  '/terms': { changefreq: 'yearly', priority: '0.3' },
+};
+const toolRouteHints = { changefreq: 'monthly', priority: '0.9' };
+const defaultRouteHints = { changefreq: 'monthly', priority: '0.6' };
+
+const readStaticRoutes = async () => {
+  const source = await readFile(routerFile, 'utf8');
+  const paths = [...source.matchAll(/^\s+path:\s*'([^']+)'/gm)]
+    .map((match) => match[1])
+    .filter((routePath) => !routePath.includes('$'));
+
+  if (!paths.includes('/')) {
+    throw new Error(`Could not read routes from ${routerFile}`);
+  }
+
+  return paths.map((routePath) => ({
+    path: routePath,
+    ...(routeHints[routePath] ??
+      (routePath.startsWith('/tools/') ? toolRouteHints : defaultRouteHints)),
+  }));
+};
 
 const escapeXml = (value) =>
   value
@@ -83,7 +105,7 @@ Allow: /
 Sitemap: ${absoluteUrl('/sitemap.xml')}
 `;
 
-const publishedPosts = await readPublishedPosts();
+const [staticRoutes, publishedPosts] = await Promise.all([readStaticRoutes(), readPublishedPosts()]);
 
 await mkdir(publicDir, { recursive: true });
 await Promise.all([
