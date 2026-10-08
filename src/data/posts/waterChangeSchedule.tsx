@@ -361,7 +361,12 @@ export const waterChangeSchedulePost: PublishedPost = {
         <Link to="/blog/$slug" params={{ slug: 'high-nitrate-in-aquarium' }} className="link">
           high-nitrate troubleshooting plan
         </Link>{' '}
-        to look for the source before changing several things at once.
+        to look for the source before changing several things at once. To see how much a given
+        change will lower nitrate, try the{' '}
+        <Link to="/tools/water-change-calculator" className="link">
+          water change calculator
+        </Link>
+        .
       </p>
 
       <h2>Frequently asked questions</h2>

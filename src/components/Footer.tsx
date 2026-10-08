@@ -174,6 +174,9 @@ export function Footer() {
             <Link to="/blog" style={colLink}>
               Blog
             </Link>
+            <Link to="/tools/water-change-calculator" style={colLink}>
+              Water change calculator
+            </Link>
             <Link to="/" hash="faq" style={colLink}>
               FAQ
             </Link>

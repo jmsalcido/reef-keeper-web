@@ -1157,6 +1157,10 @@ export const posts: Post[] = [
                   >
                     test-driven water-change schedule
                   </Link>
+                  . To size the change, use the{' '}
+                  <Link to="/tools/water-change-calculator" className="link">
+                    aquarium water change calculator
+                  </Link>
                   .
                 </p>
               </div>

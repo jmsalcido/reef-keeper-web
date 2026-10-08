@@ -9,6 +9,7 @@ import { BlogIndex } from './pages/BlogIndex';
 import { Article } from './pages/Article';
 import { Privacy, Terms } from './pages/Legal';
 import { Contact } from './pages/Contact';
+import { WaterChangeCalculator } from './pages/WaterChangeCalculator';
 
 const rootRoute = createRootRoute({
   component: () => <Outlet />,
@@ -50,6 +51,12 @@ const contactRoute = createRoute({
   component: Contact,
 });
 
+const waterChangeCalculatorRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/tools/water-change-calculator',
+  component: WaterChangeCalculator,
+});
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   blogIndexRoute,
@@ -57,6 +64,7 @@ const routeTree = rootRoute.addChildren([
   privacyRoute,
   termsRoute,
   contactRoute,
+  waterChangeCalculatorRoute,
 ]);
 
 export const router = createRouter({

@@ -43,11 +43,11 @@ export function organizationJsonLd(): JsonLdObject {
   };
 }
 
-export function faqPageJsonLd(faqs: FaqItem[]): JsonLdObject {
+export function faqPageJsonLd(faqs: FaqItem[], path = '/'): JsonLdObject {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    '@id': `${canonicalUrl('/')}#faq`,
+    '@id': `${canonicalUrl(path)}#faq`,
     mainEntity: faqs.map((faq) => ({
       '@type': 'Question',
       name: faq.q,
@@ -130,6 +130,60 @@ export function blogPostingJsonLd(post: PublishedPost): JsonLdObject {
     },
     url,
     articleSection: post.category,
+  };
+}
+
+export function webApplicationJsonLd({
+  path,
+  name,
+  description,
+  dateModified,
+  citations,
+}: {
+  path: string;
+  name: string;
+  description: string;
+  dateModified?: string;
+  citations?: string[];
+}): JsonLdObject {
+  const url = canonicalUrl(path);
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    '@id': `${url}#webapp`,
+    name,
+    description,
+    url,
+    applicationCategory: 'UtilitiesApplication',
+    operatingSystem: 'Any',
+    isAccessibleForFree: true,
+    ...(dateModified && { dateModified }),
+    ...(citations?.length && { citation: citations }),
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    publisher: {
+      '@id': `${SITE_URL}/#organization`,
+    },
+  };
+}
+
+export function breadcrumbJsonLd(items: { name: string; path: string }[]): JsonLdObject {
+  const last = items[items.length - 1];
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    '@id': `${canonicalUrl(last.path)}#breadcrumb`,
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: canonicalUrl(item.path),
+    })),
   };
 }
 
