@@ -177,6 +177,9 @@ export function Footer() {
             <Link to="/tools/water-change-calculator" style={colLink}>
               Water change calculator
             </Link>
+            <Link to="/tools/aquarium-cycle-checker" style={colLink}>
+              Cycle checker
+            </Link>
             <Link to="/" hash="faq" style={colLink}>
               FAQ
             </Link>

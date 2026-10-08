@@ -503,7 +503,11 @@ export const posts: Post[] = [
             new tank syndrome and nitrogen cycle guide
           </Link>{' '}
           before adding more livestock. It explains why a calendar date alone does not show that a
-          tank is cycled.
+          tank is cycled. To check where your tank is now, enter your latest results in the{' '}
+          <Link to="/tools/aquarium-cycle-checker" className="link">
+            aquarium cycle checker
+          </Link>
+          .
         </p>
 
         <h2>Make the transition as calm as possible</h2>
@@ -1587,7 +1591,11 @@ export const posts: Post[] = [
           with a detectable nitrate reading, and those zeros hold for several consecutive days. Not
           one good reading — a stable pattern. This is the moment a logbook earns its keep: a chart
           that shows both curves flat on the floor for a week is far more trustworthy than a single
-          hopeful test.
+          hopeful test. Not sure which stage you are in? Try the{' '}
+          <Link to="/tools/aquarium-cycle-checker" className="link">
+            aquarium cycle checker
+          </Link>
+          .
         </p>
         <p>
           Add livestock slowly even then. A big bioload dropped on a young bacteria colony can

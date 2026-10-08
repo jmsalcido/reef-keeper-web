@@ -10,6 +10,7 @@ import { Article } from './pages/Article';
 import { Privacy, Terms } from './pages/Legal';
 import { Contact } from './pages/Contact';
 import { WaterChangeCalculator } from './pages/WaterChangeCalculator';
+import { AquariumCycleChecker } from './pages/AquariumCycleChecker';
 
 const rootRoute = createRootRoute({
   component: () => <Outlet />,
@@ -57,6 +58,12 @@ const waterChangeCalculatorRoute = createRoute({
   component: WaterChangeCalculator,
 });
 
+const aquariumCycleCheckerRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/tools/aquarium-cycle-checker',
+  component: AquariumCycleChecker,
+});
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   blogIndexRoute,
@@ -65,6 +72,7 @@ const routeTree = rootRoute.addChildren([
   termsRoute,
   contactRoute,
   waterChangeCalculatorRoute,
+  aquariumCycleCheckerRoute,
 ]);
 
 export const router = createRouter({

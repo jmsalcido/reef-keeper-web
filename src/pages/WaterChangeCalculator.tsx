@@ -2,7 +2,8 @@ import { useId, useRef, useState, type ReactNode } from 'react';
 import { Link } from '@tanstack/react-router';
 import { Nav } from '../components/Nav';
 import { MiniFooter } from '../components/Footer';
-import { APP_STORE_URL, canonicalAssetUrl, canonicalUrl } from '../config';
+import { SourceLink, ToolCta, ToolHero, ToolSources, type ToolSource } from '../components/ToolPage';
+import { canonicalAssetUrl, canonicalUrl } from '../config';
 import {
   COMPARISON_PERCENTS,
   calculateWaterChange,
@@ -53,14 +54,10 @@ const SOURCES = {
       'Camargo, Alonso & Salamanca (2005). Nitrate toxicity to aquatic animals: a review with new data for freshwater invertebrates. Chemosphere 58(9), 1255–1267',
     url: 'https://doi.org/10.1016/j.chemosphere.2004.10.044',
   },
-} as const;
+} satisfies Record<string, ToolSource>;
 
-type SourceKey = keyof typeof SOURCES;
-
-const Cite = ({ source, children }: { source: SourceKey; children: ReactNode }) => (
-  <a href={SOURCES[source].url} className="link" target="_blank" rel="noopener noreferrer">
-    {children}
-  </a>
+const Cite = ({ source, children }: { source: keyof typeof SOURCES; children: ReactNode }) => (
+  <SourceLink source={SOURCES[source]}>{children}</SourceLink>
 );
 
 const LITERS_PER_GALLON = 3.78541;
@@ -205,27 +202,16 @@ export function WaterChangeCalculator() {
       <Nav variant="inner" />
 
       <main>
-        <div style={{ background: 'var(--color-bg-gradient)', borderBottom: '1px solid var(--border-divider)' }}>
-          <div className="wcc-hero">
-            <nav aria-label="Breadcrumb" className="wcc-breadcrumb">
-              <Link to="/">Home</Link>
-              <span aria-hidden="true">›</span>
-              <span aria-current="page">Water change calculator</span>
-            </nav>
-            <div className="wcc-eyebrow">Free tool · No signup</div>
-            <h1>Aquarium Water Change Calculator</h1>
-            <p>
-              Find the water change percentage needed to lower nitrate to your target, how many{' '}
-              {unitLabel} to replace, and what your nitrate should read afterward.
-            </p>
-          </div>
-        </div>
+        <ToolHero crumb="Water change calculator" title="Aquarium Water Change Calculator">
+          Find the water change percentage needed to lower nitrate to your target, how many{' '}
+          {unitLabel} to replace, and what your nitrate should read afterward.
+        </ToolHero>
 
-        <section className="wcc-wrap" aria-labelledby={`${formId}-heading`}>
-          <div className="wcc-card">
-            <div className="wcc-card-head">
+        <section className="tool-wrap" aria-labelledby={`${formId}-heading`}>
+          <div className="tool-card">
+            <div className="tool-card-head">
               <h2 id={`${formId}-heading`}>Your tank</h2>
-              <div className="wcc-units" role="radiogroup" aria-label="Volume unit">
+              <div className="tool-segmented" role="radiogroup" aria-label="Volume unit">
                 {(['gal', 'L'] as const).map((option) => (
                   <button
                     key={option}
@@ -241,15 +227,15 @@ export function WaterChangeCalculator() {
               </div>
             </div>
 
-            <form className="wcc-fields" noValidate onSubmit={(event) => event.preventDefault()}>
+            <form className="tool-fields" noValidate onSubmit={(event) => event.preventDefault()}>
               {fieldOrder.map((key) => {
                 const id = `${formId}-${key}`;
                 const error = errors[key];
 
                 return (
-                  <div className="wcc-field" key={key}>
+                  <div className="tool-field" key={key}>
                     <label htmlFor={id}>{fieldConfig[key].label}</label>
-                    <div className={`wcc-input${error ? ' has-error' : ''}`}>
+                    <div className={`tool-input${error ? ' has-error' : ''}`}>
                       <input
                         id={id}
                         type="text"
@@ -270,18 +256,18 @@ export function WaterChangeCalculator() {
               })}
             </form>
 
-            <div className="wcc-result" aria-live="polite">
+            <div className="tool-result" aria-live="polite">
               {!result || !inputs ? (
-                <p className="wcc-result-empty">Fill in all four fields to see your result.</p>
+                <p className="tool-result-empty">Fill in all four fields to see your result.</p>
               ) : result.kind === 'atTarget' ? (
-                <div className="wcc-callout is-ok">
+                <div className="tool-callout is-ok">
                   <strong>No water change needed to reach this target.</strong> Your current nitrate
                   ({formatNumber(inputs.current)} ppm) is already at or below{' '}
                   {formatNumber(inputs.target)} ppm. Keep testing on your usual routine and watch the
                   trend.
                 </div>
               ) : result.kind === 'unreachable' ? (
-                <div className="wcc-callout is-warn">
+                <div className="tool-callout is-warn">
                   <strong>A water change can’t reach this target.</strong> Your replacement water
                   has {formatNumber(inputs.replacement)} ppm nitrate, so water changes can only bring
                   the tank down toward that level, never below it. Try a lower-nitrate water source
@@ -289,30 +275,30 @@ export function WaterChangeCalculator() {
                 </div>
               ) : (
                 <>
-                  <div className="wcc-stats">
-                    <div className="wcc-stat is-primary">
-                      <span className="wcc-stat-value">{result.percent}%</span>
-                      <span className="wcc-stat-label">water change</span>
+                  <div className="tool-stats">
+                    <div className="tool-stat is-primary">
+                      <span className="tool-stat-value">{result.percent}%</span>
+                      <span className="tool-stat-label">water change</span>
                     </div>
-                    <div className="wcc-stat">
-                      <span className="wcc-stat-value">
+                    <div className="tool-stat">
+                      <span className="tool-stat-value">
                         {formatNumber(result.volumeToReplace)} {unitShort}
                       </span>
-                      <span className="wcc-stat-label">to replace</span>
+                      <span className="tool-stat-label">to replace</span>
                     </div>
-                    <div className="wcc-stat">
-                      <span className="wcc-stat-value">≈ {formatNumber(result.predictedAfter)} ppm</span>
-                      <span className="wcc-stat-label">nitrate afterward</span>
+                    <div className="tool-stat">
+                      <span className="tool-stat-value">≈ {formatNumber(result.predictedAfter)} ppm</span>
+                      <span className="tool-stat-label">nitrate afterward</span>
                     </div>
                   </div>
-                  <p className="wcc-summary">
+                  <p className="tool-summary">
                     Your aquarium has {formatNumber(inputs.current)} ppm nitrate. A{' '}
                     {result.percent}% water change ({formatNumber(result.volumeToReplace)} {unitLabel})
                     with {formatNumber(inputs.replacement)} ppm replacement water should bring it to
                     approximately {formatNumber(result.predictedAfter)} ppm.
                   </p>
                   {result.splitChanges !== null && (
-                    <div className="wcc-callout is-warn">
+                    <div className="tool-callout is-warn">
                       <strong>That’s a large single change.</strong> Big water changes can shift
                       temperature, pH, hardness, or salinity quickly. With 25% changes, you would
                       need about {result.splitChanges} to reach {formatNumber(inputs.target)} ppm,
@@ -323,7 +309,7 @@ export function WaterChangeCalculator() {
               )}
 
               {inputs && inputs.current > inputs.replacement && (
-                <div className="wcc-compare">
+                <div className="tool-compare">
                   <h3>Compare common water changes</h3>
                   <table>
                     <thead>
@@ -346,7 +332,7 @@ export function WaterChangeCalculator() {
                             </td>
                             <td>
                               ≈ {formatNumber(after)} ppm
-                              {reachesTarget && <span className="wcc-badge">Target</span>}
+                              {reachesTarget && <span className="tool-badge">Target</span>}
                             </td>
                           </tr>
                         );
@@ -356,7 +342,7 @@ export function WaterChangeCalculator() {
                 </div>
               )}
 
-              <p className="wcc-disclaimer">
+              <p className="tool-disclaimer">
                 This is dilution math, not a guarantee that a particular water change is safe for
                 every aquarium. It assumes the volume you entered is the actual water volume and
                 ignores nitrate produced between tests. Retest after the change to confirm.
@@ -364,44 +350,30 @@ export function WaterChangeCalculator() {
             </div>
           </div>
 
-          <aside className="wcc-cta" aria-labelledby={`${formId}-cta`}>
-            <h2 id={`${formId}-cta`}>
-              Want to track your water parameters and know when to test again?
-            </h2>
-            <p>
-              Log every reading in seconds, see your nitrate trend, and follow Reef Keeper’s High
-              Nitrate Recovery plan with water-change scenarios and retest reminders.
-            </p>
-            <a
-              href={APP_STORE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() =>
-                window.gtag?.('event', 'tool_cta_click', {
-                  tool_name: 'water_change_calculator',
-                  cta_type: 'app_store',
-                })
-              }
-            >
-              Get Reef Keeper for free
-            </a>
-          </aside>
+          <ToolCta
+            toolName="water_change_calculator"
+            heading="Want to track your water parameters and know when to test again?"
+            label="Get Reef Keeper for free"
+          >
+            Log every reading in seconds, see your nitrate trend, and follow Reef Keeper’s High
+            Nitrate Recovery plan with water-change scenarios and retest reminders.
+          </ToolCta>
         </section>
 
-        <article className="prose wcc-content">
+        <article className="prose tool-content">
           <h2>How the water change calculation works</h2>
           <p>
             A partial water change dilutes nitrate. When you remove part of the tank water and
             replace it, the new nitrate level is a blend of the old water you kept and the new water
             you added:
           </p>
-          <p className="wcc-formula">
+          <p className="tool-formula">
             Nitrate after = current × (1 − change %) + replacement × change %
           </p>
           <p>
             Solving that for the change percentage gives the amount needed to hit your target:
           </p>
-          <p className="wcc-formula">
+          <p className="tool-formula">
             Change % = (current − target) ÷ (current − replacement)
           </p>
           <p>
@@ -492,8 +464,8 @@ export function WaterChangeCalculator() {
             </div>
           ))}
 
-          <h2>Related guides</h2>
-          <ul className="wcc-related">
+          <h2>Related guides and tools</h2>
+          <ul className="tool-related">
             <li>
               <Link to="/blog/$slug" params={{ slug: 'high-nitrate-in-aquarium' }} className="link">
                 High nitrate in an aquarium: causes, fixes, and a simple plan
@@ -514,29 +486,18 @@ export function WaterChangeCalculator() {
                 Aquarium water parameters explained
               </Link>
             </li>
+            <li>
+              <Link to="/tools/aquarium-cycle-checker" className="link">
+                Aquarium cycle checker: is my tank cycled?
+              </Link>
+            </li>
           </ul>
 
-          <h2>Sources</h2>
-          <p className="wcc-reviewed">
-            Last reviewed{' '}
-            <time dateTime={LAST_REVIEWED}>
-              {new Date(`${LAST_REVIEWED}T00:00:00`).toLocaleDateString('en-US', {
-                month: 'long',
-                day: 'numeric',
-                year: 'numeric',
-              })}
-            </time>
-            . For aquarium water, mg/L and ppm are interchangeable.
-          </p>
-          <ol className="wcc-sources">
-            {Object.values(SOURCES).map((source) => (
-              <li key={source.url}>
-                <a href={source.url} className="link" target="_blank" rel="noopener noreferrer">
-                  {source.label}
-                </a>
-              </li>
-            ))}
-          </ol>
+          <ToolSources
+            sources={Object.values(SOURCES)}
+            lastReviewed={LAST_REVIEWED}
+            note="For aquarium water, mg/L and ppm are interchangeable."
+          />
         </article>
       </main>
 
