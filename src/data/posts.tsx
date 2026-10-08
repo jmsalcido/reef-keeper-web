@@ -4,6 +4,7 @@ import { APP_STORE_URL } from '../config';
 import { fishArrivalJourneyPost } from './posts/fishArrivalJourney';
 import { waterChangeSchedulePost } from './posts/waterChangeSchedule';
 import { reefKeeperProPost } from './posts/reefKeeperPro';
+import { multipleAquariumsPost } from './posts/multipleAquariums';
 import type { Post, PublishedPost } from './posts/types';
 
 export type { ComingSoonPost, Post, PublishedPost } from './posts/types';
@@ -33,6 +34,7 @@ const ReleaseScreenshot = ({ src, alt, caption }: { src: string; alt: string; ca
 );
 
 export const posts: Post[] = [
+  multipleAquariumsPost,
   reefKeeperProPost,
   waterChangeSchedulePost,
   fishArrivalJourneyPost,

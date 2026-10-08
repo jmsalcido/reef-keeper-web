@@ -3,7 +3,7 @@ export const APP_STORE_URL =
   'https://apps.apple.com/us/app/reefkeeper-aquarium-tracker/id6780324072';
 
 /** Canonical production origin used for SEO metadata and JSON-LD IDs. */
-export const SITE_URL = (import.meta.env.VITE_SITE_URL ?? 'https://reefkeeper.otfusion.org').replace(
+export const SITE_URL = (import.meta.env.VITE_SITE_URL ?? 'https://reefkeeper.beartrailworks.com').replace(
   /\/$/,
   '',
 );
